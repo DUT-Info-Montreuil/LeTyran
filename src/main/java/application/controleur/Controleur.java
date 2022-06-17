@@ -13,7 +13,6 @@ import application.vue.VieVue;
 import application.vue.EnvironnementVue;
 import application.modele.ModeleDialogue;
 import application.vue.*;
-import application.vue.inventaire.InventaireVue;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.Event;
@@ -30,8 +29,6 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static application.modele.MapJeu.*;
-
 public class Controleur implements Initializable {
 
     private Environnement env;
@@ -42,10 +39,10 @@ public class Controleur implements Initializable {
     private ObjetVue objetVue;
     private EtabliVue etabliVue;
     private FeuDeCampVue feuDeCampVue;
-    private EnnemieVue ennemieVue;
+    private EnnemiVue ennemiVue;
     private EnnemiControleur ennemiControleur;
     private  Ennemie ennemie;
-    private ControleurQuete controleurQuete;
+    private QueteControleur controleurQuete;
     private InventaireControleur inventaireControleur;
     private VueDialogue vueDialog;
     private ModeleDialogue modeleDialogue;
@@ -79,7 +76,7 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        this.controleurQuete = new ControleurQuete(this.root.getScene(), conteneurQuetes);
+        this.controleurQuete = new QueteControleur(this.root.getScene(), conteneurQuetes);
         env = new Environnement();
         modeleDialogue = new ModeleDialogue();
 

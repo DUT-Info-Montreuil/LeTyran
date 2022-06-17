@@ -3,19 +3,11 @@ package application.controleur;
 import application.modele.Ennemie;
 import application.modele.Entite;
 import application.modele.Environnement;
-import application.modele.ObjetJeu;
 import application.modele.objets.Bois;
-import application.vue.EnnemieVue;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import application.vue.EnnemiVue;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.media.AudioClip;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import static application.modele.MapJeu.TUILE_TAILLE;
 
@@ -27,11 +19,11 @@ public class EnnemiControleur{
     private Ennemie ennemie;
 
 
-    private EnnemieVue ennemieVue;
+    private EnnemiVue ennemieVue;
     private AudioClip sound = new AudioClip(getClass().getResource("/application/sons/bruitLoorr.mp3").toExternalForm());
     private AudioClip sound1 = new AudioClip(getClass().getResource("/application/sons/zip.mp3").toExternalForm());
 
-    public EnnemiControleur(Pane root, Environnement env, TilePane tilesol, Ennemie ennemie, EnnemieVue ennemieVue) {
+    public EnnemiControleur(Pane root, Environnement env, TilePane tilesol, Ennemie ennemie, EnnemiVue ennemieVue) {
         this.root = root;
         this.tileSol=tilesol;
         this.env=env;

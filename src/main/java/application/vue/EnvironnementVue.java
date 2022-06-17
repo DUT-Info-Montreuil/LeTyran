@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -23,6 +24,8 @@ public class EnvironnementVue {
     private TilePane tileSol;
     private TilePane tileDecors;
     private TilePane tileFond;
+
+    private AudioClip bruitCoffre = new AudioClip(getClass().getResource("/application/sons/coffreBruit.mp3").toExternalForm());
 
     public EnvironnementVue(Environnement env, Pane root, TilePane tileSol, TilePane tileDecors, TilePane tileFond) {
         this.env = env;
@@ -161,8 +164,8 @@ public class EnvironnementVue {
     }
 
     public void changerImgCoffre(int id) {
-        ImageView img = (ImageView) tileSol.getChildren().get(id);
-        img.setImage(new Image("file:src/main/resources/application/Coffre/CoffreOrOuv.png"));
+        ((ImageView) tileSol.getChildren().get(id)).setImage(new Image("file:src/main/resources/application/Coffre/CoffreOrOuv.png"));
+        bruitCoffre.play();
     }
 
     public void supprimerFleche(String id) {

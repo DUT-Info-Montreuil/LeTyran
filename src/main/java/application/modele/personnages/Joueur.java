@@ -6,7 +6,6 @@ import application.modele.armes.Hache;
 import application.modele.armes.Pioche;
 import application.modele.armes.arc.Arc;
 import application.modele.objets.Arbre;
-import application.modele.objets.Bois;
 import application.modele.objets.Coffre;
 import application.modele.objets.Materiau;
 import application.modele.personnages.ennemi.Ennemi;
@@ -15,7 +14,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.media.AudioClip;
 
 import static application.modele.MapJeu.TUILE_TAILLE;
-import static application.modele.MapJeu.WIDTH;
 
 public class Joueur extends Personnage {
 
@@ -25,8 +23,6 @@ public class Joueur extends Personnage {
     private BooleanProperty seReposeProperty;
     private long delai;
     private BooleanProperty avanceProperty;
-
-    private AudioClip bruitCoffre = new AudioClip(getClass().getResource("/application/sons/coffreBruit.mp3").toExternalForm());
 
     public Joueur(Environnement env) {
         super(env);
@@ -89,15 +85,8 @@ public class Joueur extends Personnage {
 
     private boolean ouvrirCoffre(int x, int y){
         Coffre coffre = getEnv().getCoffre(x, y);
-        Entite bois= new Bois(getEnv(), x, y);
-        if(coffre != null){
-            for(int i=0 ; i<coffre.getLoot().size();i++) {
-                this.getInventaire().ajouterObjet(coffre.getLoot().get(i));
-            }
-            getEnv().getListeCoffres().remove(coffre);
-            getEnv().getMapJeu().getTabMap()[y][x] = 59;
-            coffre.detruire();
-            System.out.println(this.getInventaire());
+        if (coffre != null) {
+            coffre.ouvrir();
             return  true;
         }
         return false;

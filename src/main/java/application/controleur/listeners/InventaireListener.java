@@ -1,6 +1,6 @@
 package application.controleur.listeners;
 
-import application.controleur.ControleurQuete;
+import application.controleur.QueteControleur;
 import application.modele.ObjetInventaire;
 import application.vue.inventaire.InventaireVue;
 import javafx.collections.ListChangeListener;
@@ -8,11 +8,11 @@ import javafx.collections.ListChangeListener;
 public class InventaireListener implements ListChangeListener {
 
     private InventaireVue invVue;
-    private ControleurQuete controleurQuete;
+    private QueteControleur controleurQuete;
 
-    public InventaireListener(InventaireVue invVue, ControleurQuete controleurQuete) {
+    public InventaireListener(InventaireVue invVue, QueteControleur queteControleur) {
         this.invVue = invVue;
-        this.controleurQuete = controleurQuete;
+        this.controleurQuete = queteControleur;
     }
 
     @Override

@@ -2,7 +2,6 @@ package application.controleur;
 
 import application.modele.ModeleQuetes;
 import application.modele.ObjetInventaire;
-import application.modele.quetes.BaseQuete;
 import application.modele.quetes.ObjectifNombreNecessaire;
 import application.modele.quetes.QueteType;
 import application.vue.VueQuetes;
@@ -14,11 +13,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ControleurQuete {
+public class QueteControleur {
     private ModeleQuetes modeleQuetes;
     private VueQuetes vueQuetes;
 
-    public ControleurQuete(Scene scene, TextFlow conteneurQuete) {
+    public QueteControleur(Scene scene, TextFlow conteneurQuete) {
         this.modeleQuetes = new ModeleQuetes();
         this.vueQuetes = new VueQuetes(conteneurQuete, scene);
 

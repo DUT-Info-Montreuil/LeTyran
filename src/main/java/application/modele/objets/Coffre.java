@@ -13,10 +13,15 @@ public class Coffre extends Entite {
 
     public Coffre(Environnement env, int x, int y) {
         super(env, x, y);
-        loot= new ArrayList<Entite>();
+        loot= new ArrayList<>();
         this.remplirLoot();
-
     }
+
+    public Coffre(Environnement env, int x, int y, ArrayList loot) {
+        super(env, x, y);
+        this.loot = loot;
+    }
+
     private ArrayList<Entite> remplirLoot(){
         int x=(int) (Math.random() * 3 + 1);
         this.loot.add(new Epee(getEnv(), x));
@@ -25,6 +30,19 @@ public class Coffre extends Entite {
         }
         return this.loot;
     }
+
+    public void ouvrir() {
+        for (int i = 0 ; i < loot.size();i++)
+            getEnv().getJoueur().getInventaire().ajouterObjet(loot.get(i));
+        detruire();
+    }
+
+    @Override
+    public  void detruire() {
+        getEnv().getMapJeu().getTabMap()[(int) getX()][(int) getY()] = 59;
+        getEnv().getListeCoffres().remove(this);
+    }
+
     public float getX() {
         return super.getX();
     }
