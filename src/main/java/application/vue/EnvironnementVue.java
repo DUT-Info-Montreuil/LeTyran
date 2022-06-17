@@ -1,6 +1,5 @@
 package application.vue;
 
-import application.controleur.EnvironnementControleur;
 import application.controleur.listeners.PersonnageListeners;
 import application.modele.Entite;
 import application.modele.Environnement;
@@ -160,7 +159,7 @@ public class EnvironnementVue {
         }
     }
 
-    public void supprimerEnnemi(String id) {
+    public void supprimerPNJ(String id) {
         ((Pane) root.lookup("#paneEnnemis")).getChildren().remove(root.lookup("#" + id));
         ((Pane) root.lookup("#paneEnnemis")).getChildren().remove(root.lookup("#" + id + "Arme"));
     }

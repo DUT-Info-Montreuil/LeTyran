@@ -7,6 +7,7 @@ import application.modele.armes.arc.Fleche;
 import application.modele.objets.Arbre;
 import application.modele.objets.Coffre;
 import application.modele.objets.Materiau;
+import application.modele.personnages.animaux.Animal;
 import application.modele.personnages.ennemi.Ennemi;
 import application.vue.ArmeVue;
 import application.vue.EnvironnementVue;
@@ -64,10 +65,22 @@ public class EnvironnementControleur {
             public void onChanged(Change<? extends Ennemi> change) {
                change.next();
                for (int i = 0; i < change.getRemovedSize(); i++)
-                    envVue.supprimerEnnemi(change.getRemoved().get(i).getId());
+                    envVue.supprimerPNJ(change.getRemoved().get(i).getId());
 
                 for (int i = 0; i < change.getAddedSize(); i++)
                     new PersonnageListeners(change.getAddedSubList().get(i), new PersonnageVue((Pane) root.lookup("#paneEnnemis"), change.getAddedSubList().get(i)), new ArmeVue((Pane) root.lookup("#paneEnnemis"),  change.getAddedSubList().get(i)));
+            }
+        });
+
+        env.getListeAnimaux().addListener(new ListChangeListener<Animal>() {
+            @Override
+            public void onChanged(Change<? extends Animal> change) {
+                change.next();
+                for (int i = 0; i < change.getRemovedSize(); i++)
+                    envVue.supprimerPNJ(change.getRemoved().get(i).getId());
+
+                for (int i = 0; i < change.getAddedSize(); i++)
+                    new PersonnageListeners(change.getAddedSubList().get(i), new PersonnageVue((Pane) root.lookup("#paneEnnemis"), change.getAddedSubList().get(i)));
             }
         });
 
@@ -79,6 +92,7 @@ public class EnvironnementControleur {
                     envVue.changerImgCoffre((int)change.getRemoved().get(i).getY() * WIDTH + (int)change.getRemoved().get(i).getX());
             }
         });
+
         env.getListeFleches().addListener(new ListChangeListener<Fleche>() {
             @Override
             public void onChanged(Change<? extends Fleche> change) {
