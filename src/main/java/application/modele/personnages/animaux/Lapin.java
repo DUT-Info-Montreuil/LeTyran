@@ -1,10 +1,7 @@
-package application.modele.personnages.ennemi;
+package application.modele.personnages.animaux;
 
 import application.modele.Environnement;
-import application.modele.personnages.Animal;
-
-import static application.modele.Direction.Droit;
-import static application.modele.Direction.Gauche;
+import application.modele.personnages.animaux.Animal;
 
 public class Lapin extends Animal {
 

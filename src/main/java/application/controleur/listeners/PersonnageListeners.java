@@ -52,4 +52,16 @@ public class PersonnageListeners {
                 armeVue.inverserSprite();
         });
     }
+
+    public PersonnageListeners(Personnage perso, PersonnageVue persoVue) {
+        //appel la méthode animationDeplacement à chaque fois que x change et donc que le joueur se déplace et udpate la position de son arme
+        perso.getXProperty().addListener((observableValue, number, t1) -> {
+            persoVue.animerDeplacement();
+        });
+
+        //retourne le sprite du perso
+        perso.getDirectionProperty().addListener((observableValue, o, t1) ->  {
+            persoVue.inverserSprite();
+        });
+    }
 }

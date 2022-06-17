@@ -23,4 +23,6 @@ module application.letyran {
     opens application.modele.personnages.ennemi to javafx.fxml;
     exports application.vue.inventaire;
     opens application.vue.inventaire to javafx.fxml;
+    exports application.modele.personnages.animaux;
+    opens application.modele.personnages.animaux to javafx.fxml;
 }

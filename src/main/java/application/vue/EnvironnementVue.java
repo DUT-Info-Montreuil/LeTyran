@@ -4,6 +4,7 @@ import application.controleur.EnvironnementControleur;
 import application.controleur.listeners.PersonnageListeners;
 import application.modele.Entite;
 import application.modele.Environnement;
+import application.modele.personnages.animaux.Animal;
 import application.modele.personnages.ennemi.Ennemi;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -38,9 +39,10 @@ public class EnvironnementVue {
         //construireDecor();
         construireFond();
 
-        for (Ennemi ennemi : env.getListeEnnemis()) {
+        for (Ennemi ennemi : env.getListeEnnemis())
             new PersonnageListeners(ennemi, new PersonnageVue(((Pane) root.lookup("#paneEnnemis")), ennemi), new ArmeVue(((Pane) root.lookup("#paneEnnemis")), ennemi));
-        }
+        for (Animal animal : env.getListeAnimaux())
+            new PersonnageListeners(animal, new PersonnageVue((Pane) root.lookup("#paneEnnemis"), animal));
     }
 
     private void construireMap() {

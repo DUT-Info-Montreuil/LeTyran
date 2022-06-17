@@ -79,8 +79,9 @@ public class Entite {
                 if (nom.equals("listeEntites"))
                 for (int i = 0; i < env.getHashMapListes().get(nom).size(); i++) {
                     Entite ent = (Entite) env.getHashMapListes().get(nom).get(i);
+                    //System.out.println(ent);
                     if (ent != this && !ent.getCollider().getIgnoreCollision() && this.getCollider().intersect(ent)) {
-                        //System.out.println("x:" + this.getX() + " y : " + this.getY() + " x:" + ent.getX() + " y :" + ent.getY());
+
                         this.quandCollisionDetectee(ent);
                     }
                 }

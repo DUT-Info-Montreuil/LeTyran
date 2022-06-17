@@ -49,43 +49,26 @@ public class Collider {
 
     public boolean intersect(Entite ent) {
         if (ent.getCollider() != null) {
-            Entite selfEnt = this.ent;
-            Collider entCollider = ent.getCollider();
 
-            if (selfEnt.getX() >= ent.getX() &&
-                    selfEnt.getX() < ent.getX() + entCollider.getHitBox().getWidth()
-                    && selfEnt.getY() >= ent.getY()
-                    && selfEnt.getY() < ent.getY() + entCollider.getHitBox().getHeight())
+            double entRecX = ent.getX();
+            double entRecY = ent.getY();
+            double entColWidth = ent.getCollider().getHitBox().getWidth();
+            double entColHeight = ent.getCollider().getHitBox().getHeight();
+
+            double colRecX = this.getEnt().getX();
+            double colRecY = this.getEnt().getY();
+            double colWidth = this.getHitBox().getWidth();
+            double colRecHeight = this.getHitBox().getHeight();
+
+            if (colRecX + colWidth > entRecX
+                    && colRecX < entRecX + entColWidth
+                    && colRecY + colRecHeight > entRecY && colRecY < entRecY + entColHeight) {
                 return true;
+            }
 
 
         }
         return false;
-    }
-
-    public double verificationX(Entite ent, double forceX) {
-        double entRecX = ent.getX();
-        double entRecY = ent.getY();
-        double entColWidth = ent.getCollider().getHitBox().getWidth();
-        double entColHeight = ent.getCollider().getHitBox().getHeight();
-
-        double colRecX = this.getEnt().getX();
-        double colRecY = this.getEnt().getY();
-        double colWidth = this.getHitBox().getWidth();
-        double colRecHeight = this.getHitBox().getHeight();
-
-
-        if(colRecX + colWidth + forceX > entRecX
-                && colRecX + forceX < entRecX + entColWidth
-                && colRecY + colRecHeight > entRecY && colRecY < entRecY + entColHeight) {
-            forceX *= -1;
-
-            if(forceX < 0) {
-
-            }
-        } /*else if(colRecX < 0 ||)*/
-
-        return forceX;
     }
 
     public Entite verificationCollisionGauche(double valeur) {
@@ -93,7 +76,7 @@ public class Collider {
 
         if(!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
             for (String nom : this.getEnt().getEnv().getHashMapListes().keySet())
-                if (nom.equals("listeEntites") || nom.equals("listeMateriaux"))
+                if ( nom.equals("listeMateriaux"))
                     for (int i = 0; i < this.getEnt().getEnv().getHashMapListes().get(nom).size(); i++) {
                         Entite ent = (Entite) this.getEnt().getEnv().getHashMapListes().get(nom).get(i);
 
@@ -124,7 +107,7 @@ public class Collider {
         valeur = Math.abs(valeur);
         if(!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
             for (String nom : this.getEnt().getEnv().getHashMapListes().keySet())
-                if (nom.equals("listeEntites") || nom.equals("listeMateriaux"))
+                if ( nom.equals("listeMateriaux"))
                     for (int i = 0; i < this.getEnt().getEnv().getHashMapListes().get(nom).size(); i++) {
                         Entite ent = (Entite) this.getEnt().getEnv().getHashMapListes().get(nom).get(i);
 
@@ -155,7 +138,7 @@ public class Collider {
 
         if (!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
             for (String nom : this.getEnt().getEnv().getHashMapListes().keySet())
-                if (nom.equals("listeEntites") || nom.equals("listeMateriaux"))
+                if ( nom.equals("listeMateriaux"))
                     for (int i = 0; i < this.getEnt().getEnv().getHashMapListes().get(nom).size(); i++) {
                         Entite ent = (Entite) this.getEnt().getEnv().getHashMapListes().get(nom).get(i);
                         if(ent!= this.getEnt()) {
@@ -186,7 +169,7 @@ public class Collider {
 
         if (!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
             for (String nom : this.getEnt().getEnv().getHashMapListes().keySet())
-                if (nom.equals("listeEntites") || nom.equals("listeMateriaux"))
+                if (nom.equals("listeMateriaux"))
                     for (int i = 0; i < this.getEnt().getEnv().getHashMapListes().get(nom).size(); i++) {
 
                         Entite ent = (Entite) this.getEnt().getEnv().getHashMapListes().get(nom).get(i);

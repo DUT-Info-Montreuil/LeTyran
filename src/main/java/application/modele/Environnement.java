@@ -3,10 +3,9 @@ package application.modele;
 import application.modele.armes.arc.Fleche;
 import application.modele.objets.*;
 import application.modele.personnages.*;
-import application.modele.personnages.ennemi.Archer;
-import application.modele.personnages.ennemi.Ennemi;
-import application.modele.personnages.ennemi.Epeiste;
-import application.modele.personnages.ennemi.Lancier;
+import application.modele.personnages.animaux.Animal;
+import application.modele.personnages.animaux.Lapin;
+import application.modele.personnages.ennemi.*;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -34,6 +33,7 @@ public class Environnement {
             put("listeArbres", FXCollections.observableArrayList());
             put("listeCoffres", FXCollections.observableArrayList());
             put("listeEnnemis", FXCollections.observableArrayList());
+            put("listeAnimaux", FXCollections.observableArrayList());
             put("listeFleches", FXCollections.observableArrayList());
         }};
         joueur = new Joueur(this);
@@ -56,6 +56,7 @@ public class Environnement {
         initListeArbres();
         initListeCoffres();
         initListeEnnemis();
+        initListeAnimaux();
     }
 
     //region init
@@ -99,6 +100,11 @@ public class Environnement {
                 }
             }
         }
+    }
+
+    public void initListeAnimaux() {
+        getListeAnimaux().clear();
+        getListeAnimaux().add(new Lapin(this, 5,11, 15));
     }
     //endregion
 
@@ -190,6 +196,9 @@ public class Environnement {
         for (int i = 0; i < getListeEnnemis().size(); i++)
             getListeEnnemis().get(i).update();
 
+        for (int i = 0; i < getListeAnimaux().size(); i++)
+            getListeAnimaux().get(i).update();
+
         for (int i = 0; i < getListeFleches().size(); i++)
             getListeFleches().get(i).update();
     }
@@ -226,6 +235,10 @@ public class Environnement {
 
     public ObservableList<Ennemi> getListeEnnemis() {
         return hashMapListes.get("listeEnnemis");
+    }
+
+    public ObservableList<Animal> getListeAnimaux() {
+        return hashMapListes.get("listeAnimaux");
     }
 
     public ObservableList<Coffre> getListeCoffres() {

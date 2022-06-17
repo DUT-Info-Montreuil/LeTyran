@@ -100,7 +100,7 @@ public abstract class Personnage extends Entite {
         else
             direction = Direction.Gauche;
         int i = 0;
-        while (i < 3 && distancePoussee != 0 && !super.getEnv().entreEnCollision((int)super.getX(), (int)super.getY(), direction)) {
+        while (i < 3 && distancePoussee != 0 && super.getCollider().verifierCollisionDirection(direction, 1) == null) {
             i++;
             tombe = true;
             if (direction == Direction.Droit) {

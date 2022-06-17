@@ -1,8 +1,10 @@
 package application.modele.personnages;
 
 import application.modele.Direction;
+import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.armes.Arme;
+import application.modele.objets.Materiau;
 
 import static application.modele.Direction.Droit;
 import static application.modele.Direction.Gauche;
@@ -39,8 +41,9 @@ public abstract class PNJ extends Personnage {
     }
 
     protected boolean estBloque() {
-        return super.getCollider().verifierCollisionDirection(getDirection(), 0.45) != null
-                && super.getCollider().verifierCollisionDirection(getDirectionOpposee(), 0.45) != null;
+        Entite collide1 = super.getCollider().verifierCollisionDirection(getDirection(), 0.45);
+        Entite collide2 = super.getCollider().verifierCollisionDirection(getDirectionOpposee(), 0.45);
+        return (collide1 != null && collide1 instanceof Materiau) && (collide2 == null || !(collide2 instanceof Materiau));
     }
 
     protected Direction getDirectionOpposee() {
