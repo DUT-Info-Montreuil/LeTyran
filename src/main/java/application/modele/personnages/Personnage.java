@@ -59,13 +59,22 @@ public abstract class Personnage extends Entite {
         else
             distance = getVitesse();
         int i = 0;
-        while (i < distance && super.getCollider().verifierCollisionDirection(directionProperty.getValue(), 0.45f) == null) {
+
+
+        Entite entTrouvee = super.getCollider().verifierCollisionDirection(directionProperty.getValue(), 0.45f) ;
+        while (i < distance && entTrouvee == null) {
             i++;
-            if (directionProperty.getValue() == Direction.Droit)
+            if (directionProperty.getValue() == Direction.Droit) {
                 super.setX(super.getX() + 0.45f);
-            else
+            } else {
                 super.setX(super.getX() - 0.45f);
+            }
+            entTrouvee = super.getCollider().verifierCollisionDirection(directionProperty.getValue(), 0.45f);
         }
+
+
+
+
     }
 
     protected void sauter() {
@@ -78,6 +87,7 @@ public abstract class Personnage extends Entite {
         if (i < getVitesse())
             saute = false;
     }
+
 
     protected void tomber() {
         int i = 0;

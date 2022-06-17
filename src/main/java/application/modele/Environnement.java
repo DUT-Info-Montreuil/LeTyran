@@ -154,10 +154,15 @@ public class Environnement {
     }
 
     public Materiau getMinerai(int x, int y) {
-        for (Materiau minerai : getListeMateriaux())
+        x *= TUILE_TAILLE;
+        y *= TUILE_TAILLE;
+        for (Materiau minerai : getListeMateriaux()) {
+            System.out.println(minerai.getX() + " " + minerai.getY() + " " + x + " " + y);
             if (minerai.getX() == x && minerai.getY() == y)
                 return minerai;
+        }
         return null;
+
     }
 
     public Arbre getArbre(int x, int y) {

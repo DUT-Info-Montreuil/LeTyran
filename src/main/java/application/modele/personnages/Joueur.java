@@ -116,7 +116,9 @@ public class Joueur extends Personnage {
     }
 
     private boolean miner(int x, int y) {
+
         Materiau minerai = getEnv().getMinerai(x, y);
+
         if (minerai != null) {
             minerai.estFrappe();
             return true;
