@@ -26,8 +26,6 @@ public class Environnement {
     private FeuDeCamp feuDeCamp;
     private HashMap<String, ObservableList> hashMapListes;
 
-    private Ennemie ennemie;
-
     public Environnement() {
         pauseProperty = new SimpleBooleanProperty(false);
         hashMapListes = new HashMap<>() {{
@@ -39,7 +37,6 @@ public class Environnement {
             put("listeFleches", FXCollections.observableArrayList());
         }};
         joueur = new Joueur(this);
-        this.ennemie=new Ennemie(this, 500 ,350);
 
         mapJeu = new MapJeu();
         etabli = new Etabli(this);
@@ -61,6 +58,7 @@ public class Environnement {
         initListeEnnemis();
     }
 
+    //region init
     private void initListeArbres() {
         for (int i = 0; i < MapJeu.HEIGHT; i++) {
             for (int j = 0; j < MapJeu.WIDTH; j++) {
@@ -85,7 +83,6 @@ public class Environnement {
         }
     }
 
-
     public void initListeEnnemis() {
         getListeEnnemis().clear();
         getListeEnnemis().add(new Archer(this, 1, 20, 11, 0));
@@ -103,10 +100,7 @@ public class Environnement {
             }
         }
     }
-
-    public void supprimerObjetEnvironnement(Entite obj) {
-        System.out.println(this.getListeEntites().remove(obj));
-    }
+    //endregion
 
     public boolean entreEnCollision(int xPerso, int yPerso, Direction dir) {
         boolean collision = false;
@@ -146,6 +140,11 @@ public class Environnement {
 
     private boolean estUnObstacle(int x, int y) {
         return mapJeu.getTabMap()[y][x] == 34 || mapJeu.getTabMap()[y][x] == 54 || mapJeu.getTabMap()[y][x] == 52 || mapJeu.getTabMap()[y][x] == 53;
+    }
+
+    public boolean pauser() {
+        this.pauseProperty.setValue(!pauseProperty.getValue());
+        return pauseProperty.getValue();
     }
 
     public Materiau getMinerai(int x, int y) {
@@ -253,16 +252,7 @@ public class Environnement {
         return feuDeCamp;
     }
 
-    public Ennemie getEnnemie(){
-        return this.ennemie;
-    }
-
     public final boolean getPause() {
-        return pauseProperty.getValue();
-    }
-
-    public boolean pauser() {
-        this.pauseProperty.setValue(!pauseProperty.getValue());
         return pauseProperty.getValue();
     }
 

@@ -10,7 +10,6 @@ import javafx.event.EventHandler;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 
@@ -24,7 +23,7 @@ public class InventaireControleur implements EventHandler<Event> {
 
     private InventaireVue invVue;
 
-    public InventaireControleur(Pane root,ControleurQuete controleurQuete, Environnement jeu, Pane inventaireMain, Pane inventaireSac, Pane inventaireEquip) {
+    public InventaireControleur(Pane root, QueteControleur controleurQuete, Environnement jeu, Pane inventaireMain, Pane inventaireSac, Pane inventaireEquip) {
         this.root = root;
         this.jeu = jeu;
 

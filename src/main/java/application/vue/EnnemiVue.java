@@ -1,20 +1,18 @@
 package application.vue;
 
 import application.modele.Ennemie;
-import application.modele.Environnement;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.TilePane;
 
-public class EnnemieVue {
+public class EnnemiVue {
     private Pane rootPane;
     private ImageView image;
     private Pane paneDecors;
     private Ennemie ennemi;
 
 
-    public EnnemieVue(Pane root, Pane tilesol, Ennemie ennemie){
+    public EnnemiVue(Pane root, Pane tilesol, Ennemie ennemie){
         this.rootPane=root;
         this.paneDecors=tilesol;
         this.ennemi=ennemie;
@@ -25,8 +23,6 @@ public class EnnemieVue {
         image.setFitHeight(45);
 
         paneDecors.getChildren().add(image);
-
-
     }
     public void afficherCadavres(){
         this.image=new ImageView(new Image("file:src/main/resources/application/perso/mortChevalier.png"));
