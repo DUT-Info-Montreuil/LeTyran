@@ -63,7 +63,7 @@ public class Entite {
 
     private void tomber() {
         for (int i = 0; i < 3; i++)
-        if (!env.entreEnCollision((int) this.getX(), (int)this.getY(), Direction.Bas)) {
+        if (this.getCollider().verifierCollisionDirection(Direction.Bas, 1) == null) {
             tombe = true;
             this.setY(this.getY() + 1);
         }

@@ -9,8 +9,8 @@ public class RectangleCol {
 
     public RectangleCol(int width, int height) {
         //Par défaut le rectangle est situé en haut à gauche
-        this.x = 1;
-        this.y = 1;
+        this.x = 0;
+        this.y = 0;
 
         this.width = width;
         this.height = height;
@@ -23,6 +23,20 @@ public class RectangleCol {
         this.x = -(this.width / 2);
         this.y = -(this.height / 2);
     }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void center() {
+
+    }
+
+    //public void add
 
 
     public String toString() {

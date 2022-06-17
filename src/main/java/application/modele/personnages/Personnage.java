@@ -28,6 +28,11 @@ public abstract class Personnage extends Entite {
         directionProperty = new SimpleObjectProperty<>(Direction.Droit);
         hauteurSaut = 0;
         distancePoussee = 0;
+
+        this.getCollider().getHitBox().setWidth(26);
+        this.getCollider().getHitBox().setHeight(28);
+
+        //this.getCollider().getHitBox().set()
         //this.getCollider().scaleCollider(32,32);
         //System.out.println(this.getCollider());
         //System.out.println(this.getCollider().getHitBox());
@@ -54,7 +59,7 @@ public abstract class Personnage extends Entite {
         else
             distance = getVitesse();
         int i = 0;
-        while (i < distance && !super.getEnv().entreEnCollision((int)super.getX(), (int)super.getY(), directionProperty.getValue())) {
+        while (i < distance && super.getCollider().verifierCollisionDirection(directionProperty.getValue(), 0.45f) == null) {
             i++;
             if (directionProperty.getValue() == Direction.Droit)
                 super.setX(super.getX() + 0.45f);
@@ -65,7 +70,7 @@ public abstract class Personnage extends Entite {
 
     protected void sauter() {
         int i = 0;
-        while (i < getVitesse() && !tombe && hauteurSaut < getHauteurMax() && !super.getEnv().entreEnCollision((int)super.getX(), (int)super.getY(), Direction.Haut)) {
+        while (i < getVitesse() && !tombe && hauteurSaut < getHauteurMax() && super.getCollider().verifierCollisionDirection(Direction.Haut, 0.60f) == null) {
             i++;
             super.setY(super.getY() - 0.60f);
             hauteurSaut +=0.60f;
@@ -76,7 +81,7 @@ public abstract class Personnage extends Entite {
 
     protected void tomber() {
         int i = 0;
-        while (i < getVitesse() && !super.getEnv().entreEnCollision((int)super.getX(), (int)super.getY(), Direction.Bas)) {
+        while (i < getVitesse() && super.getCollider().verifierCollisionDirection(Direction.Bas, 0.60f) == null) {
             i++;
             tombe = true;
             super.setY(super.getY() + 0.60f);

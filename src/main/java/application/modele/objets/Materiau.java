@@ -17,7 +17,7 @@ public abstract class Materiau extends Entite {
     }
 
     public Materiau(Environnement env, int x, int y, int pv) {
-        super(env, x, y, pv);
+        super(env, x *TUILE_TAILLE, y * TUILE_TAILLE, pv);
     }
 
     //appelé quand le bloc est cliqué décremente selon la qualité si le joueur a la bonne arme sinon de 1

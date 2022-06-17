@@ -39,8 +39,8 @@ public abstract class PNJ extends Personnage {
     }
 
     protected boolean estBloque() {
-        return super.getEnv().entreEnCollision((int) super.getX(), (int) super.getY(), getDirection())
-                && !super.getEnv().entreEnCollision((int) super.getX(), (int) super.getY(), getDirectionOpposee());
+        return super.getCollider().verifierCollisionDirection(getDirection(), 0.45) != null
+                && super.getCollider().verifierCollisionDirection(getDirectionOpposee(), 0.45) != null;
     }
 
     protected Direction getDirectionOpposee() {

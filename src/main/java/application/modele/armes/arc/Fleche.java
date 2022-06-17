@@ -38,8 +38,15 @@ public class Fleche extends Entite {
 
     private void seDeplace() {
         int i = 0;
+
         while (i < 7 && distanceParcourue < distanceMax) {
             i++;
+            Entite touchee = this.getCollider().verifierCollisionDirection(this.direction, 0.5f);
+            if(touchee != null) {
+                getEnv().getListeFleches().remove(this);
+                quandCollisionDetectee(touchee);
+            };
+
             switch (direction) {
                 case Droit: setX(getX() + 0.5f); break;
                 case Gauche: setX(getX() - 0.5f); break;
@@ -47,33 +54,11 @@ public class Fleche extends Entite {
                 case Haut: setY(getY() - 0.5f); break;
             }
             distanceParcourue+=0.5f;
-            collision();
             //collide();
         }
 
         if (i < 3)
             getEnv().getListeFleches().remove(this);
-    }
-
-    private void collision() {
-        Entite entite = null;
-        if (Math.abs(getEnv().getJoueur().getX() - getX()) < 1
-                && getEnv().getJoueur().getY() - getY() > 0 && getEnv().getJoueur().getY() - getY() < TUILE_TAILLE)
-            entite = getEnv().getJoueur();
-        else {
-            for (int j = 0; j < getEnv().getListeEnnemis().size() && entite == null; j++)
-                if (Math.abs(getEnv().getListeEnnemis().get(j).getX() - getX()) < 1
-                        && getEnv().getListeEnnemis().get(j).getY() - getY() > 0 && getEnv().getListeEnnemis().get(j).getY() - getY() < TUILE_TAILLE)
-                    entite = getEnv().getListeEnnemis().get(j);
-            if (entite == null)
-                if (direction == Direction.Gauche)
-                    entite = getEnv().getMinerai((int) (getX()/TUILE_TAILLE), (int) (getY()/TUILE_TAILLE)+1);
-                else
-                    entite = getEnv().getMinerai((int) (getX()/TUILE_TAILLE)+1, (int) (getY()/TUILE_TAILLE)+1);
-        }
-
-        if (entite != null)
-            quandCollisionDetectee(entite);
     }
 
     public void update() {
