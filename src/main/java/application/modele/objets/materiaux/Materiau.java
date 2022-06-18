@@ -28,14 +28,12 @@ public abstract class Materiau extends Entite {
 
     public void detruire() {
         Materiau materiau;
-        int positionX = (int)this.getX() * MapJeu.TUILE_TAILLE + (MapJeu.WIDTH / 2);
-        int positionY = (int)this.getY() * MapJeu.TUILE_TAILLE;
         switch (this.getClass().getSimpleName()) {
-            case "Pierre": materiau = new Pierre(this.getEnv(), positionX, positionY); break;
-            case "Fer": materiau = new Fer(this.getEnv(), positionX, positionY); break;
-            case "Platine": materiau = new Platine(this.getEnv(), positionX, positionY); break;
-            case "Terre" : materiau = new Terre(this.getEnv(), positionX, positionY); break;
-            case "Bois" : materiau = new Bois(this.getEnv(), positionX, positionY); break;
+            case "Pierre": materiau = new Pierre(this.getEnv(), (int) getX(), (int) getY()); break;
+            case "Fer": materiau = new Fer(this.getEnv(), (int) getX(), (int) getY()); break;
+            case "Platine": materiau = new Platine(this.getEnv(), (int) getX(), (int) getY()); break;
+            case "Terre" : materiau = new Terre(this.getEnv(), (int) getX(), (int) getY()); break;
+            case "Bois" : materiau = new Bois(this.getEnv(), (int) getX(), (int) getY()); break;
             default: materiau = null; break;
         }
         this.getEnv().getListeEntites().add(materiau);
