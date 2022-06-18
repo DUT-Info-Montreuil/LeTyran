@@ -5,6 +5,7 @@ import application.modele.Environnement;
 import application.modele.MapJeu;
 import application.modele.armes.Arme;
 import application.modele.armes.Pioche;
+import application.modele.objets.materiaux.*;
 
 import static application.modele.MapJeu.TUILE_TAILLE;
 

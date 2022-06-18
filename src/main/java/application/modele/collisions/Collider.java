@@ -2,7 +2,6 @@ package application.modele.collisions;
 
 import application.modele.Direction;
 import application.modele.Entite;
-import application.modele.objets.materiaux.Materiau;
 
 public class Collider {
     private RectangleCol hitbox;

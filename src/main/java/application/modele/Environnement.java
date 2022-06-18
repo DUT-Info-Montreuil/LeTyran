@@ -2,7 +2,11 @@ package application.modele;
 
 import application.modele.armes.arc.Fleche;
 import application.modele.objets.*;
+import application.modele.objets.Materiau;
+import application.modele.objets.materiaux.Terre;
 import application.modele.personnages.*;
+import application.modele.personnages.allies.Allie;
+import application.modele.personnages.allies.ChefVillage;
 import application.modele.personnages.animaux.Animal;
 import application.modele.personnages.animaux.Lapin;
 import application.modele.personnages.ennemi.*;
@@ -58,8 +62,8 @@ public class Environnement {
     //region init
     private void initListeArbres() {
         listeArbres = FXCollections.observableArrayList();
-        for (int i = 0; i < MapJeu.HEIGHT; i++) {
-            for (int j = 0; j < MapJeu.WIDTH; j++) {
+        for (int i = 0; i < mapJeu.getHeight(); i++) {
+            for (int j = 0; j < mapJeu.getWidth(); j++) {
                 if (mapJeu.getTabMap()[i][j] == 55) {
                     listeArbres.add(new Arbre(this, j, i));
                 }
@@ -67,13 +71,14 @@ public class Environnement {
         }
     }
 
-    private void initListeMinerais() {
+    private void initListeMateriaux() {
+        listeMateriaux = FXCollections.observableArrayList();
         for (int i = 0; i < mapJeu.getHeight(); i++) {
             for (int j = 0; j < mapJeu.getWidth(); j++) {
                 int id = mapJeu.getTabMap()[i][j];
                 //switch (mapJeu.getTabMap()[i][j]) {
                     if(id != 0) {
-                        getListeMateriaux().add(new Terre(this, j, i));
+                        listeMateriaux.add(new Terre(this, j, i));
                     }
                     /*case 183: getListeMateriaux().add(new Terre(this, j, i)); break;
                     case 167: getListeMateriaux().add(new Terre(this, j, i)); break;
@@ -96,8 +101,6 @@ public class Environnement {
 
     private void initListeCoffres() {
         listeCoffres = FXCollections.observableArrayList();
-        for (int i = 0; i < MapJeu.HEIGHT; i++) {
-            for (int j = 0; j < MapJeu.WIDTH; j++) {
         for (int i = 0; i < mapJeu.getHeight(); i++) {
             for (int j = 0; j < mapJeu.getWidth(); j++) {
                 if (mapJeu.getTabMap()[i][j] == 58) {
@@ -114,8 +117,8 @@ public class Environnement {
     }
 
     public void initListeAllies() {
-        getListeAllies().clear();
-        getListeAllies().add(new ChefVillage(this, 5,30, 11));
+        listeAllies.clear();
+        listeAllies.add(new ChefVillage(this, 5,30, 11));
     }
             //endregion
 
@@ -176,14 +179,16 @@ public class Environnement {
         for (int i = 0; i < listeAnimaux.size(); i++)
             listeAnimaux.get(i).update();
 
-        for (int i = 0; i < getListeAllies().size(); i++)
-            getListeAllies().get(i).update();
+        for (int i = 0; i < listeAllies.size(); i++)
+            listeAllies.get(i).update();
 
-        for (int i = 0; i < getListeFleches().size(); i++)
-            getListeFleches().get(i).update();
+        for (int i = 0; i < listeFleches.size(); i++)
+            listeFleches.get(i).update();
     }
 
     //region Getter & Setter
+
+
     public ObservableList<Entite> getListeEntites() {
         return listeEntites;
     }
@@ -207,9 +212,11 @@ public class Environnement {
     public ObservableList<Animal> getListeAnimaux() {
         return listeAnimaux;
     }
-            public ObservableList<Allie> getListeAllies() {
-                return listeAllies;
-            }
+
+    public ObservableList<Allie> getListeAllies() {
+        return listeAllies;
+    }
+
     public ObservableList<Fleche> getListeFleches() {
         return listeFleches;
     }
