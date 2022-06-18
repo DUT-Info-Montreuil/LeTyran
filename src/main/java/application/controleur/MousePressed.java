@@ -2,6 +2,7 @@ package application.controleur;
 
 import application.modele.Environnement;
 import application.modele.Inventaire;
+import application.modele.MapJeu;
 import application.modele.armes.Arme;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -18,7 +19,7 @@ public class MousePressed implements EventHandler<MouseEvent> {
     }
     @Override
     public void handle(MouseEvent mouseEvent) {
-        
+
         float persoPosX = env.getJoueur().getX() / TUILE_TAILLE;
         float persoPosY = env.getJoueur().getY() / TUILE_TAILLE;
 
@@ -36,5 +37,14 @@ public class MousePressed implements EventHandler<MouseEvent> {
                 }
             }
         }
+//        int mouseX;
+//        int mouseY;
+//        if (mouseEvent.getX() > (WIDTH * TUILE_TAILLE) / 2 + TUILE_TAILLE)
+//            mouseX = (int) (env.getJoueur().getX()/TUILE_TAILLE) + 1;
+//
+//        if (mouseEvent.getY() > (HEIGHT * TUILE_TAILLE) / 2)
+//            mouseY = (int) (env.getJoueur().getY()/TUILE_TAILLE) + 1;
+//        else
+//            mouseY = (int) (env.getJoueur().getY()/TUILE_TAILLE) - 1;
     }
 }

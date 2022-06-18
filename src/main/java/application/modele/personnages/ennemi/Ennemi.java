@@ -99,7 +99,7 @@ public abstract class Ennemi extends PNJ {
 
     @Override
     public void detruire() {
-        if (Math.random() <= 0.2)
+        if (Math.random() <= 0.4)
             getEnv().getJoueur().getInventaire().ajouterObjet(new Potion(getEnv()));
         //this.getEnv().getListeEntites().add(new Potion(getEnv(), (int) getX(), (int) getY()));
         getEnv().getListeEnnemis().remove(this);

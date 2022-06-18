@@ -103,7 +103,7 @@ public class Environnement {
 //        listeAnimaux.add(new Sanglier(this, 15,11, 8));
     }
     //endregion
-
+/*
     public boolean entreEnCollision(int xPerso, int yPerso, Direction dir) {
         boolean collision = false;
         int x,y;
@@ -143,7 +143,7 @@ public class Environnement {
     private boolean estUnObstacle(int x, int y) {
         return mapJeu.getTabMap()[y][x] == 34 || mapJeu.getTabMap()[y][x] == 54 || mapJeu.getTabMap()[y][x] == 52 || mapJeu.getTabMap()[y][x] == 53;
     }
-
+*/
     public boolean pauser() {
         this.pauseProperty.setValue(!pauseProperty.getValue());
         return pauseProperty.getValue();
