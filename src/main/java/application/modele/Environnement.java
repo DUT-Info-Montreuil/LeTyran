@@ -119,7 +119,7 @@ public class Environnement {
     public void initListeAllies() {
         getListeAllies().clear();
 
-        getListeAllies().add(new ChefVillage(this, 0,11, 11 * 32));
+        getListeAllies().add(new ChefVillage(this, 5,30, 11));
     }
 
     public boolean pauser() {
@@ -176,6 +176,9 @@ public class Environnement {
 
         for (int i = 0; i < getListeAnimaux().size(); i++)
             getListeAnimaux().get(i).update();
+
+        for (int i = 0; i < getListeAllies().size(); i++)
+            getListeAllies().get(i).update();
 
         for (int i = 0; i < getListeFleches().size(); i++)
             getListeFleches().get(i).update();
