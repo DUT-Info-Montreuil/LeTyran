@@ -90,11 +90,13 @@ public abstract class Personnage extends Entite {
         int i = 0;
         while (i < getVitesse() && hauteurSaut < getHauteurMax() && super.getCollider().verifierCollisionDirection(Direction.Haut, 0.60f) == null) {
             i++;
+            System.out.print("-");
             super.setY(super.getY() - 0.60f);
             hauteurSaut +=0.60f;
         }
         if (i < getVitesse())
             saute = false;
+        System.out.println("|");
     }
 
 
@@ -121,7 +123,6 @@ public abstract class Personnage extends Entite {
         int i = 0;
         while (i < 3 && distancePoussee != 0 && super.getCollider().verifierCollisionDirection(direction, 1) == null) {
             i++;
-            tombe = true;
             if (direction == Direction.Droit) {
                 super.setX(super.getX() + 1);
                 distancePoussee--;
