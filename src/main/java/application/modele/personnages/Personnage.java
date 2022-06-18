@@ -40,6 +40,8 @@ public abstract class Personnage extends Entite {
         directionProperty = new SimpleObjectProperty<>(Direction.Droit);
         hauteurSaut = 0;
         distancePoussee = 0;
+        this.getCollider().getHitBox().setWidth(26);
+        this.getCollider().getHitBox().setHeight(28);
         //this.getCollider().scaleCollider(32,32);
         //System.out.println(this.getCollider());
         //System.out.println(this.getCollider().getHitBox());
@@ -53,6 +55,8 @@ public abstract class Personnage extends Entite {
         directionProperty = new SimpleObjectProperty<>(Direction.Droit);
         hauteurSaut = 0;
         distancePoussee = 0;
+        this.getCollider().getHitBox().setWidth(26);
+        this.getCollider().getHitBox().setHeight(28);
         //this.getCollider().scaleCollider(32,32);
         //System.out.println(this.getCollider());
         //System.out.println(this.getCollider().getHitBox());
@@ -65,18 +69,16 @@ public abstract class Personnage extends Entite {
             distance = getVitesse() - 1;
         else
             distance = getVitesse();
+
         int i = 0;
 
-
-        Entite entTrouvee = super.getCollider().verifierCollisionDirection(directionProperty.getValue(), 0.45f) ;
-        while (i < distance && entTrouvee == null) {
+        while (i < distance && super.getCollider().verifierCollisionDirection(directionProperty.getValue(), 0.45f) == null) {
             i++;
             if (directionProperty.getValue() == Direction.Droit) {
                 super.setX(super.getX() + 0.45f);
             } else {
                 super.setX(super.getX() - 0.45f);
             }
-            entTrouvee = super.getCollider().verifierCollisionDirection(directionProperty.getValue(), 0.45f);
         }
 
 

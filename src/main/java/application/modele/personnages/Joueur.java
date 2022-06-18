@@ -29,25 +29,9 @@ public class Joueur extends Personnage {
     public Joueur(Environnement env) {
         super(env);
         this.inventaire = new Inventaire(super.getEnv());
-        this.inventaire.ajouterObjet(new Pioche(getEnv(), 1));
-        this.inventaire.ajouterObjet(new Pioche(getEnv(), 1));
-        this.inventaire.ajouterObjet(new Hache(getEnv(), 1));
-        this.inventaire.ajouterObjet(new Arc(getEnv(), 1));
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
-        this.inventaire.ajouterObjet(new Fleche());
+        this.inventaire.ajouterObjet(new Pioche(getEnv(), 3));
+        this.inventaire.ajouterObjet(new Hache(getEnv(), 3));
+        this.inventaire.ajouterObjet(new Arc(getEnv(), 3));
         mortProperty = new SimpleBooleanProperty(false);
         seReposeProperty = new SimpleBooleanProperty(false);
         avanceProperty = new SimpleBooleanProperty(false);
@@ -113,7 +97,7 @@ public class Joueur extends Personnage {
 
     private boolean frapper(int x, int y) {
         if (getArme() instanceof Arc) {
-            getArme().frapper(this, null);
+            ((Arc) getArme()).frapper(x,y);
             return true;
         } else {
             PNJ pnj = getEnv().getEnnemi(x, y);

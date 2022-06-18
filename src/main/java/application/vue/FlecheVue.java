@@ -12,7 +12,13 @@ public class FlecheVue {
     public FlecheVue(Pane root, Fleche fleche) {
         ImageView spriteFleche = new ImageView(ChargeurRessources.iconObjets.get("Fleche1"));
         spriteFleche.setId(fleche.getId());
-        if (fleche.getDirection() == Direction.Gauche) spriteFleche.setScaleX(-1);
+        if (fleche.getDirection() == Direction.Gauche)
+            spriteFleche.setScaleX(-1);
+        switch (fleche.getDirection()) {
+            case Gauche -> spriteFleche.setScaleX(-1);
+            case Bas -> spriteFleche.setRotate(90);
+            case Haut -> spriteFleche.setRotate(-90);
+        }
         spriteFleche.setFitWidth(TUILE_TAILLE);
         spriteFleche.setFitHeight(TUILE_TAILLE);
         spriteFleche.translateXProperty().bind(fleche.getXProperty());

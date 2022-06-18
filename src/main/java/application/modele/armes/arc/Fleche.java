@@ -5,7 +5,10 @@ import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.objets.Arbre;
 import application.modele.objets.materiaux.Materiau;
+import application.modele.personnages.Joueur;
 import application.modele.personnages.Personnage;
+
+import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Fleche extends Entite {
     
@@ -19,11 +22,30 @@ public class Fleche extends Entite {
     private int degat;
     private boolean touche;
 
-    public Fleche() {
+    public Fleche() {}
+
+    public Fleche(Environnement env, Joueur joueur, int x, int y, int distanceMax, int degat) {
+        super(env, (int) joueur.getX(), (int) joueur.getY());
+        this.perso = joueur;
+        this.distanceMax = distanceMax;
+        this.degat = degat;
+        id = "Fleche" + idMax++;
+        distanceParcourue = 0;
+        touche = false;
+        this.getCollider().getHitBox().setHeight(15);
+        this.getCollider().getHitBox().setWidth(25);
+        if (x == (int) (perso.getX() / TUILE_TAILLE))
+            if (y > perso.getY()/TUILE_TAILLE)
+                direction = Direction.Bas;
+            else
+                direction = Direction.Haut;
+        else
+            direction = perso.getDirection();
+
     }
 
     public Fleche(Environnement env, Personnage perso, int distanceMax, int degat) {
-        super(env, (int) perso.getX(), (int) (perso.getY()));
+        super(env, (int) perso.getX(), (int) perso.getY());
         this.perso = perso;
         this.direction = perso.getDirection();
         this.distanceMax = distanceMax;

@@ -1,6 +1,7 @@
 package application.modele.personnages.ennemi;
 
 import application.modele.Direction;
+import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.armes.arc.Arc;
 
@@ -46,7 +47,7 @@ public class Archer extends Ennemi {
             else
                 direction = Gauche;
             int i = 0;
-            while (i < 3 && super.getCollider().verifierCollisionDirection(getDirection(), 0.45f) == null) {
+            while (i < 3 && super.getCollider().verifierCollisionDirection(direction, 0.45f) == null) {
                 i++;
                 if (direction == Droit)
                     super.setX(super.getX() + 0.45f);

@@ -149,13 +149,6 @@ public class Environnement {
         return pauseProperty.getValue();
     }
 
-//    public Materiau getMinerai(int x, int y) {
-//        for (Materiau minerai : listeMateriaux)
-//            if (minerai.getX() == x && minerai.getY() == y)
-//                return minerai;
-//        return null;
-//    }
-
     public Materiau getMinerai(int x, int y) {
         for (Materiau minerai : getListeMateriaux()) {
             //System.out.println(minerai.getX() + " " + minerai.getY() + " " + x + " " + y);
