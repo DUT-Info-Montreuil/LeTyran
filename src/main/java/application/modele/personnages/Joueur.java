@@ -8,11 +8,10 @@ import application.modele.armes.arc.Arc;
 import application.modele.armes.arc.Fleche;
 import application.modele.objets.Arbre;
 import application.modele.objets.Coffre;
-import application.modele.objets.Materiau;
+import application.modele.objets.materiaux.Materiau;
 import application.modele.personnages.ennemi.Ennemi;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.scene.media.AudioClip;
 
 import static application.modele.MapJeu.TUILE_TAILLE;
 
@@ -116,9 +115,11 @@ public class Joueur extends Personnage {
             getArme().frapper(this, null);
             return true;
         } else {
-            Ennemi ennemi = getEnv().getEnnemi(x, y);
-            if (ennemi != null) {
-                getArme().frapper(this, ennemi);
+            PNJ pnj = getEnv().getEnnemi(x, y);
+            if (pnj == null)
+                pnj = getEnv().getAnimal(x, y);
+            if (pnj != null) {
+                getArme().frapper(this, pnj);
                 return true;
             }
             return false;

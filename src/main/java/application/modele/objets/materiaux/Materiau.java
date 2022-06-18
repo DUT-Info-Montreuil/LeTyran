@@ -1,14 +1,11 @@
-package application.modele.objets;
+package application.modele.objets.materiaux;
 
 import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.MapJeu;
-import application.modele.armes.Arme;
 import application.modele.armes.Pioche;
 
 import static application.modele.MapJeu.TUILE_TAILLE;
-
-import java.util.Map;
 
 public abstract class Materiau extends Entite {
 

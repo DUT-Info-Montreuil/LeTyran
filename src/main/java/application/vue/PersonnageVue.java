@@ -44,6 +44,11 @@ public class PersonnageVue {
             add(new Image("file:src/main/resources/application/perso/lapin/lapin_2.png"));
             add(new Image("file:src/main/resources/application/perso/lapin/lapin_3.png"));
         }});
+        put("Sanglier", new ArrayList<>() {{
+            add(new Image("file:src/main/resources/application/perso/sanglier/sanglier_1.png"));
+            add(new Image("file:src/main/resources/application/perso/sanglier/sanglier_2.png"));
+            add(new Image("file:src/main/resources/application/perso/sanglier/sanglier_3.png"));
+        }});
     }};
 
     private Personnage perso;

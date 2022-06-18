@@ -6,7 +6,7 @@ import application.modele.Environnement;
 import application.modele.armes.arc.Fleche;
 import application.modele.objets.Arbre;
 import application.modele.objets.Coffre;
-import application.modele.objets.Materiau;
+import application.modele.objets.materiaux.Materiau;
 import application.modele.personnages.animaux.Animal;
 import application.modele.personnages.ennemi.Ennemi;
 import application.vue.ArmeVue;

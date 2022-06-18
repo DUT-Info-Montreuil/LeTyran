@@ -3,6 +3,7 @@ package application.modele.objets;
 import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.armes.Hache;
+import application.modele.objets.materiaux.Bois;
 
 public class Arbre extends Entite {
 

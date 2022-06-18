@@ -10,6 +10,7 @@ import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ObservableList;
 
 public class Entite {
     private FloatProperty xProperty;
@@ -74,9 +75,23 @@ public class Entite {
     }
 
     public void collide() {
+//        if(!this.getCollider().getIgnoreCollision()) {
+//            for (int i = 0; i < env.getListeEntites().size(); i++) {
+//                Entite ent = env.getListeEntites().get(i);
+//                if (ent != this && !ent.getCollider().getIgnoreCollision() && this.getCollider().intersect(ent)) {
+//                    this.quandCollisionDetectee(ent);
+//                }
+//            }
+//        }
+        verifCollide(env.getListeEntites());
+        verifCollide(env.getListeEnnemis());
+        verifCollide(env.getListeAnimaux());
+    }
+
+    private void verifCollide(ObservableList liste) {
         if(!this.getCollider().getIgnoreCollision()) {
-            for (int i = 0; i < env.getListeEntites().size(); i++) {
-                Entite ent = env.getListeEntites().get(i);
+            for (int i = 0; i < liste.size(); i++) {
+                Entite ent = (Entite) liste.get(i);
                 if (ent != this && !ent.getCollider().getIgnoreCollision() && this.getCollider().intersect(ent)) {
                     this.quandCollisionDetectee(ent);
                 }

@@ -4,13 +4,7 @@ import application.modele.Direction;
 import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.armes.Arme;
-import application.modele.armes.Pioche;
-import application.modele.objets.Arbre;
-import application.modele.objets.Bois;
-import application.modele.objets.Coffre;
-import application.modele.objets.Materiau;
 import javafx.beans.property.*;
-import javafx.scene.media.AudioClip;
 
 public abstract class Personnage extends Entite {
 
@@ -41,6 +35,19 @@ public abstract class Personnage extends Entite {
 
     public Personnage(Environnement env, String id, int x, int y) {
         super(env, x, y);
+        this.id = id;
+        saute = false; tombe = false;
+        directionProperty = new SimpleObjectProperty<>(Direction.Droit);
+        hauteurSaut = 0;
+        distancePoussee = 0;
+        //this.getCollider().scaleCollider(32,32);
+        //System.out.println(this.getCollider());
+        //System.out.println(this.getCollider().getHitBox());
+        //inventaire.ajouterObjet();
+    }
+
+    public Personnage(Environnement env, String id, int x, int y, int pv) {
+        super(env, x, y, pv);
         this.id = id;
         saute = false; tombe = false;
         directionProperty = new SimpleObjectProperty<>(Direction.Droit);

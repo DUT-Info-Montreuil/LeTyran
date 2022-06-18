@@ -3,8 +3,7 @@ package application.modele.personnages;
 import application.modele.Direction;
 import application.modele.Entite;
 import application.modele.Environnement;
-import application.modele.armes.Arme;
-import application.modele.objets.Materiau;
+import application.modele.objets.materiaux.Materiau;
 
 import static application.modele.Direction.Droit;
 import static application.modele.Direction.Gauche;
@@ -18,6 +17,13 @@ public abstract class PNJ extends Personnage {
 
     public PNJ(Environnement env, String id, int x, int y, int distance) {
         super(env, id, x * TUILE_TAILLE, y * TUILE_TAILLE);
+        origineX = x * TUILE_TAILLE;
+        origineY = y * TUILE_TAILLE;
+        this.distance = distance * TUILE_TAILLE;
+    }
+
+    public PNJ(Environnement env, String id, int x, int y, int distance, int pv) {
+        super(env, id, x * TUILE_TAILLE, y * TUILE_TAILLE, pv);
         origineX = x * TUILE_TAILLE;
         origineY = y * TUILE_TAILLE;
         this.distance = distance * TUILE_TAILLE;

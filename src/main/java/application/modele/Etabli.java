@@ -78,7 +78,7 @@ public class Etabli {
             put("Pierre", 15);
         }});
         listeMateriauxObjets.put("Armure1", new HashMap<>() {{
-            put("Bois", 2);
+            put("Bois", 20);
         }});
         listeMateriauxObjets.put("Hache2", new HashMap<>() {{
             put("Bois", 5);

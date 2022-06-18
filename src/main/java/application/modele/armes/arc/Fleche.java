@@ -4,11 +4,8 @@ import application.modele.Direction;
 import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.objets.Arbre;
-import application.modele.objets.Materiau;
-import application.modele.personnages.Joueur;
+import application.modele.objets.materiaux.Materiau;
 import application.modele.personnages.Personnage;
-
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Fleche extends Entite {
     

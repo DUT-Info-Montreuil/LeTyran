@@ -2,9 +2,7 @@ package application.modele.collisions;
 
 import application.modele.Direction;
 import application.modele.Entite;
-import application.modele.MapJeu;
-import application.modele.objets.Materiau;
-import javafx.collections.ObservableList;
+import application.modele.objets.materiaux.Materiau;
 
 public class Collider {
     private RectangleCol hitbox;
@@ -218,8 +216,8 @@ public class Collider {
         }
         return false;
     }
-
-    /*public Direction dectecterDirectionObjet(Entite ent) {
+/*
+    public Direction dectecterDirectionObjet(Entite ent) {
         Direction direction = Direction.AUCUNE;
 
         if(intersect(ent, 1,0)) {
@@ -232,7 +230,7 @@ public class Collider {
         //Verification direction HAUT
 
 
-    }*/
+    }
 
     //public boolean LigneIntersectionLigne(double)
     public Entite tracerLigne2(double origineX, double origineY, double finX, double finY) {
@@ -282,12 +280,12 @@ public class Collider {
                             } else {
                             }
 
-                            /*if(intersect(entAVerifier,0, 0)
+                            if(intersect(entAVerifier,0, 0)
                                     || intersect(entAVerifier, 0, 0)
                                     || intersect(entAVerifier, 0,0)
                                     || intersect(entAVerifier, 0,0)) {
 
-                            }*/
+                            }
 
 
                         }
@@ -297,9 +295,7 @@ public class Collider {
         return entTrouve;
     }
 
-    /*
-
-    /*float posX = this.ent.getX() + this.hitbox.getX();
+    float posX = this.ent.getX() + this.hitbox.getX();
             float posY = this.ent.getY() + this.hitbox.getY();
 
             float autrePosX = ent.getX() + ent.getCollider().getHitBox().getX();
@@ -329,5 +325,6 @@ public class Collider {
             //System.out.println(String.format("%s %s %s %s", a_H, a_HP, a_B, a_BP) + "------------------------\n");
 
 
-            return s_H < a_HP && s_HP > a_H && s_B < a_BP && s_BP > a_B;*/
+            return s_H < a_HP && s_HP > a_H && s_B < a_BP && s_BP > a_B;
+ */
 }

@@ -7,11 +7,13 @@ import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Lapin extends Animal {
 
+    public final static int PV_MAX = 6;
+
     private static int id = 0;
     private int delaiSaut;
 
     public Lapin(Environnement env, int x, int y, int distance) {
-        super(env, "Lapin" + id++, x, y, distance);
+        super(env, "Lapin" + id++, x, y, distance, PV_MAX);
         delaiSaut = 0;
     }
 

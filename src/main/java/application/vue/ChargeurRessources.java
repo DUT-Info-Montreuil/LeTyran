@@ -76,5 +76,7 @@ public class ChargeurRessources {
         iconObjets.put("Armure1", new Image("file:src/main/resources/application/arme/sprite_armure1.png"));
         iconObjets.put("Armure2", new Image("file:src/main/resources/application/arme/sprite_armure2.png"));
         iconObjets.put("Armure3", new Image("file:src/main/resources/application/arme/sprite_armure3.png"));
+
+        iconObjets.put("Viande", new Image("file:src/main/resources/application/ressources/viande.png"));
     }
 }

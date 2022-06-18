@@ -3,6 +3,7 @@ package application.modele.objets;
 import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.armes.Epee;
+import application.modele.objets.materiaux.Pierre;
 
 import java.util.ArrayList;
 

@@ -6,8 +6,8 @@ import application.modele.personnages.PNJ;
 
 public abstract class Animal extends PNJ {
 
-    public Animal(Environnement env, String id, int x, int y, int pv) {
-        super(env, id, x, y, pv);
+    public Animal(Environnement env, String id, int x, int y, int distance, int pv) {
+        super(env, id, x, y, distance, pv);
     }
 
     public abstract int nbViande();
@@ -16,5 +16,6 @@ public abstract class Animal extends PNJ {
     public void detruire() {
         for (int i = 0; i < nbViande(); i++)
             getEnv().getJoueur().getInventaire().ajouterObjet(new Viande());
+        getEnv().getListeAnimaux().remove(this);
     }
 }
