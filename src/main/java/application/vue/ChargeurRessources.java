@@ -13,6 +13,8 @@ public class ChargeurRessources {
     public static ArrayList<Image> tileMapAssets = new ArrayList<Image>();
     public static HashMap<String, Image> iconObjets = new HashMap<>();
 
+    private Image tilesetSol = new Image("file:src/main/resources/application/tilemap/tileset_sol.png");
+
     public static void charger() {
         for (int i = 1; i < 57; i++) {
             tileMapAssets.add(null);

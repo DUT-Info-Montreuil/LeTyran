@@ -46,7 +46,7 @@ public class Archer extends Ennemi {
             else
                 direction = Gauche;
             int i = 0;
-            while (i < 3 && !super.getEnv().entreEnCollision((int)super.getX(), (int)super.getY(), direction)) {
+            while (i < 3 && getCollider().verifierCollisionDirection(direction, 0.45f) == null) {
                 i++;
                 if (direction == Droit)
                     super.setX(super.getX() + 0.45f);

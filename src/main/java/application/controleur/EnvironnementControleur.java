@@ -26,6 +26,12 @@ public class EnvironnementControleur {
 
         root.lookup("#tileSol").translateXProperty().bind(env.getJoueur().getXProperty().multiply(-1).add(((TUILE_TAILLE * WIDTH)) / 2));
         root.lookup("#tileSol").translateYProperty().bind(env.getJoueur().getYProperty().multiply(-1).add(((TUILE_TAILLE * HEIGHT)) / 2));
+
+
+        root.lookup("#tileFondDecor").translateXProperty().bind(env.getJoueur().getXProperty().multiply(-1).add(((TUILE_TAILLE * WIDTH)) / 2));
+        root.lookup("#tileFondDecor").translateYProperty().bind(env.getJoueur().getYProperty().multiply(-1).add(((TUILE_TAILLE * HEIGHT)) / 2));
+
+
         root.lookup("#paneDecors").translateXProperty().bind(env.getJoueur().getXProperty().multiply(-1).add(((TUILE_TAILLE * WIDTH)) /2));
         root.lookup("#paneDecors").translateYProperty().bind(env.getJoueur().getYProperty().multiply(-1).add(((TUILE_TAILLE * HEIGHT)) / 2));
         root.lookup("#paneEnnemis").translateXProperty().bind(env.getJoueur().getXProperty().multiply(-1).add(((TUILE_TAILLE * WIDTH)) / 2));
@@ -36,18 +42,18 @@ public class EnvironnementControleur {
             public void onChanged(Change<? extends Materiau> change) {
                 change.next();
                 for (int i = 0; i < change.getRemovedSize(); i++) {
-                    int id = (int)((change.getRemoved().get(0).getY() / TUILE_TAILLE) * WIDTH + (change.getRemoved().get(0).getX() / TUILE_TAILLE));
+                    //int id = (int)((change.getRemoved().get(0).getY() / env.getMapJeu().getWidth()) *  + (change.getRemoved().get(0).getX() / TUILE_TAILLE));
                     //System.out.println((int) change.getRemoved().get(i).getY() * WIDTH + (int) change.getRemoved().get(0).getX());
-                    envVue.supprimerBloc(id);
+                    envVue.supprimerBloc(change.getRemoved().get(0).getId());
                 }
 
                 for(int i = 0; i < change.getAddedSize(); i++) {
-                    Entite ent = change.getAddedSubList().get(i);
+                    Materiau ent = (Materiau) change.getAddedSubList().get(i);
                     int x = (int)ent.getX() / TUILE_TAILLE;
                     int y = (int)ent.getY() / TUILE_TAILLE;
 
-                    env.getMapJeu().getTabMap()[y][x] = 34;
-                    envVue.ajouterBloc((int)ent.getY()/TUILE_TAILLE * WIDTH + (int)ent.getX()/TUILE_TAILLE, ent);
+                    env.getMapJeu().getTabMap()[y][x] = 183;
+                    envVue.ajouterBloc(x + y * env.getMapJeu().getWidth(), ent);
                 }
             }
         });

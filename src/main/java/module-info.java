@@ -1,7 +1,11 @@
+/**
+ *
+ */
 module application.letyran {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.media;
+    requires org.json;
 
 
     opens application to javafx.fxml;

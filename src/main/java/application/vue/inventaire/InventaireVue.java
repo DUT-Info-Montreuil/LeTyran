@@ -121,7 +121,6 @@ public class InventaireVue {
                 //On vérifie si il y a un objet ou non dans la case la plus proche, si c'est le cas, on interverti les deux objets
                 if (seletecSlot.getChildren().size() > 1) {
                     //Code pour échanger deux items
-                    System.out.println(slotParent.getId());
                     int autrePlace = this.paneSacInventaire.getChildren().indexOf(slotParent);
 
                     InvItem selectSlotItem = (InvItem) seletecSlot.getChildren().get(1);
@@ -174,7 +173,6 @@ public class InventaireVue {
 
             slot = (InvSlot) this.paneSacInventaire.lookup("#slot"+(obj.getPlaceInventaire()));
             //slot = (InvSlot) this.paneSacInventaire.lookup("#slot"+16);
-            System.out.println(slot);
         }
 
 

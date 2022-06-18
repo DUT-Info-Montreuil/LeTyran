@@ -33,6 +33,9 @@ public class Joueur extends Personnage {
         seReposeProperty = new SimpleBooleanProperty(false);
         avanceProperty = new SimpleBooleanProperty(false);
         freeze = false; delai = 0;
+
+        this.setY(30 * 32);
+
     }
 
     public boolean interagit(int x, int y) {

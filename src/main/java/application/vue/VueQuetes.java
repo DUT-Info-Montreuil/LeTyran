@@ -25,7 +25,6 @@ public class VueQuetes {
         this.paneQuete = paneQuete;
         this.vboxObjectifs = (VBox) paneQuete.getChildren().get(0);
         this.queteNomText = (Text) this.paneQuete.lookup("#nomQuete");
-        System.out.println(queteNomText);
 
 
     }

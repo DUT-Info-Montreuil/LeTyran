@@ -13,7 +13,7 @@
       <Pane fx:id="paneNuages" prefHeight="200.0" prefWidth="200.0" />
       <VBox fx:id="btnQuitNouv" prefHeight="200.0" prefWidth="171.0">
          <children>
-            <Button fx:id="nouvellePartie" mnemonicParsing="false" prefHeight="25.0" prefWidth="275.0" styleClass="boutonAccueil" text="Nouvelle partie">
+            <Button fx:id="nouvellePartie" mnemonicParsing="false" onAction="#lancerJeu" prefHeight="25.0" prefWidth="275.0" styleClass="boutonAccueil" text="Nouvelle partie">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

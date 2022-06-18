@@ -3,6 +3,8 @@ package application.modele;
 import application.modele.armes.arc.Fleche;
 import application.modele.objets.*;
 import application.modele.personnages.*;
+import application.modele.personnages.allies.Allie;
+import application.modele.personnages.allies.ChefVillage;
 import application.modele.personnages.animaux.Animal;
 import application.modele.personnages.animaux.Lapin;
 import application.modele.personnages.ennemi.*;
@@ -35,6 +37,7 @@ public class Environnement {
             put("listeEnnemis", FXCollections.observableArrayList());
             put("listeAnimaux", FXCollections.observableArrayList());
             put("listeFleches", FXCollections.observableArrayList());
+            put("listeAllies", FXCollections.observableArrayList());
         }};
         joueur = new Joueur(this);
 
@@ -57,12 +60,13 @@ public class Environnement {
         initListeCoffres();
         initListeEnnemis();
         initListeAnimaux();
+        initListeAllies();
     }
 
     //region init
     private void initListeArbres() {
-        for (int i = 0; i < MapJeu.HEIGHT; i++) {
-            for (int j = 0; j < MapJeu.WIDTH; j++) {
+        for (int i = 0; i < mapJeu.getHeight(); i++) {
+            for (int j = 0; j < mapJeu.getWidth(); j++) {
                 if (mapJeu.getTabMap()[i][j] == 55) {
                     getListeArbres().add(new Arbre(this, j, i));
                 }
@@ -71,15 +75,20 @@ public class Environnement {
     }
 
     private void initListeMinerais() {
-        for (int i = 0; i < MapJeu.HEIGHT; i++) {
-            for (int j = 0; j < MapJeu.WIDTH; j++) {
-                switch (mapJeu.getTabMap()[i][j]) {
-                    case 34: getListeMateriaux().add(new Terre(this, j, i)); break;
+        for (int i = 0; i < mapJeu.getHeight(); i++) {
+            for (int j = 0; j < mapJeu.getWidth(); j++) {
+                int id = mapJeu.getTabMap()[i][j];
+                //switch (mapJeu.getTabMap()[i][j]) {
+                    if(id != 0) {
+                        getListeMateriaux().add(new Terre(this, j, i));
+                    }
+                    /*case 183: getListeMateriaux().add(new Terre(this, j, i)); break;
+                    case 167: getListeMateriaux().add(new Terre(this, j, i)); break;
+                    case 88: getListeMateriaux().add(new Terre(this, j, i)); break;
                     case 52: getListeMateriaux().add(new Pierre(this, j, i)); break;
                     case 53: getListeMateriaux().add(new Fer(this, j, i)); break;
-                    case 54: getListeMateriaux().add(new Platine(this, j, i)); break;
-                    default: break;
-                }
+                    case 54: getListeMateriaux().add(new Platine(this, j, i)); break;*/
+                //}
             }
         }
     }
@@ -93,8 +102,8 @@ public class Environnement {
     }
 
     private void initListeCoffres() {
-        for (int i = 0; i < MapJeu.HEIGHT; i++) {
-            for (int j = 0; j < MapJeu.WIDTH; j++) {
+        for (int i = 0; i < mapJeu.getHeight(); i++) {
+            for (int j = 0; j < mapJeu.getWidth(); j++) {
                 if (mapJeu.getTabMap()[i][j] == 58) {
                     getListeCoffres().add(new Coffre(this, j, i));
                 }
@@ -104,48 +113,13 @@ public class Environnement {
 
     public void initListeAnimaux() {
         getListeAnimaux().clear();
-        getListeAnimaux().add(new Lapin(this, 5,11, 15));
-    }
-    //endregion
-
-    public boolean entreEnCollision(int xPerso, int yPerso, Direction dir) {
-        boolean collision = false;
-        int x,y;
-        switch (dir) {
-            case Droit:
-                x = (xPerso+TUILE_TAILLE+1)/TUILE_TAILLE;
-                y = yPerso/TUILE_TAILLE;
-                if ((xPerso+TUILE_TAILLE+1) % TUILE_TAILLE == 0) x--;
-                if (x >= WIDTH || estUnObstacle(x, y) || (yPerso % TUILE_TAILLE != 0 && estUnObstacle(x,y+1)))
-                    collision = true;
-                break;
-            case Gauche:
-                x = (xPerso-1)/TUILE_TAILLE;
-                y = yPerso/TUILE_TAILLE;
-                if ((xPerso-1) % TUILE_TAILLE == 0) x++;
-                if (xPerso-1 < 0 || estUnObstacle(x, y) || (yPerso % TUILE_TAILLE != 0 && estUnObstacle(x,y+1)))
-                    collision = true;
-                break;
-            case Bas:
-                x = xPerso/TUILE_TAILLE;
-                y = yPerso/TUILE_TAILLE;
-                if (y + 1 >= MapJeu.HEIGHT || estUnObstacle(x,y+1) || (xPerso % TUILE_TAILLE != 0 && estUnObstacle(x+1,y+1)))
-                    collision = true;
-                break;
-            case Haut:
-                x = xPerso/TUILE_TAILLE;
-                y = (yPerso-1)/TUILE_TAILLE;
-                if (yPerso-1 < 0 || estUnObstacle(x,y) || (xPerso % TUILE_TAILLE != 0 && estUnObstacle(x+1,y)))
-                    collision = true;
-                break;
-            default:
-                break;
-        }
-        return collision;
+        getListeAnimaux().add(new Lapin(this, 5,39, 15));
     }
 
-    private boolean estUnObstacle(int x, int y) {
-        return mapJeu.getTabMap()[y][x] == 34 || mapJeu.getTabMap()[y][x] == 54 || mapJeu.getTabMap()[y][x] == 52 || mapJeu.getTabMap()[y][x] == 53;
+    public void initListeAllies() {
+        getListeAllies().clear();
+
+        getListeAllies().add(new ChefVillage(this, 0,11, 11 * 32));
     }
 
     public boolean pauser() {
@@ -157,7 +131,6 @@ public class Environnement {
         x *= TUILE_TAILLE;
         y *= TUILE_TAILLE;
         for (Materiau minerai : getListeMateriaux()) {
-            System.out.println(minerai.getX() + " " + minerai.getY() + " " + x + " " + y);
             if (minerai.getX() == x && minerai.getY() == y)
                 return minerai;
         }
@@ -244,6 +217,10 @@ public class Environnement {
 
     public ObservableList<Animal> getListeAnimaux() {
         return hashMapListes.get("listeAnimaux");
+    }
+
+    public ObservableList<Allie> getListeAllies() {
+        return hashMapListes.get("listeAllies");
     }
 
     public ObservableList<Coffre> getListeCoffres() {

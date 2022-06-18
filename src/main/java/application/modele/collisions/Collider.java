@@ -74,6 +74,10 @@ public class Collider {
     public Entite verificationCollisionGauche(double valeur) {
         valeur = -Math.abs(valeur);
 
+        if(ent.getX() + valeur <= 0) {
+            return new Entite();
+        }
+
         if(!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
             for (String nom : this.getEnt().getEnv().getHashMapListes().keySet())
                 if ( nom.equals("listeMateriaux"))
@@ -105,6 +109,9 @@ public class Collider {
 
     public Entite verificationCollisionDroit(double valeur) {
         valeur = Math.abs(valeur);
+        if(ent.getX() + valeur >= ent.getEnv().getMapJeu().getWidth() * 32) {
+            return new Entite();
+        }
         if(!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
             for (String nom : this.getEnt().getEnv().getHashMapListes().keySet())
                 if ( nom.equals("listeMateriaux"))
@@ -136,6 +143,7 @@ public class Collider {
     public Entite verificationCollisionHaut(double valeur) {
         valeur = -Math.abs(valeur);
 
+
         if (!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
             for (String nom : this.getEnt().getEnv().getHashMapListes().keySet())
                 if ( nom.equals("listeMateriaux"))
@@ -166,8 +174,11 @@ public class Collider {
 
     public Entite verificationCollisionBas(double valeur) {
         valeur = Math.abs(valeur);
+        if(this.ent.getY() + valeur >= (ent.getEnv().getMapJeu().getHeight() -1) * 32) {
+            return new Entite();
+        }
 
-        if (!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
+        if (!this.getIgnoreCollision()) {
             for (String nom : this.getEnt().getEnv().getHashMapListes().keySet())
                 if (nom.equals("listeMateriaux"))
                     for (int i = 0; i < this.getEnt().getEnv().getHashMapListes().get(nom).size(); i++) {

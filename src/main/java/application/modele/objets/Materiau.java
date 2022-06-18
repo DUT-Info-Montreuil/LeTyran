@@ -12,15 +12,24 @@ import java.util.Map;
 
 public abstract class Materiau extends Entite {
 
+    private int idMateriau;
     public Materiau() {
         super(null, 0, 0, 0);
     }
 
-    public Materiau(Environnement env, int x, int y, int pv) {
+    public Materiau(Environnement env,  int x, int y, int pv) {
+
         super(env, x *TUILE_TAILLE, y * TUILE_TAILLE, pv);
+
+        //System.out.println(x + (y/env.getMapJeu().getWidth()) * env.getMapJeu().getWidth());
+        this.idMateriau = x + y * env.getMapJeu().getWidth();
     }
 
-    //appelé quand le bloc est cliqué décremente selon la qualité si le joueur a la bonne arme sinon de 1
+    public int getId() {
+        return this.idMateriau;
+    }
+
+    //appelé quand le bloc idMateriau cliqué décremente selon la qualité si le joueur a la bonne arme sinon de 1
     public void estFrappe() {
         if (getEnv().getJoueur().getArme() instanceof Pioche)
             decrementerPv(getEnv().getJoueur().getArme().nbDegat());
@@ -31,8 +40,8 @@ public abstract class Materiau extends Entite {
 
     public void detruire() {
         Materiau materiau;
-        int positionX = (int)this.getX() * MapJeu.TUILE_TAILLE + (MapJeu.WIDTH / 2);
-        int positionY = (int)this.getY() * MapJeu.TUILE_TAILLE;
+        int positionX = (int)this.getX()/TUILE_TAILLE;
+        int positionY = (int)this.getY()/TUILE_TAILLE;
         switch (this.getClass().getSimpleName()) {
             case "Pierre": materiau = new Pierre(this.getEnv(), positionX, positionY); break;
             case "Fer": materiau = new Fer(this.getEnv(), positionX, positionY); break;

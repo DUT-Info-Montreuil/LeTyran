@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -19,6 +20,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -50,7 +52,7 @@ public class ControleurAccueil implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Font font = Font.loadFont("file:src/main/resources/application/fonts/IMMORTAL.ttf", 50);
 
-        root.setPrefSize(MapJeu.WIDTH * MapJeu.TUILE_TAILLE, MapJeu.HEIGHT * MapJeu.TUILE_TAILLE);
+        root.setPrefSize(150 * 32, 34 * 32);
         this.paneNuages.setPrefSize(root.getPrefWidth(), root.getPrefHeight());
 
         btnQuitNouv.setLayoutX(root.getPrefWidth() / 2 - btnQuitNouv.getPrefWidth() / 2);
@@ -134,6 +136,13 @@ public class ControleurAccueil implements Initializable {
                 img.setTranslateX(this.root.getPrefWidth() + img.getFitWidth());
             }
         }
+    }
+
+    public void lancerJeu() throws IOException {
+        Pane nouveauRoot = FXMLLoader.load(getClass().getResource("/application/vue.fxml"));
+        this.root.getScene().setRoot(nouveauRoot);
+        nouveauRoot.requestFocus();
+
     }
 
 }

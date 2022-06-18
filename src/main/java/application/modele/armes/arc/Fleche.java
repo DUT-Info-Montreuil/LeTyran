@@ -68,7 +68,6 @@ public class Fleche extends Entite {
 
     @Override
     public void quandCollisionDetectee(Entite ent) {
-        System.out.println(ent);
         if (!touche && ent != perso && !(ent instanceof Fleche) && !(ent instanceof Arbre)) {
             touche = true;
             if (!(ent instanceof Materiau))

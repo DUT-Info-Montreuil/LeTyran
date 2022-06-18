@@ -31,7 +31,6 @@ public class InventaireListener implements ListChangeListener {
 
             //Pour chaque objet on verifie quand son nombre de stack evolue
             obj.getStackActuelProperty().addListener(changement -> {
-                System.out.println(obj.getStackActuelProperty());
                 this.controleurQuete.objetAEteAjouteeInventaire(obj);
             });
         }

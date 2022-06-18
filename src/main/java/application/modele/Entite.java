@@ -58,7 +58,7 @@ public class Entite {
         if(this.getCollider() != null) {
             collide();
         }
-        tomber();
+        //tomber();
     }
 
     private void tomber() {

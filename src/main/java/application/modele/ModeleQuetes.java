@@ -28,12 +28,10 @@ public class ModeleQuetes {
     }
 
     public void chargerQuetes() {
-        BaseQuete bq = new BaseQuete("Trouver des trucs");
+        BaseQuete bq = new BaseQuete("Renforce toi");
         bq.ajouterObjectif(QueteType.TYPE_QUETE.RAMASSER, "Bois", 3);
-        //bq.ajouterObjectif(QueteType.TYPE_QUETE.RAMASSER, "Pierre", 3);
-        //bq.ajouterObjectif(QueteType.TYPE_QUETE.RAMASSER, "Hache en bois", 5);
-        //bq.ajouterObjectif(QueteType.TYPE_QUETE.TUER, "ce sale cabot de ayoub ce chien", 5);
         bq.ajouterObjectif(QueteType.TYPE_QUETE.RAMASSER, "Terre", 10);
+        bq.ajouterObjectif(QueteType.TYPE_QUETE.RAMASSER, "Hache en pierre", 10);
 
         this.quetesDisponibles.add(bq);
 

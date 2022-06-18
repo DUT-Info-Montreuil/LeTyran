@@ -78,7 +78,6 @@ public class Inventaire {
             System.out.println("Vous vous êtes équiper de " + objetInventaire);
             armureProperty.setValue(objetInventaire);
         } else if (objetInventaire.getEntite() instanceof Arme) {
-            System.out.println(objetInventaire);
             armeProperty.setValue(objetInventaire);
         }
     }

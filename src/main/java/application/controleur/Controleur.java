@@ -53,6 +53,7 @@ public class Controleur implements Initializable {
     @FXML private TilePane tileSol;
     @FXML private TilePane tileDecors;
     @FXML private TilePane tileFond;
+    @FXML private TilePane tileFondDecor;
     @FXML private ImageView spriteJoueur;
     @FXML private ImageView spriteArme;
     @FXML private BorderPane bPaneEtabli;
@@ -82,7 +83,7 @@ public class Controleur implements Initializable {
 
 
         personnageVue = new PersonnageVue(env.getJoueur(), spriteJoueur);
-        envVue = new EnvironnementVue(env, root, tileSol, tileDecors, tileFond);
+        envVue = new EnvironnementVue(env, root, tileSol, tileDecors, tileFond, tileFondDecor);
         objetVue = new ObjetVue(this.env, paneDecors);
         armeVue = new ArmeVue(env.getJoueur(), spriteArme);
         vievue = new VieVue(root);

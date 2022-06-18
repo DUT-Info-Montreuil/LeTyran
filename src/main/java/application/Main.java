@@ -19,9 +19,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Pane root = FXMLLoader.load(getClass().getResource("vue_accueil.fxml"));
+            Pane root = FXMLLoader.load(getClass().getResource("vue.fxml"));
             Scene scene = new Scene(root, WIDTH*TUILE_TAILLE,HEIGHT*TUILE_TAILLE);
             root.requestFocus();
+
+            //controleurScene.montrerEcranJeu();
+
             primaryStage.setTitle("Le Tyran");
             primaryStage.setResizable(true);
             //primaryStage.setMaximized(true);
