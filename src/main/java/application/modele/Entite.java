@@ -6,6 +6,7 @@ import application.modele.armes.Pioche;
 import application.modele.armes.arc.Arc;
 import application.modele.armes.arc.Fleche;
 import application.modele.collisions.Collider;
+import application.modele.objets.Viande;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleFloatProperty;
@@ -92,6 +93,9 @@ public class Entite {
         if(!this.getCollider().getIgnoreCollision()) {
             for (int i = 0; i < liste.size(); i++) {
                 Entite ent = (Entite) liste.get(i);
+                if (ent != this && ent instanceof Viande) {
+                    System.out.println(this.getCollider().intersect(ent));
+                }
                 if (ent != this && !ent.getCollider().getIgnoreCollision() && this.getCollider().intersect(ent)) {
                     this.quandCollisionDetectee(ent);
                 }

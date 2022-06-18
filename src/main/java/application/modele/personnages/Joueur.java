@@ -8,6 +8,7 @@ import application.modele.armes.arc.Arc;
 import application.modele.armes.arc.Fleche;
 import application.modele.objets.Arbre;
 import application.modele.objets.Coffre;
+import application.modele.objets.Consommable;
 import application.modele.objets.materiaux.Materiau;
 import application.modele.personnages.ennemi.Ennemi;
 import javafx.beans.property.BooleanProperty;
@@ -146,7 +147,8 @@ public class Joueur extends Personnage {
 
     @Override
     public void quandCollisionDetectee(Entite ent) {
-        if (ent instanceof ObjetJeu || ent instanceof Materiau) {
+        System.out.println(ent);
+        if (ent instanceof ObjetJeu || ent instanceof Materiau || ent instanceof Consommable) {
             this.inventaire.ajouterObjet(ent);
         }
     }

@@ -15,7 +15,8 @@ public abstract class Animal extends PNJ {
     @Override
     public void detruire() {
         for (int i = 0; i < nbViande(); i++)
-            getEnv().getJoueur().getInventaire().ajouterObjet(new Viande());
+            //getEnv().getJoueur().getInventaire().ajouterObjet(new Viande());
+            this.getEnv().getListeEntites().add(new Viande(getEnv(), (int) getX(), (int) getY()));
         getEnv().getListeAnimaux().remove(this);
     }
 }

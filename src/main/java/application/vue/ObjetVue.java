@@ -28,13 +28,12 @@ public class ObjetVue {
             public void onChanged(Change<? extends Entite> change) {
                 change.next();
                 for(int i = 0; i < change.getRemovedSize(); i++) {
-                    retirerObjet((Entite) change.getRemoved().get(i));
+                    retirerObjet(change.getRemoved().get(i));
                 }
 
                 for(int i = 0; i < change.getAddedSize(); i++) {
-                    ajouterObjet((Entite) change.getAddedSubList().get(i));
+                    ajouterObjet(change.getAddedSubList().get(i));
                 }
-
             }
         });
     }
