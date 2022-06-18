@@ -77,7 +77,6 @@ public class Entite {
         if(!this.getCollider().getIgnoreCollision()) {
             for (int i = 0; i < env.getListeEntites().size(); i++) {
                 Entite ent = env.getListeEntites().get(i);
-                //System.out.println(ent);
                 if (ent != this && !ent.getCollider().getIgnoreCollision() && this.getCollider().intersect(ent)) {
                     this.quandCollisionDetectee(ent);
                 }

@@ -74,30 +74,27 @@ public class Collider {
     public Entite verificationCollisionGauche(double valeur) {
         valeur = -Math.abs(valeur);
 
-        if(!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
-            for (String nom : this.getEnt().getEnv().getHashMapListes().keySet())
-                if ( nom.equals("listeMateriaux"))
-                    for (int i = 0; i < this.getEnt().getEnv().getHashMapListes().get(nom).size(); i++) {
-                        Entite ent = (Entite) this.getEnt().getEnv().getHashMapListes().get(nom).get(i);
+        if (!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
+            for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
+                Entite ent = this.getEnt().getEnv().getListeMateriaux().get(i);
+                if (ent != this.getEnt()) {
+                    double entRecX = ent.getX();
+                    double entRecY = ent.getY();
+                    double entColWidth = ent.getCollider().getHitBox().getWidth();
+                    double entColHeight = ent.getCollider().getHitBox().getHeight();
 
-                        if(ent!= this.getEnt()) {
-                            double entRecX = ent.getX();
-                            double entRecY = ent.getY();
-                            double entColWidth = ent.getCollider().getHitBox().getWidth();
-                            double entColHeight = ent.getCollider().getHitBox().getHeight();
+                    double colRecX = this.getEnt().getX();
+                    double colRecY = this.getEnt().getY();
+                    double colWidth = this.getHitBox().getWidth();
+                    double colRecHeight = this.getHitBox().getHeight();
 
-                            double colRecX = this.getEnt().getX();
-                            double colRecY = this.getEnt().getY();
-                            double colWidth = this.getHitBox().getWidth();
-                            double colRecHeight = this.getHitBox().getHeight();
-
-                            if (colRecX + colWidth + valeur > entRecX
-                                    && colRecX + valeur < entRecX + entColWidth
-                                    && colRecY + colRecHeight > entRecY && colRecY < entRecY + entColHeight) {
-                                return ent;
-                            }
-                        }
+                    if (colRecX + colWidth + valeur > entRecX
+                            && colRecX + valeur < entRecX + entColWidth
+                            && colRecY + colRecHeight > entRecY && colRecY < entRecY + entColHeight) {
+                        return ent;
                     }
+                }
+            }
         }
 
         return null;
@@ -105,30 +102,27 @@ public class Collider {
 
     public Entite verificationCollisionDroit(double valeur) {
         valeur = Math.abs(valeur);
-        if(!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
-            for (String nom : this.getEnt().getEnv().getHashMapListes().keySet())
-                if ( nom.equals("listeMateriaux"))
-                    for (int i = 0; i < this.getEnt().getEnv().getHashMapListes().get(nom).size(); i++) {
-                        Entite ent = (Entite) this.getEnt().getEnv().getHashMapListes().get(nom).get(i);
+        if (!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
+            for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
+                Entite ent = this.getEnt().getEnv().getListeMateriaux().get(i);
+                if (ent != this.getEnt()) {
+                    double entRecX = ent.getX();
+                    double entRecY = ent.getY();
+                    double entColWidth = ent.getCollider().getHitBox().getWidth();
+                    double entColHeight = ent.getCollider().getHitBox().getHeight();
 
-                        if(ent!= this.getEnt()) {
-                            double entRecX = ent.getX();
-                            double entRecY = ent.getY();
-                            double entColWidth = ent.getCollider().getHitBox().getWidth();
-                            double entColHeight = ent.getCollider().getHitBox().getHeight();
+                    double colRecX = this.getEnt().getX();
+                    double colRecY = this.getEnt().getY();
+                    double colWidth = this.getHitBox().getWidth();
+                    double colRecHeight = this.getHitBox().getHeight();
 
-                            double colRecX = this.getEnt().getX();
-                            double colRecY = this.getEnt().getY();
-                            double colWidth = this.getHitBox().getWidth();
-                            double colRecHeight = this.getHitBox().getHeight();
-
-                            if (colRecX + colWidth + valeur > entRecX
-                                    && colRecX + valeur < entRecX + entColWidth
-                                    && colRecY + colRecHeight > entRecY && colRecY < entRecY + entColHeight) {
-                                return ent;
-                            }
-                        }
+                    if (colRecX + colWidth + valeur > entRecX
+                            && colRecX + valeur < entRecX + entColWidth
+                            && colRecY + colRecHeight > entRecY && colRecY < entRecY + entColHeight) {
+                        return ent;
                     }
+                }
+            }
         }
         return null;
     }
@@ -137,29 +131,27 @@ public class Collider {
         valeur = -Math.abs(valeur);
 
         if (!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
-            for (String nom : this.getEnt().getEnv().getHashMapListes().keySet())
-                if ( nom.equals("listeMateriaux"))
-                    for (int i = 0; i < this.getEnt().getEnv().getHashMapListes().get(nom).size(); i++) {
-                        Entite ent = (Entite) this.getEnt().getEnv().getHashMapListes().get(nom).get(i);
-                        if(ent!= this.getEnt()) {
-                            double entRecX = ent.getX();
-                            double entRecY = ent.getY();
-                            double entColWidth = ent.getCollider().getHitBox().getWidth();
-                            double entColHeight = ent.getCollider().getHitBox().getHeight();
+            for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
+                Entite ent = this.getEnt().getEnv().getListeMateriaux().get(i);
+                if (ent != this.getEnt()) {
+                    double entRecX = ent.getX();
+                    double entRecY = ent.getY();
+                    double entColWidth = ent.getCollider().getHitBox().getWidth();
+                    double entColHeight = ent.getCollider().getHitBox().getHeight();
 
-                            double colRecX = this.getEnt().getX();
-                            double colRecY = this.getEnt().getY();
-                            double colWidth = this.getHitBox().getWidth();
-                            double colRecHeight = this.getHitBox().getHeight();
+                    double colRecX = this.getEnt().getX();
+                    double colRecY = this.getEnt().getY();
+                    double colWidth = this.getHitBox().getWidth();
+                    double colRecHeight = this.getHitBox().getHeight();
 
-                            if (colRecX + colWidth > entRecX
-                                    && colRecX < entRecX + entColWidth
-                                    && colRecY + colRecHeight + valeur > entRecY &&
-                                    colRecY + valeur < entRecY + entColHeight) {
-                                return ent;
-                            }
-                        }
+                    if (colRecX + colWidth > entRecX
+                            && colRecX < entRecX + entColWidth
+                            && colRecY + colRecHeight + valeur > entRecY &&
+                            colRecY + valeur < entRecY + entColHeight) {
+                        return ent;
                     }
+                }
+            }
         }
         return null;
     }
@@ -168,37 +160,34 @@ public class Collider {
         valeur = Math.abs(valeur);
 
         if (!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
-            for (String nom : this.getEnt().getEnv().getHashMapListes().keySet())
-                if (nom.equals("listeMateriaux"))
-                    for (int i = 0; i < this.getEnt().getEnv().getHashMapListes().get(nom).size(); i++) {
+            for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
+                Entite ent = this.getEnt().getEnv().getListeMateriaux().get(i);
+                if (ent != this.getEnt()) {
 
-                        Entite ent = (Entite) this.getEnt().getEnv().getHashMapListes().get(nom).get(i);
-                        if(ent!= this.getEnt()) {
+                    double entRecX = ent.getX();
+                    double entRecY = ent.getY();
+                    double entColWidth = ent.getCollider().getHitBox().getWidth();
+                    double entColHeight = ent.getCollider().getHitBox().getHeight();
 
-                            double entRecX = ent.getX();
-                            double entRecY = ent.getY();
-                            double entColWidth = ent.getCollider().getHitBox().getWidth();
-                            double entColHeight = ent.getCollider().getHitBox().getHeight();
+                    double colRecX = this.getEnt().getX();
+                    double colRecY = this.getEnt().getY();
+                    double colWidth = this.getHitBox().getWidth();
+                    double colRecHeight = this.getHitBox().getHeight();
 
-                            double colRecX = this.getEnt().getX();
-                            double colRecY = this.getEnt().getY();
-                            double colWidth = this.getHitBox().getWidth();
-                            double colRecHeight = this.getHitBox().getHeight();
+                    if (colRecX + colWidth > entRecX
+                            && colRecX < entRecX + entColWidth
+                            && colRecY + colRecHeight + valeur > entRecY &&
+                            colRecY + valeur < entRecY + entColHeight) {
 
-                            if (colRecX + colWidth > entRecX
-                                    && colRecX < entRecX + entColWidth
-                                    && colRecY + colRecHeight + valeur > entRecY &&
-                                    colRecY + valeur < entRecY + entColHeight) {
-
-                                return ent;
-                            }
-                        }
+                        return ent;
                     }
+                }
+            }
         }
         return null;
     }
 
-    public Entite verifierCollisionDirection(Direction direction, double valeur)  {
+    public Entite verifierCollisionDirection(Direction direction, double valeur) {
         switch (direction) {
             case Droit:
                 return verificationCollisionDroit(valeur);
@@ -251,7 +240,7 @@ public class Collider {
 
         for (String nom : this.ent.getEnv().getHashMapListes().keySet())
             if (nom.equals("listeEntites") || nom.equals("listeMateriaux"))
-                for(int i = 0; i < this.ent.getEnv().getHashMapListes().get(nom).size(); i++) {
+                for (int i = 0; i < this.ent.getEnv().getHashMapListes().get(nom).size(); i++) {
                     Entite entAVerifier = (Entite) this.ent.getEnv().getHashMapListes().get(nom).get(i);
 
                 }
@@ -270,7 +259,7 @@ public class Collider {
             if (nom.equals("listeEntites") || nom.equals("listeMateriaux"))
                 for (int i = 0; i < this.ent.getEnv().getHashMapListes().get(nom).size(); i++) {
                     Entite entAVerifier = (Entite) this.ent.getEnv().getHashMapListes().get(nom).get(i);
-                    if(entAVerifier != this.getEnt()) {
+                    if (entAVerifier != this.getEnt()) {
                         double differencePositiveX = Math.abs(origineX - entAVerifier.getX());
                         double differencePositiveY = Math.abs(origineY - entAVerifier.getY());
                         double absLongueurX = Math.abs(longueurX);
@@ -279,19 +268,18 @@ public class Collider {
 
                         if (differencePositiveX <= absLongueurX && differencePositiveY <= absLongueurY) {
                             //System.out.println("on vérifie " + entAVerifier);
-                            if(intersect(entAVerifier,-differencePositiveX, 0)
-                                    || intersect(entAVerifier,+differencePositiveX, 0)
-                                    ||intersect(entAVerifier,0, differencePositiveY)
-                                    ||intersect(entAVerifier,0, -differencePositiveY)) {
+                            if (intersect(entAVerifier, -differencePositiveX, 0)
+                                    || intersect(entAVerifier, +differencePositiveX, 0)
+                                    || intersect(entAVerifier, 0, differencePositiveY)
+                                    || intersect(entAVerifier, 0, -differencePositiveY)) {
 
-                                if(Math.abs(entAVerifier.getX()) + Math.abs(entAVerifier.getY()) < distanceDepuisEntite) {
+                                if (Math.abs(entAVerifier.getX()) + Math.abs(entAVerifier.getY()) < distanceDepuisEntite) {
                                     distanceDepuisEntite = Math.abs(entAVerifier.getX()) + Math.abs(entAVerifier.getY());
                                     entTrouve = entAVerifier;
                                 }
 
 
-                            }
-                            else {
+                            } else {
                             }
 
                             /*if(intersect(entAVerifier,0, 0)
