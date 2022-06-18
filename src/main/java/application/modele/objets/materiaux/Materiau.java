@@ -40,7 +40,7 @@ public abstract class Materiau extends Entite {
         }
         this.getEnv().getListeEntites().add(materiau);
 
-        getEnv().getMapJeu().getTabMap()[(int) getY()][(int) getX()] = 0;
+        getEnv().getMapJeu().getTabMap()[(int) (getY() / TUILE_TAILLE)][(int) (getX() / TUILE_TAILLE)] = 0;
         getEnv().getListeMateriaux().remove(this);
     }
 

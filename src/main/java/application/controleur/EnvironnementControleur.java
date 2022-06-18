@@ -36,8 +36,9 @@ public class EnvironnementControleur {
             public void onChanged(Change<? extends Materiau> change) {
                 change.next();
                 for (int i = 0; i < change.getRemovedSize(); i++) {
-                    System.out.println((int) change.getRemoved().get(i).getY() * WIDTH + (int) change.getRemoved().get(0).getX());
-                    envVue.supprimerBloc((int) change.getRemoved().get(i).getY() * WIDTH + (int) change.getRemoved().get(0).getX());
+                    int id = (int)((change.getRemoved().get(0).getY() / TUILE_TAILLE) * WIDTH + (change.getRemoved().get(0).getX() / TUILE_TAILLE));
+                    //System.out.println((int) change.getRemoved().get(i).getY() * WIDTH + (int) change.getRemoved().get(0).getX());
+                    envVue.supprimerBloc(id);
                 }
 
                 for(int i = 0; i < change.getAddedSize(); i++) {
