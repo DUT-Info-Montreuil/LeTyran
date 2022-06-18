@@ -34,7 +34,7 @@ public class Fleche extends Entite {
         id = "Fleche" + idMax++;
         distanceParcourue = 0;
         touche = false;
-        this.getCollider().getHitBox().setHeight(10);
+        this.getCollider().getHitBox().setHeight(15);
     }
 
     private void seDeplace() {
