@@ -8,8 +8,8 @@ public class ChefVillage extends Allie{
         super(env, id, x, y, distance);
     }
 
-    public ChefVillage(Environnement env, int i, int x, int y) {
-        super(env, "ChefVillage", i, x, y);
+    public ChefVillage(Environnement env, int x, int y, int distance) {
+        super(env, "ChefVillage", x, y, distance);
     }
 
 
