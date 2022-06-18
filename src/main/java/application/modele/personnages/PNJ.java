@@ -33,9 +33,7 @@ public abstract class PNJ extends Personnage {
     }
 
     protected void deplacementAllerRetour() {
-        if (getX() >= origineX && getX() <= origineX + distance && getY() == origineY && estBloque())
-            setDirection(getDirectionOpposee());
-        else if ((getX() < origineX && getDirection() == Gauche) || (getX() > origineX + distance && getDirection() == Droit))
+        if ((getX() >= origineX && getX() <= origineX + distance && getY() == origineY && estBloque() || (getX() < origineX && getDirection() == Gauche) || (getX() > origineX + distance && getDirection() == Droit)))
             setDirection(getDirectionOpposee());
         else if (estBloque()) {
             if (getDirection() == Gauche)

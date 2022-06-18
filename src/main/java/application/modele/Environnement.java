@@ -6,6 +6,7 @@ import application.modele.objets.materiaux.*;
 import application.modele.personnages.*;
 import application.modele.personnages.animaux.Animal;
 import application.modele.personnages.animaux.Lapin;
+import application.modele.personnages.animaux.Sanglier;
 import application.modele.personnages.ennemi.*;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -98,7 +99,8 @@ public class Environnement {
 
     public void initListeAnimaux() {
         listeAnimaux.clear();
-        listeAnimaux.add(new Lapin(this, 15,11, 10));
+        //listeAnimaux.add(new Lapin(this, 15,11, 10));
+        listeAnimaux.add(new Sanglier(this, 15,11, 8));
     }
     //endregion
 

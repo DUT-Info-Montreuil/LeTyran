@@ -147,7 +147,6 @@ public class Joueur extends Personnage {
 
     @Override
     public void quandCollisionDetectee(Entite ent) {
-        System.out.println(ent);
         if (ent instanceof ObjetJeu || ent instanceof Materiau || ent instanceof Consommable) {
             this.inventaire.ajouterObjet(ent);
         }

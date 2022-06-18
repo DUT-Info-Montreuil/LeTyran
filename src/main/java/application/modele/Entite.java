@@ -93,9 +93,6 @@ public class Entite {
         if(!this.getCollider().getIgnoreCollision()) {
             for (int i = 0; i < liste.size(); i++) {
                 Entite ent = (Entite) liste.get(i);
-                if (ent != this && ent instanceof Viande) {
-                    System.out.println(this.getCollider().intersect(ent));
-                }
                 if (ent != this && !ent.getCollider().getIgnoreCollision() && this.getCollider().intersect(ent)) {
                     this.quandCollisionDetectee(ent);
                 }
