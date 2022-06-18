@@ -80,23 +80,17 @@ public abstract class Personnage extends Entite {
                 super.setX(super.getX() - 0.45f);
             }
         }
-
-
-
-
     }
 
     protected void sauter() {
         int i = 0;
         while (i < getVitesse() && hauteurSaut < getHauteurMax() && super.getCollider().verifierCollisionDirection(Direction.Haut, 0.60f) == null) {
             i++;
-            System.out.print("-");
             super.setY(super.getY() - 0.60f);
             hauteurSaut +=0.60f;
         }
         if (i < getVitesse())
             saute = false;
-        System.out.println("|");
     }
 
 

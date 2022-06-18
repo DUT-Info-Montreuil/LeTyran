@@ -39,8 +39,7 @@ public class MousePressed implements EventHandler<MouseEvent> {
 //        }
         if (mouseEvent.getX() < (WIDTH * TUILE_TAILLE) / 2 + 5*TUILE_TAILLE && mouseEvent.getX() > (WIDTH * TUILE_TAILLE) / 2 - 5*TUILE_TAILLE
                 && mouseEvent.getY() < (HEIGHT * TUILE_TAILLE) / 2 + 5*TUILE_TAILLE && mouseEvent.getY() > (HEIGHT * TUILE_TAILLE) / 2 - 5*TUILE_TAILLE) {
-            int mouseX;
-            int mouseY;
+            int mouseX, mouseY;
             if (mouseEvent.getX() > (WIDTH * TUILE_TAILLE) / 2 + TUILE_TAILLE)
                 mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE) + 1;
             else if (mouseEvent.getX() < (WIDTH * TUILE_TAILLE) / 2)
