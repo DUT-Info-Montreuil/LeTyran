@@ -123,10 +123,6 @@ public class Entite {
         return xProperty.getValue();
     }
 
-    public boolean getTombe() {
-        return this.tombe;
-    }
-
     public float getY() {
         return yProperty.getValue();
     }
@@ -170,5 +166,14 @@ public class Entite {
     public void setPv(int value) {
         this.pv.setValue(value);
     }
+
+    public boolean getTombe() {
+        return tombe;
+    }
+
+    public void setTombe(boolean tombe) {
+        this.tombe = tombe;
+    }
+
     //endregion
 }

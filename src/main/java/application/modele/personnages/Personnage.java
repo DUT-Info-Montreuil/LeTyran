@@ -11,14 +11,13 @@ public abstract class Personnage extends Entite {
     private String id;
     private ObjectProperty<Direction> directionProperty;
     private boolean saute;
-    private boolean tombe;
     private float hauteurSaut;
     private int distancePoussee;
 
     public Personnage(Environnement env) {
         super(env);
         id = "Joueur";
-        saute = false; tombe = false;
+        saute = false;
         directionProperty = new SimpleObjectProperty<>(Direction.Droit);
         hauteurSaut = 0;
         distancePoussee = 0;
@@ -36,7 +35,7 @@ public abstract class Personnage extends Entite {
     public Personnage(Environnement env, String id, int x, int y) {
         super(env, x, y);
         this.id = id;
-        saute = false; tombe = false;
+        saute = false;
         directionProperty = new SimpleObjectProperty<>(Direction.Droit);
         hauteurSaut = 0;
         distancePoussee = 0;
@@ -51,7 +50,7 @@ public abstract class Personnage extends Entite {
     public Personnage(Environnement env, String id, int x, int y, int pv) {
         super(env, x, y, pv);
         this.id = id;
-        saute = false; tombe = false;
+        saute = false;
         directionProperty = new SimpleObjectProperty<>(Direction.Droit);
         hauteurSaut = 0;
         distancePoussee = 0;
@@ -65,7 +64,7 @@ public abstract class Personnage extends Entite {
 
     protected void seDeplacer() {
         int distance;
-        if (tombe || saute)
+        if (getTombe() || saute)
             distance = getVitesse() - 1;
         else
             distance = getVitesse();
@@ -98,12 +97,12 @@ public abstract class Personnage extends Entite {
         int i = 0;
         while (i < getVitesse() && super.getCollider().verifierCollisionDirection(Direction.Bas, 0.60f) == null) {
             i++;
-            tombe = true;
+            setTombe(true);
             super.setY(super.getY() + 0.60f);
         }
 
         if (i < getVitesse()) {
-            tombe = false;
+            setTombe(false);
             hauteurSaut = 0;
         }
     }
@@ -162,14 +161,6 @@ public abstract class Personnage extends Entite {
 
     public void setSaute(boolean saute) {
         this.saute = saute;
-    }
-
-    public boolean getTombe() {
-        return tombe;
-    }
-
-    public void setTombe(boolean tombe) {
-        this.tombe = tombe;
     }
 
     public String getId() {

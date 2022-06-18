@@ -13,7 +13,7 @@ public abstract class Consommable extends Entite {
     }
 
     public Consommable(Environnement env, int x, int y) {
-        super(env, x *TUILE_TAILLE, y * TUILE_TAILLE);
+        super(env, x, y);
     }
 
     public void consommer() {

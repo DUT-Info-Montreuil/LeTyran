@@ -4,6 +4,7 @@ import application.modele.Direction;
 import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.objets.Arbre;
+import application.modele.objets.consommable.Consommable;
 import application.modele.objets.materiaux.Materiau;
 import application.modele.personnages.Joueur;
 import application.modele.personnages.Personnage;
@@ -86,7 +87,7 @@ public class Fleche extends Entite {
 
     @Override
     public void quandCollisionDetectee(Entite ent) {
-        if (!touche && ent != perso && !(ent instanceof Fleche) && !(ent instanceof Arbre)) {
+        if (!touche && ent != perso && !(ent instanceof Fleche) && !(ent instanceof Arbre) && !(ent instanceof Consommable)) {
             System.out.println(ent);
             touche = true;
             if (!(ent instanceof Materiau))
