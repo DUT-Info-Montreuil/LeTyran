@@ -3,7 +3,6 @@ package application.vue;
 import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.personnages.Joueur;
-import application.vue.inventaire.ObjetView;
 import javafx.collections.ListChangeListener;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -14,12 +13,12 @@ public class ObjetVue {
 
     private Environnement env;
     private ArrayList<ObjetView> objetImageView;
-    private Pane root;
+    private Pane paneDecors;
 
-    public ObjetVue(Environnement env, Pane root) {
+    public ObjetVue(Environnement env, Pane paneDecors) {
         this.env = env;
         this.objetImageView = new ArrayList<>();
-        this.root = root;
+        this.paneDecors = paneDecors;
         enregistrerTousLesObjets();
 
 
@@ -44,7 +43,7 @@ public class ObjetVue {
             if(!(obj instanceof Joueur)) {
                 ObjetView objView = new ObjetView(obj);
                 objetImageView.add(objView);
-                this.root.getChildren().add(objView);
+                this.paneDecors.getChildren().add(objView);
             }
 
         }
@@ -53,7 +52,7 @@ public class ObjetVue {
     public void ajouterObjet(Entite objet) {
         ObjetView objView = new ObjetView(objet);
         this.objetImageView.add(objView);
-        this.root.getChildren().add(objView);
+        this.paneDecors.getChildren().add(objView);
     }
 
     public void ajouterObjet(Entite objet,int x, int y) {
@@ -61,14 +60,14 @@ public class ObjetVue {
         objView.setTranslateX(x);
         objView.setTranslateY(y);
         this.objetImageView.add(objView);
-        this.root.getChildren().add(objView);
+        this.paneDecors.getChildren().add(objView);
     }
 
     public void retirerObjet(Entite objet) {
         for(int i = 0; i < this.objetImageView.size(); i++) {
             ObjetView img = this.objetImageView.get(i);
             if(img.getObjet() == objet) {
-                this.root.getChildren().remove(img);
+                this.paneDecors.getChildren().remove(img);
             }
         }
     }
