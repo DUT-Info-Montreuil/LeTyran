@@ -28,7 +28,7 @@ public class Arbre extends Entite {
         getEnv().getJoueur().getArme().decrementerPv();
 
         for (int i = 0; i < nbBois; i++)
-            getEnv().getListeEntites().add(new Bois(getEnv(), (int)getX() , (int)getY()));
+            getEnv().getListeEntites().add(new Bois(getEnv(), (int) getX(), (int) getY()));
     }
 
     @Override

@@ -97,7 +97,7 @@ public class ArmeVue {
     //endregion
 
     public void animationFrappe() {
-        if (rt.getCurrentRate() == 0 && tt.getCurrentRate() == 0) {
+        if (rt.getCurrentRate() == 0 && tt.getCurrentRate() == 0 && perso.getArme() != null) {
             if (perso instanceof Joueur) rendreVisible();
             if (perso.getArme() instanceof Lance) {
                 tt.setByX(dir*TUILE_TAILLE);

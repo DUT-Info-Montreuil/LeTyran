@@ -2,6 +2,8 @@ package application.modele.personnages.ennemi;
 
 import application.modele.Environnement;
 import application.modele.armes.Arme;
+import application.modele.objets.consommable.Potion;
+import application.modele.objets.consommable.Viande;
 import application.modele.personnages.PNJ;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -16,7 +18,7 @@ public abstract class Ennemi extends PNJ {
 
     private Arme arme;
     private BooleanProperty attaqueProperty;
-    private int delai;
+    private int delaiFrappe;
     private boolean retourZone;
     private boolean poursuitJoueur;
 
@@ -24,7 +26,7 @@ public abstract class Ennemi extends PNJ {
         super(env, "Ennemi" + id++, x, y, distance);
         this.arme = arme;
         attaqueProperty = new SimpleBooleanProperty(false);
-        delai = 0;
+        delaiFrappe = 0;
         retourZone = false;
         poursuitJoueur = false;
     }
@@ -32,12 +34,12 @@ public abstract class Ennemi extends PNJ {
     protected void detectionJoueur() {
         if (joueurEnFace()) {
             attaqueProperty.setValue(true);
-            delai = 0;
+            delaiFrappe = 0;
         }
     }
 
     protected void attaquer() {
-        if (delai++ >= 30) {
+        if (delaiFrappe++ >= 30) {
             if (joueurEnFace())
                 arme.frapper(this, getEnv().getJoueur());
             attaqueProperty.setValue(false);
@@ -97,6 +99,9 @@ public abstract class Ennemi extends PNJ {
 
     @Override
     public void detruire() {
+        if (Math.random() <= 0.4)
+            //getEnv().getJoueur().getInventaire().ajouterObjet(new Potion(getEnv()));
+            getEnv().getListeEntites().add(new Potion(getEnv(), (int) getX(), (int) getY()));
         getEnv().getListeEnnemis().remove(this);
     }
 

@@ -1,14 +1,20 @@
 package application.modele.personnages.animaux;
 
+import application.modele.Direction;
 import application.modele.Environnement;
-import application.modele.personnages.animaux.Animal;
+
+import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Lapin extends Animal {
 
+    public final static int PV_MAX = 6;
+
     private static int id = 0;
+    private int delaiSaut;
 
     public Lapin(Environnement env, int x, int y, int distance) {
-        super(env, "Lapin" + id++, x, y, distance);
+        super(env, "Lapin" + id++, x, y, distance, PV_MAX);
+        delaiSaut = 0;
     }
 
     @Override
@@ -16,20 +22,37 @@ public class Lapin extends Animal {
         deplacementAllerRetour();
         seDeplacer();
     }
-    
+
+    public void saut() {
+        if (!getSaute() && !getTombe())
+            if (delaiSaut < 30)
+                delaiSaut++;
+            else {
+                setSaute(true);
+                delaiSaut = 0;
+            }
+    }
+
     @Override
     public void update() {
-        tomber();
+        saut();
+        if (getSaute()) sauter();
+        else tomber();
         deplacement();
     }
 
     @Override
     protected int getHauteurMax() {
-        return 0;
+        return TUILE_TAILLE;
     }
 
     @Override
     protected int getVitesse() {
-        return 3;
+        return 4;
+    }
+
+    @Override
+    public int nbViande() {
+        return 1;
     }
 }

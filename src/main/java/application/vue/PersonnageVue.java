@@ -44,6 +44,11 @@ public class PersonnageVue {
             add(new Image("file:src/main/resources/application/perso/lapin/lapin_2.png"));
             add(new Image("file:src/main/resources/application/perso/lapin/lapin_3.png"));
         }});
+        put("Sanglier", new ArrayList<>() {{
+            add(new Image("file:src/main/resources/application/perso/sanglier/sanglier_1.png"));
+            add(new Image("file:src/main/resources/application/perso/sanglier/sanglier_2.png"));
+            add(new Image("file:src/main/resources/application/perso/sanglier/sanglier_3.png"));
+        }});
 
         put("ChefVillage", new ArrayList<>() {{
             add(new Image("file:src/main/resources/application/personnages/chef_village.png"));
@@ -69,13 +74,10 @@ public class PersonnageVue {
         this.perso = perso;
         lastUpdate = System.currentTimeMillis();
         creationSprite();
-
         paneEnnemis.getChildren().add(spritePerso);
-        System.out.println(paneEnnemis.getChildren());
     }
 
     private void creationSprite() {
-        //System.out.println(LISTE_SPRITES.get(perso.getClass().getSimpleName()).get(0));
         spritePerso = new ImageView();
         spritePerso.setId(perso.getId());
         spritePerso.setFitWidth(TUILE_TAILLE);
@@ -83,7 +85,6 @@ public class PersonnageVue {
         spritePerso.setImage(LISTE_SPRITES.get(perso.getClass().getSimpleName()).get(0));
         spritePerso.translateXProperty().bind(perso.getXProperty());
         spritePerso.translateYProperty().bind(perso.getYProperty());
-
     }
 
     private void construirePerso() {

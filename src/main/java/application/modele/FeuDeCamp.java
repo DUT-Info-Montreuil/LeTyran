@@ -1,5 +1,7 @@
 package application.modele;
 
+import application.modele.personnages.Joueur;
+
 import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class FeuDeCamp {
@@ -21,7 +23,7 @@ public class FeuDeCamp {
         env.getListeFleches().clear();
         env.getJoueur().setX(x * TUILE_TAILLE - TUILE_TAILLE);
         env.getJoueur().setY(y * TUILE_TAILLE);
-        env.getJoueur().setPv(30);
+        env.getJoueur().setPv(Joueur.PV_MAX);
     }
 
     public int getX() {

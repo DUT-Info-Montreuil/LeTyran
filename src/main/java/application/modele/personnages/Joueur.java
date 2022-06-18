@@ -5,18 +5,22 @@ import application.modele.armes.Arme;
 import application.modele.armes.Hache;
 import application.modele.armes.Pioche;
 import application.modele.armes.arc.Arc;
+import application.modele.armes.arc.Fleche;
 import application.modele.objets.Arbre;
 import application.modele.objets.Coffre;
+import application.modele.objets.consommable.Consommable;
+import application.modele.objets.materiaux.Materiau;
 import application.modele.objets.Materiau;
 import application.modele.objets.Pierre;
 import application.modele.personnages.ennemi.Ennemi;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.scene.media.AudioClip;
 
 import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Joueur extends Personnage {
+
+    public final static int PV_MAX = 30;
 
     private Inventaire inventaire;
     private boolean freeze;
@@ -34,6 +38,9 @@ public class Joueur extends Personnage {
         this.inventaire.ajouterObjet(new Pierre());
         this.inventaire.ajouterObjet(new Pierre());
         this.inventaire.ajouterObjet(new Pierre());
+        this.inventaire.ajouterObjet(new Pioche(getEnv(), 3));
+        this.inventaire.ajouterObjet(new Hache(getEnv(), 3));
+        this.inventaire.ajouterObjet(new Arc(getEnv(), 3));
         mortProperty = new SimpleBooleanProperty(false);
         seReposeProperty = new SimpleBooleanProperty(false);
         avanceProperty = new SimpleBooleanProperty(false);
@@ -103,12 +110,14 @@ public class Joueur extends Personnage {
 
     private boolean frapper(int x, int y) {
         if (getArme() instanceof Arc) {
-            getArme().frapper(this, null);
+            ((Arc) getArme()).frapper(x,y);
             return true;
         } else {
-            Ennemi ennemi = getEnv().getEnnemi(x, y);
-            if (ennemi != null) {
-                getArme().frapper(this, ennemi);
+            PNJ pnj = getEnv().getEnnemi(x, y);
+            if (pnj == null)
+                pnj = getEnv().getAnimal(x, y);
+            if (pnj != null) {
+                getArme().frapper(this, pnj);
                 return true;
             }
             return false;
@@ -137,7 +146,7 @@ public class Joueur extends Personnage {
 
     @Override
     public void quandCollisionDetectee(Entite ent) {
-        if (ent instanceof ObjetJeu || ent instanceof Materiau) {
+        if (ent instanceof ObjetJeu || ent instanceof Materiau || ent instanceof Consommable) {
             this.inventaire.ajouterObjet(ent);
         }
     }

@@ -13,8 +13,8 @@ import java.util.Map;
 public abstract class Materiau extends Entite {
 
     private int idMateriau;
+
     public Materiau() {
-        super(null, 0, 0, 0);
     }
 
     public Materiau(Environnement env,  int x, int y, int pv) {
@@ -55,19 +55,6 @@ public abstract class Materiau extends Entite {
         getEnv().getMapJeu().getTabMap()[(int) (getY() / TUILE_TAILLE)][(int) (getX() / TUILE_TAILLE)] = 0;
         getEnv().getListeMateriaux().remove(this);
     }
-
-    public float getX() {
-        return super.getX();
-    }
-
-    public float getY() {
-        return super.getY();
-    }
-
-    public int getPv() {
-        return super.getPv();
-    }
-
 }
 
 

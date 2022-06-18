@@ -1,15 +1,11 @@
 package application.modele;
 
-import application.modele.armes.Arme;
-import application.modele.armes.Hache;
-import application.modele.armes.Pioche;
-import application.modele.armes.arc.Arc;
-import application.modele.armes.arc.Fleche;
 import application.modele.collisions.Collider;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ObservableList;
 
 public class Entite {
     private FloatProperty xProperty;
@@ -17,9 +13,7 @@ public class Entite {
     private Environnement env;
     private Collider collider;
     private IntegerProperty pv;
-
-
-    private boolean tombe = false;
+    private boolean tombe;
 
     public Entite(Environnement env) {
         pv= new SimpleIntegerProperty(100);
@@ -29,6 +23,7 @@ public class Entite {
         //this.getCollider().scaleCollider(32,32);
         this.env = env;
         this.pv = new SimpleIntegerProperty(30);
+        tombe = false;
     }
 
 
@@ -39,6 +34,7 @@ public class Entite {
         this.env = env;
         this.collider = new Collider(this);
         this.pv = new SimpleIntegerProperty(100);
+        tombe = false;
     }
 
     public Entite(Environnement env, int x, int y, int pv) {
@@ -47,11 +43,13 @@ public class Entite {
         this.env = env;
         this.collider = new Collider(this);
         this.pv = new SimpleIntegerProperty(pv);
+        tombe = false;
     }
 
     public Entite() {
         this.xProperty = new SimpleFloatProperty(0);
         this.yProperty = new SimpleFloatProperty(0);
+        tombe = false;
     }
 
     public void update() {
@@ -62,29 +60,43 @@ public class Entite {
     }
 
     private void tomber() {
-        for (int i = 0; i < 3; i++)
-        if (this.getCollider().verifierCollisionDirection(Direction.Bas, 1) == null) {
+        int i = 0;
+        while (i < getVitesse() && getCollider().verifierCollisionDirection(Direction.Bas, 0.60f) == null) {
+            i++;
             tombe = true;
-            this.setY(this.getY() + 1);
+            setY(getY() + 0.60f);
         }
-        tombe = false;
+
+        if (i < getVitesse()) {
+            tombe = false;
+        }
     }
 
     public void detruire() {
     }
 
     public void collide() {
-        if(!this.getCollider().getIgnoreCollision()) {
-            for (String nom : env.getHashMapListes().keySet())
-                if (nom.equals("listeEntites"))
-                for (int i = 0; i < env.getHashMapListes().get(nom).size(); i++) {
-                    Entite ent = (Entite) env.getHashMapListes().get(nom).get(i);
-                    //System.out.println(ent);
-                    if (ent != this && !ent.getCollider().getIgnoreCollision() && this.getCollider().intersect(ent)) {
+//        if(!this.getCollider().getIgnoreCollision()) {
+//            for (int i = 0; i < env.getListeEntites().size(); i++) {
+//                Entite ent = env.getListeEntites().get(i);
+//                if (ent != this && !ent.getCollider().getIgnoreCollision() && this.getCollider().intersect(ent)) {
+//                    this.quandCollisionDetectee(ent);
+//                }
+//            }
+//        }
+        verifCollide(env.getListeEntites());
+        verifCollide(env.getListeEnnemis());
+        verifCollide(env.getListeAnimaux());
+    }
 
-                        this.quandCollisionDetectee(ent);
-                    }
+    private void verifCollide(ObservableList liste) {
+        if(!this.getCollider().getIgnoreCollision()) {
+            for (int i = 0; i < liste.size(); i++) {
+                Entite ent = (Entite) liste.get(i);
+                if (ent != this && !ent.getCollider().getIgnoreCollision() && this.getCollider().intersect(ent)) {
+                    this.quandCollisionDetectee(ent);
                 }
+            }
         }
     }
 
@@ -103,13 +115,12 @@ public class Entite {
     //Fonctions qui ont pour but d'être override
     public void quandCollisionDetectee(Entite ent) {}
 
+    protected int getVitesse() {
+        return 4;
+    }
     //region Getter & Setter
     public float getX() {
         return xProperty.getValue();
-    }
-
-    public boolean getTombe() {
-        return this.tombe;
     }
 
     public float getY() {
@@ -155,5 +166,14 @@ public class Entite {
     public void setPv(int value) {
         this.pv.setValue(value);
     }
+
+    public boolean getTombe() {
+        return tombe;
+    }
+
+    public void setTombe(boolean tombe) {
+        this.tombe = tombe;
+    }
+
     //endregion
 }

@@ -84,7 +84,7 @@ public class InvItem extends StackPane {
                 this.invVue.definirObjetPrit(this);
                 dragActive = true;
             } else if (mouseEvent.getButton() == MouseButton.SECONDARY && !dragActive) {
-                this.invVue.jeterObjetInventaire(this);
+                this.invVue.getInv().interactionObjet(obj);
             }
         });
 

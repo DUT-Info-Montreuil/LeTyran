@@ -1,7 +1,6 @@
-package application.modele.objets;
+package application.modele.objets.materiaux;
 
 import application.modele.Environnement;
-import application.modele.armes.Arme;
 
 public class Terre extends Materiau {
 

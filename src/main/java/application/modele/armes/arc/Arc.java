@@ -13,16 +13,16 @@ public class Arc extends Arme {
         super(env, qualite);
     }
 
-    @Override
     public void frapper(Personnage perso, Personnage ennemi) {
-        if (perso instanceof Joueur) {
-            if (((Joueur) perso).getInventaire().recupererNombreRessources("Fleche") > 0) {
-                ((Joueur) perso).getInventaire().retirerNbRessources("Fleche", 1);
-                getEnv().getListeFleches().add(new Fleche(getEnv(), perso, getDistance() * TUILE_TAILLE, nbDegat()));
+        getEnv().getListeFleches().add(new Fleche(getEnv(), perso, getDistance()*TUILE_TAILLE, nbDegat()));
+    }
+
+    public void frapper(int x, int y) {
+        if (getEnv().getJoueur().getInventaire().recupererNombreRessources("Fleche") > 0) {
+            getEnv().getJoueur().getInventaire().retirerNbRessources("Fleche", 1);
+                getEnv().getListeFleches().add(new Fleche(getEnv(), getEnv().getJoueur(), x, y, getDistance() * TUILE_TAILLE, nbDegat()));
                 decrementerPv();
-            }
-        } else
-            getEnv().getListeFleches().add(new Fleche(getEnv(), perso, getDistance()*TUILE_TAILLE, nbDegat()));
+        }
     }
 
     public int getDistance() {

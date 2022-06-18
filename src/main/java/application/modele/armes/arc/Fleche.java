@@ -4,7 +4,8 @@ import application.modele.Direction;
 import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.objets.Arbre;
-import application.modele.objets.Materiau;
+import application.modele.objets.consommable.Consommable;
+import application.modele.objets.materiaux.Materiau;
 import application.modele.personnages.Joueur;
 import application.modele.personnages.Personnage;
 
@@ -22,11 +23,30 @@ public class Fleche extends Entite {
     private int degat;
     private boolean touche;
 
-    public Fleche() {
+    public Fleche() {}
+
+    public Fleche(Environnement env, Joueur joueur, int x, int y, int distanceMax, int degat) {
+        super(env, (int) joueur.getX(), (int) joueur.getY());
+        this.perso = joueur;
+        this.distanceMax = distanceMax;
+        this.degat = degat;
+        id = "Fleche" + idMax++;
+        distanceParcourue = 0;
+        touche = false;
+        this.getCollider().getHitBox().setHeight(15);
+        this.getCollider().getHitBox().setWidth(25);
+        if (x == (int) (perso.getX() / TUILE_TAILLE))
+            if (y > perso.getY()/TUILE_TAILLE)
+                direction = Direction.Bas;
+            else
+                direction = Direction.Haut;
+        else
+            direction = perso.getDirection();
+
     }
 
     public Fleche(Environnement env, Personnage perso, int distanceMax, int degat) {
-        super(env, (int) perso.getX(), (int) (perso.getY() - 10));
+        super(env, (int) perso.getX(), (int) perso.getY());
         this.perso = perso;
         this.direction = perso.getDirection();
         this.distanceMax = distanceMax;
@@ -34,6 +54,7 @@ public class Fleche extends Entite {
         id = "Fleche" + idMax++;
         distanceParcourue = 0;
         touche = false;
+        this.getCollider().getHitBox().setHeight(15);
     }
 
     private void seDeplace() {
@@ -42,10 +63,8 @@ public class Fleche extends Entite {
         while (i < 7 && distanceParcourue < distanceMax) {
             i++;
             Entite touchee = this.getCollider().verifierCollisionDirection(this.direction, 0.5f);
-            if(touchee != null) {
-                getEnv().getListeFleches().remove(this);
+            if(touchee != null)
                 quandCollisionDetectee(touchee);
-            };
 
             switch (direction) {
                 case Droit: setX(getX() + 0.5f); break;
@@ -68,7 +87,8 @@ public class Fleche extends Entite {
 
     @Override
     public void quandCollisionDetectee(Entite ent) {
-        if (!touche && ent != perso && !(ent instanceof Fleche) && !(ent instanceof Arbre)) {
+        if (!touche && ent != perso && !(ent instanceof Fleche) && !(ent instanceof Arbre) && !(ent instanceof Consommable)) {
+            System.out.println(ent);
             touche = true;
             if (!(ent instanceof Materiau))
                 ent.decrementerPv(degat);

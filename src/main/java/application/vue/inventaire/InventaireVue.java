@@ -51,8 +51,8 @@ public class InventaireVue {
 
 
         Rectangle rectangleSelection = new Rectangle();
-        rectangleSelection.setWidth(32);
-        rectangleSelection.setHeight(32);
+        rectangleSelection.setWidth(TAILLE_ICON_INVENTAIRE);
+        rectangleSelection.setHeight(TAILLE_ICON_INVENTAIRE);
         rectangleSelection.setFill(Color.TRANSPARENT);
         rectangleSelection.setStroke(Color.WHITE);
         rectangleSelection.strokeWidthProperty().setValue(6);
@@ -178,8 +178,8 @@ public class InventaireVue {
 
 
         InvItem item = new InvItem(this, obj, TAILLE_ICON_INVENTAIRE);
-        item.setPrefWidth(32);
-        item.setPrefHeight(32);
+        item.setPrefWidth(TAILLE_ICON_INVENTAIRE);
+        item.setPrefHeight(TAILLE_ICON_INVENTAIRE);
 
         slot.getChildren().add(item);
 
@@ -190,7 +190,7 @@ public class InventaireVue {
         ColorInput color = new ColorInput();
         color.setPaint(Color.RED);
 
-        int indexItem = 0;
+        int indexItem = 5;
         for(int i = 0; i < PLACE_INVENTAIRE / 10; i++) {
             for(int j =0; j < 10; j++) {
                 InvSlot invSlot = new InvSlot(ChargeurRessources.iconObjets.get("inventaireSac"));
@@ -206,11 +206,11 @@ public class InventaireVue {
 
 
                 //On vérifie que l'index ne dépasse pas le nombre d'objets actuellement portés
-                if (indexItem < inv.getObjets().size() && inv.getObjets().get(indexItem).getPlaceInventaire() > 5) {
-
+                if (indexItem < inv.getObjets().size()) {
+                    System.out.println(inv.getObjets().get(indexItem));
                     InvItem slot = new InvItem(this, inv.getObjets().get(indexItem), 0);
-                    slot.setPrefWidth(32);
-                    slot.setPrefHeight(32);
+                    slot.setPrefWidth(TAILLE_ICON_INVENTAIRE);
+                    slot.setPrefHeight(TAILLE_ICON_INVENTAIRE);
 
                     invSlot.getChildren().add(slot);
                     indexItem++;
@@ -235,11 +235,11 @@ public class InventaireVue {
             this.paneInventaireMain.getChildren().add(invSlot);
 
             //On vérifie que l'index ne dépasse pas le nombre d'objets actuellement portés
-            if (indexItem < inv.getObjets().size() && inv.getObjets().get(indexItem).getPlaceInventaire() < 5) {
+            if (indexItem < inv.getObjets().size()) {
 
                 InvItem slot = new InvItem(this, inv.getObjets().get(indexItem), TAILLE_ICON_INVENTAIRE);
-                slot.setPrefWidth(32);
-                slot.setPrefHeight(32);
+                slot.setPrefWidth(TAILLE_ICON_INVENTAIRE);
+                slot.setPrefHeight(TAILLE_ICON_INVENTAIRE);
 
                 invSlot.getChildren().add(slot);
                 indexItem++;
@@ -302,12 +302,15 @@ public class InventaireVue {
 
     public void jeterObjetInventaire(InvItem item) {
         //Faire en sorte d'équiper quand c'est une armure
-        this.inv.mettreEquipement(item.getObjetInventaire());
-        this.mettreEquipement(item.getObjetInventaire());
+        //this.inv.mettreEquipement(item.getObjetInventaire());
         //this.controleur.jeterObjet(item);
     }
 
     public void definirObjetPrit(InvItem obj) {
         this.objPrit = obj;
+    }
+
+    public Inventaire getInv() {
+        return inv;
     }
 }

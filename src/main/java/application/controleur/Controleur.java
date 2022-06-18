@@ -4,7 +4,6 @@ import application.controleur.listeners.ArmeListener;
 import application.controleur.listeners.ArmureListener;
 import application.controleur.listeners.PersonnageListeners;
 import application.controleur.listeners.VieListener;
-import application.modele.Ennemie;
 import application.modele.Environnement;
 import application.vue.ArmeVue;
 import application.vue.EtabliVue;
@@ -39,9 +38,6 @@ public class Controleur implements Initializable {
     private ObjetVue objetVue;
     private EtabliVue etabliVue;
     private FeuDeCampVue feuDeCampVue;
-    private EnnemiVue ennemiVue;
-    private EnnemiControleur ennemiControleur;
-    private  Ennemie ennemie;
     private QueteControleur controleurQuete;
     private InventaireControleur inventaireControleur;
     private VueDialogue vueDialog;

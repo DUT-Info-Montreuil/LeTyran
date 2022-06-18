@@ -3,6 +3,9 @@ package application.modele.objets;
 import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.armes.Epee;
+import application.modele.objets.consommable.Potion;
+import application.modele.objets.consommable.Viande;
+import application.modele.objets.materiaux.Pierre;
 
 import java.util.ArrayList;
 
@@ -22,13 +25,18 @@ public class Coffre extends Entite {
         this.loot = loot;
     }
 
-    private ArrayList<Entite> remplirLoot(){
-        int x=(int) (Math.random() * 3 + 1);
-        this.loot.add(new Epee(getEnv(), x));
-        for (int j=0 ; j<5;j++){
-            this.loot.add(new Pierre(getEnv(),0,0 ));
+    private void remplirLoot(){
+        for (int i = 0; i < (int) (Math.random() * 4); i++) {
+            switch ((int) (Math.random() * 4) + 1) {
+                case 1: loot.add(new Potion(getEnv())); break;
+                case 2:
+                    loot.add(new Viande(getEnv()));
+                    loot.add(new Viande(getEnv()));
+                    break;
+                case 3: loot.add(new Epee(getEnv(), 2)); break;
+                default: break;
+            }
         }
-        return this.loot;
     }
 
     public void ouvrir() {
@@ -39,7 +47,7 @@ public class Coffre extends Entite {
 
     @Override
     public  void detruire() {
-        getEnv().getMapJeu().getTabMap()[(int) getX()][(int) getY()] = 59;
+        getEnv().getMapJeu().getTabMap()[(int) getY()][(int) getX()] = 59;
         getEnv().getListeCoffres().remove(this);
     }
 
@@ -49,9 +57,5 @@ public class Coffre extends Entite {
 
     public float getY() {
         return super.getY();
-    }
-
-    public ArrayList<Entite> getLoot() {
-        return this.loot;
     }
 }
