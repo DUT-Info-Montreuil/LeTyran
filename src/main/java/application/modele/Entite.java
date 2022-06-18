@@ -1,12 +1,6 @@
 package application.modele;
 
-import application.modele.armes.Arme;
-import application.modele.armes.Hache;
-import application.modele.armes.Pioche;
-import application.modele.armes.arc.Arc;
-import application.modele.armes.arc.Fleche;
 import application.modele.collisions.Collider;
-import application.modele.objets.Viande;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleFloatProperty;

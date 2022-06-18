@@ -2,6 +2,8 @@ package application.modele.personnages.ennemi;
 
 import application.modele.Environnement;
 import application.modele.armes.Arme;
+import application.modele.objets.consommable.Potion;
+import application.modele.objets.consommable.Viande;
 import application.modele.personnages.PNJ;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -97,6 +99,9 @@ public abstract class Ennemi extends PNJ {
 
     @Override
     public void detruire() {
+        if (Math.random() <= 0.2)
+            getEnv().getJoueur().getInventaire().ajouterObjet(new Potion(getEnv()));
+        //this.getEnv().getListeEntites().add(new Potion(getEnv(), (int) getX(), (int) getY()));
         getEnv().getListeEnnemis().remove(this);
     }
 

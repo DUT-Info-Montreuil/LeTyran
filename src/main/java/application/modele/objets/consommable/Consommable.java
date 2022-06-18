@@ -1,4 +1,4 @@
-package application.modele.objets;
+package application.modele.objets.consommable;
 
 import application.modele.Entite;
 import application.modele.Environnement;
@@ -8,7 +8,8 @@ import static application.modele.MapJeu.TUILE_TAILLE;
 
 public abstract class Consommable extends Entite {
 
-    public Consommable() {
+    public Consommable(Environnement env) {
+        super(env);
     }
 
     public Consommable(Environnement env, int x, int y) {
@@ -27,6 +28,6 @@ public abstract class Consommable extends Entite {
 
     @Override
     public void detruire() {
-        getEnv().getJoueur().getInventaire().retirerObjet(getEnv().getJoueur().getInventaire().getObjetCorrespondant(this));
+        getEnv().getJoueur().getInventaire().retirerNbRessources(this.getClass().getSimpleName(), 1);
     }
 }

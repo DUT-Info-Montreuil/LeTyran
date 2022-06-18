@@ -24,6 +24,7 @@ public class Armure extends Entite {
     @Override
     public void detruire() {
         getEnv().getJoueur().getInventaire().desequiperArmure();
-        getEnv().getJoueur().getInventaire().retirerObjet(getEnv().getJoueur().getInventaire().getObjetCorrespondant(this));
+        getEnv().getJoueur().getInventaire().retirerNbRessources(this.getClass().getSimpleName(), 1);
+        setPv(20 * qualite);
     }
 }

@@ -1,7 +1,7 @@
 package application.modele.personnages.animaux;
 
 import application.modele.Environnement;
-import application.modele.objets.Viande;
+import application.modele.objets.consommable.Viande;
 import application.modele.personnages.PNJ;
 
 public abstract class Animal extends PNJ {
@@ -14,8 +14,9 @@ public abstract class Animal extends PNJ {
 
     @Override
     public void detruire() {
-        for (int i = 0; i < nbViande(); i++)
-            getEnv().getJoueur().getInventaire().ajouterObjet(new Viande());
+        int nbViande = nbViande();
+        for (int i = 0; i < nbViande; i++)
+            getEnv().getJoueur().getInventaire().ajouterObjet(new Viande(getEnv()));
             //this.getEnv().getListeEntites().add(new Viande(getEnv(), (int) getX(), (int) getY()));
         getEnv().getListeAnimaux().remove(this);
     }

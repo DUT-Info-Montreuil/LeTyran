@@ -2,7 +2,7 @@ package application.modele;
 
 import application.modele.armes.Arme;
 import application.modele.armes.Armure;
-import application.modele.objets.Consommable;
+import application.modele.objets.consommable.Consommable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -75,9 +75,8 @@ public class Inventaire {
     }
 
     public void interactionObjet(ObjetInventaire objetInventaire) {
-        if (mettreEquipement(objetInventaire))
+        if (!mettreEquipement(objetInventaire))
             consommer(objetInventaire);
-
     }
 
     private boolean mettreEquipement(ObjetInventaire objetInventaire) {

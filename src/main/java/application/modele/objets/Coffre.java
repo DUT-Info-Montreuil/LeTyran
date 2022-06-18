@@ -40,7 +40,7 @@ public class Coffre extends Entite {
 
     @Override
     public  void detruire() {
-        getEnv().getMapJeu().getTabMap()[(int) getX()][(int) getY()] = 59;
+        getEnv().getMapJeu().getTabMap()[(int) getY()][(int) getX()] = 59;
         getEnv().getListeCoffres().remove(this);
     }
 

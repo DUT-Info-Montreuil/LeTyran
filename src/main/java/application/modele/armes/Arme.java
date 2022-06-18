@@ -26,6 +26,7 @@ public abstract class Arme extends Entite {
     public int nbDegat() {
         return qualite*3;
     }
+
     public int getQualite() {
         return qualite;
     }
@@ -37,6 +38,7 @@ public abstract class Arme extends Entite {
     @Override
     public void detruire() {
         getEnv().getJoueur().getInventaire().desequiperArme();
-        getEnv().getJoueur().getInventaire().retirerObjet(getEnv().getJoueur().getInventaire().getObjetCorrespondant(this));
+        getEnv().getJoueur().getInventaire().retirerNbRessources(this.getClass().getSimpleName(), 1);
+        setPv(qualite * 15);
     }
 }

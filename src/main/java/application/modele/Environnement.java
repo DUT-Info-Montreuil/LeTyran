@@ -79,11 +79,11 @@ public class Environnement {
     }
 
     public void initListeEnnemis() {
-//        listeEnnemis.clear();
-//        listeEnnemis.add(new Archer(this, 1, 20, 11, 0));
-//        listeEnnemis.add(new Lancier(this, 1, 15, 11, 0));
-//        listeEnnemis.add(new Epeiste(this,1, 20, 0, 5));
-//        listeEnnemis.add(new Epeiste(this,1, 18, 18, 10));
+        listeEnnemis.clear();
+        listeEnnemis.add(new Archer(this, 1, 20, 11, 0));
+        listeEnnemis.add(new Lancier(this, 1, 15, 11, 0));
+        listeEnnemis.add(new Epeiste(this,1, 20, 0, 5));
+        listeEnnemis.add(new Epeiste(this,1, 18, 18, 10));
     }
 
     private void initListeCoffres() {
@@ -98,9 +98,9 @@ public class Environnement {
     }
 
     public void initListeAnimaux() {
-        listeAnimaux.clear();
-        //listeAnimaux.add(new Lapin(this, 15,11, 10));
-        listeAnimaux.add(new Sanglier(this, 15,11, 8));
+//        listeAnimaux.clear();
+//        listeAnimaux.add(new Lapin(this, 15,11, 10));
+//        listeAnimaux.add(new Sanglier(this, 15,11, 8));
     }
     //endregion
 
@@ -168,7 +168,7 @@ public class Environnement {
 
     public Ennemi getEnnemi(int x, int y) {
         for (Ennemi ennemi : listeEnnemis) {
-            if (Math.abs(ennemi.getX() / TUILE_TAILLE - x) < 1 && (int) ennemi.getY() / TUILE_TAILLE == y)
+            if (Math.abs(ennemi.getX() / TUILE_TAILLE - x) < 1 && Math.abs(ennemi.getY() / TUILE_TAILLE - y) < 1)
                 return ennemi;
         }
         return null;
@@ -176,7 +176,7 @@ public class Environnement {
 
     public Animal getAnimal(int x, int y) {
         for (Animal animal : listeAnimaux) {
-            if (Math.abs(animal.getX() / TUILE_TAILLE - x) < 1 && (int) animal.getY() / TUILE_TAILLE == y)
+            if (Math.abs(animal.getX() / TUILE_TAILLE - x) < 1 && Math.abs(animal.getY() / TUILE_TAILLE - y) < 1)
                 return animal;
         }
         return null;

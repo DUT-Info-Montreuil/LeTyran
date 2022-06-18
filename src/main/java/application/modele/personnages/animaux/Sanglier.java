@@ -3,9 +3,6 @@ package application.modele.personnages.animaux;
 import application.modele.Direction;
 import application.modele.Entite;
 import application.modele.Environnement;
-import application.modele.ObjetJeu;
-import application.modele.objets.Consommable;
-import application.modele.objets.materiaux.Materiau;
 import application.modele.personnages.Personnage;
 
 import static application.modele.Direction.Droit;
@@ -76,6 +73,6 @@ public class Sanglier extends Animal {
 
     @Override
     public int nbViande() {
-        return 4;
+        return (int) (Math.random() * 3) + 2;
     }
 }

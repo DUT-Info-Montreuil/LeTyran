@@ -8,9 +8,8 @@ import application.modele.armes.arc.Arc;
 import application.modele.armes.arc.Fleche;
 import application.modele.objets.Arbre;
 import application.modele.objets.Coffre;
-import application.modele.objets.Consommable;
+import application.modele.objets.consommable.Consommable;
 import application.modele.objets.materiaux.Materiau;
-import application.modele.personnages.ennemi.Ennemi;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -30,6 +29,7 @@ public class Joueur extends Personnage {
     public Joueur(Environnement env) {
         super(env);
         this.inventaire = new Inventaire(super.getEnv());
+        this.inventaire.ajouterObjet(new Pioche(getEnv(), 1));
         this.inventaire.ajouterObjet(new Pioche(getEnv(), 1));
         this.inventaire.ajouterObjet(new Hache(getEnv(), 1));
         this.inventaire.ajouterObjet(new Arc(getEnv(), 1));
