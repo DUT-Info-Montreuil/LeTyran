@@ -10,7 +10,7 @@ import static application.modele.MapJeu.TUILE_TAILLE;
 public abstract class Materiau extends Entite {
 
     public Materiau() {
-        super(null, 0, 0, 0);
+
     }
 
     public Materiau(Environnement env, int x, int y, int pv) {
