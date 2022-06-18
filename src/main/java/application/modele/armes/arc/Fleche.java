@@ -26,7 +26,7 @@ public class Fleche extends Entite {
     }
 
     public Fleche(Environnement env, Personnage perso, int distanceMax, int degat) {
-        super(env, (int) perso.getX(), (int) (perso.getY() - 10));
+        super(env, (int) perso.getX(), (int) (perso.getY()));
         this.perso = perso;
         this.direction = perso.getDirection();
         this.distanceMax = distanceMax;
@@ -34,6 +34,7 @@ public class Fleche extends Entite {
         id = "Fleche" + idMax++;
         distanceParcourue = 0;
         touche = false;
+        this.getCollider().getHitBox().setHeight(10);
     }
 
     private void seDeplace() {
@@ -42,10 +43,8 @@ public class Fleche extends Entite {
         while (i < 7 && distanceParcourue < distanceMax) {
             i++;
             Entite touchee = this.getCollider().verifierCollisionDirection(this.direction, 0.5f);
-            if(touchee != null) {
-                getEnv().getListeFleches().remove(this);
+            if(touchee != null)
                 quandCollisionDetectee(touchee);
-            };
 
             switch (direction) {
                 case Droit: setX(getX() + 0.5f); break;
@@ -68,8 +67,8 @@ public class Fleche extends Entite {
 
     @Override
     public void quandCollisionDetectee(Entite ent) {
-        System.out.println(ent);
         if (!touche && ent != perso && !(ent instanceof Fleche) && !(ent instanceof Arbre)) {
+            System.out.println(ent);
             touche = true;
             if (!(ent instanceof Materiau))
                 ent.decrementerPv(degat);

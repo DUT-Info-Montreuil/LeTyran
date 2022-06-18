@@ -16,7 +16,7 @@ public class FlecheVue {
         spriteFleche.setFitWidth(TUILE_TAILLE);
         spriteFleche.setFitHeight(TUILE_TAILLE);
         spriteFleche.translateXProperty().bind(fleche.getXProperty());
-        spriteFleche.translateYProperty().bind(fleche.getYProperty().add(10));
+        spriteFleche.translateYProperty().bind(fleche.getYProperty());
         root.getChildren().add(spriteFleche);
     }
 }

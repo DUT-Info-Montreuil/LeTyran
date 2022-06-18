@@ -75,16 +75,13 @@ public class Entite {
 
     public void collide() {
         if(!this.getCollider().getIgnoreCollision()) {
-            for (String nom : env.getHashMapListes().keySet())
-                if (nom.equals("listeEntites"))
-                for (int i = 0; i < env.getHashMapListes().get(nom).size(); i++) {
-                    Entite ent = (Entite) env.getHashMapListes().get(nom).get(i);
-                    //System.out.println(ent);
-                    if (ent != this && !ent.getCollider().getIgnoreCollision() && this.getCollider().intersect(ent)) {
-
-                        this.quandCollisionDetectee(ent);
-                    }
+            for (int i = 0; i < env.getListeEntites().size(); i++) {
+                Entite ent = env.getListeEntites().get(i);
+                //System.out.println(ent);
+                if (ent != this && !ent.getCollider().getIgnoreCollision() && this.getCollider().intersect(ent)) {
+                    this.quandCollisionDetectee(ent);
                 }
+            }
         }
     }
 

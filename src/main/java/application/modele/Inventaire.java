@@ -95,7 +95,7 @@ public class Inventaire {
 
 
     public void selectionnerObjetDansMain(int index) {
-        if(objetMain != null && objetMain.getPlaceInventaire() != index){
+        if (objetMain != null && objetMain.getPlaceInventaire() != index) {
             objetMain = null;
         }
 
@@ -203,7 +203,7 @@ public class Inventaire {
             if(placeTrouve >= 0) {
                 ObjetInventaire nouvObjet = new ObjetInventaire(this, ent);
 
-                System.out.println("Place trouvé " + placeTrouve);
+                System.out.println("Place trouvé " + placeTrouve + " " + ent);
                 nouvObjet.setPlaceInventaire(placeTrouve);
 
                 definirPlacePrise(placeTrouve);
