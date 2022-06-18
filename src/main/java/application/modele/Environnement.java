@@ -85,11 +85,11 @@ public class Environnement {
     }
 
     public void initListeEnnemis() {
-        getListeEnnemis().clear();
-        getListeEnnemis().add(new Archer(this, 1, 20, 11, 0));
-        getListeEnnemis().add(new Lancier(this, 1, 15, 11, 0));
-        getListeEnnemis().add(new Epeiste(this,1, 20, 0, 5));
-        getListeEnnemis().add(new Epeiste(this,1, 18, 18, 10));
+//        getListeEnnemis().clear();
+//        getListeEnnemis().add(new Archer(this, 1, 20, 11, 0));
+//        getListeEnnemis().add(new Lancier(this, 1, 15, 11, 0));
+//        getListeEnnemis().add(new Epeiste(this,1, 20, 0, 5));
+//        getListeEnnemis().add(new Epeiste(this,1, 18, 18, 10));
     }
 
     private void initListeCoffres() {
@@ -104,7 +104,7 @@ public class Environnement {
 
     public void initListeAnimaux() {
         getListeAnimaux().clear();
-        getListeAnimaux().add(new Lapin(this, 5,11, 15));
+        getListeAnimaux().add(new Lapin(this, 15,11, 10));
     }
     //endregion
 

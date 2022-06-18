@@ -304,12 +304,15 @@ public class InventaireVue {
 
     public void jeterObjetInventaire(InvItem item) {
         //Faire en sorte d'équiper quand c'est une armure
-        this.inv.mettreEquipement(item.getObjetInventaire());
-        this.mettreEquipement(item.getObjetInventaire());
+        //this.inv.mettreEquipement(item.getObjetInventaire());
         //this.controleur.jeterObjet(item);
     }
 
     public void definirObjetPrit(InvItem obj) {
         this.objPrit = obj;
+    }
+
+    public Inventaire getInv() {
+        return inv;
     }
 }

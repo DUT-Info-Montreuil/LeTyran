@@ -16,7 +16,7 @@ public abstract class Ennemi extends PNJ {
 
     private Arme arme;
     private BooleanProperty attaqueProperty;
-    private int delai;
+    private int delaiFrappe;
     private boolean retourZone;
     private boolean poursuitJoueur;
 
@@ -24,7 +24,7 @@ public abstract class Ennemi extends PNJ {
         super(env, "Ennemi" + id++, x, y, distance);
         this.arme = arme;
         attaqueProperty = new SimpleBooleanProperty(false);
-        delai = 0;
+        delaiFrappe = 0;
         retourZone = false;
         poursuitJoueur = false;
     }
@@ -32,12 +32,12 @@ public abstract class Ennemi extends PNJ {
     protected void detectionJoueur() {
         if (joueurEnFace()) {
             attaqueProperty.setValue(true);
-            delai = 0;
+            delaiFrappe = 0;
         }
     }
 
     protected void attaquer() {
-        if (delai++ >= 30) {
+        if (delaiFrappe++ >= 30) {
             if (joueurEnFace())
                 arme.frapper(this, getEnv().getJoueur());
             attaqueProperty.setValue(false);

@@ -2,6 +2,7 @@ package application.modele;
 
 import application.modele.armes.Arme;
 import application.modele.armes.Armure;
+import application.modele.objets.Consommable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -73,14 +74,31 @@ public class Inventaire {
         return armureProperty;
     }
 
-    public void mettreEquipement(ObjetInventaire objetInventaire) {
+    public void interactionObjet(ObjetInventaire objetInventaire) {
+        if (mettreEquipement(objetInventaire))
+            consommer(objetInventaire);
+
+    }
+
+    private boolean mettreEquipement(ObjetInventaire objetInventaire) {
         if(objetInventaire.getEntite() instanceof Armure) {
             System.out.println("Vous vous êtes équiper de " + objetInventaire);
             armureProperty.setValue(objetInventaire);
+            return true;
         } else if (objetInventaire.getEntite() instanceof Arme) {
             System.out.println(objetInventaire);
             armeProperty.setValue(objetInventaire);
+            return true;
         }
+        return false;
+    }
+
+    private boolean consommer(ObjetInventaire objetInventaire) {
+        if(objetInventaire.getEntite() instanceof Consommable) {
+           ((Consommable) objetInventaire.getEntite()).consommer();
+            return true;
+        }
+        return false;
     }
 
     public void desequiperArmure() {

@@ -18,6 +18,8 @@ import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Joueur extends Personnage {
 
+    public final static int PV_MAX = 30;
+
     private Inventaire inventaire;
     private boolean freeze;
     private BooleanProperty mortProperty;

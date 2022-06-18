@@ -70,7 +70,7 @@ public abstract class Personnage extends Entite {
 
     protected void sauter() {
         int i = 0;
-        while (i < getVitesse() && !tombe && hauteurSaut < getHauteurMax() && super.getCollider().verifierCollisionDirection(Direction.Haut, 0.60f) == null) {
+        while (i < getVitesse() && hauteurSaut < getHauteurMax() && super.getCollider().verifierCollisionDirection(Direction.Haut, 0.60f) == null) {
             i++;
             super.setY(super.getY() - 0.60f);
             hauteurSaut +=0.60f;
@@ -121,6 +121,14 @@ public abstract class Personnage extends Entite {
 
     //region Getter & Setter
     protected abstract int getHauteurMax();
+
+    protected float getHauteurSaut() {
+        return hauteurSaut;
+    }
+
+    protected void setHauteurSaut(float hauteurSaut) {
+        this.hauteurSaut = hauteurSaut;
+    }
 
     protected abstract int getVitesse();
 
