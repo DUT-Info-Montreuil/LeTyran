@@ -11,8 +11,11 @@ public class ImageViewEnv extends ImageView {
 
     private int width;
 
-    public ImageViewEnv(int bType) {
+    private int blocX, blocY;
+    public ImageViewEnv(int bType, int blocy, int blocx) {
 
+        this.blocX = blocx;
+        this.blocY = blocy;
         bType -= 1;
 
 
@@ -35,7 +38,32 @@ public class ImageViewEnv extends ImageView {
 
     }
 
+    public int getBlocX() {
+        return this.blocX;
+    }
+
+    public int getBlocY() {
+        return this.blocY;
+    }
+
     public void setCustomView(String nom) {
+        int bType = 0;
+        switch (nom) {
+            case "Terre":
+                bType = 26;
+                break;
+            case "Pierre":
+                bType = 19;
+                break;
+            case "Vide":
+                bType = 102;
+                break;
+        }
+
+        int y = bType / width;
+        int x = bType - y * width;
+
+        this.setViewport(new Rectangle2D(32 * x, 32 * y, 32,32));
         /*int blocID =0;
         switch (nom) {
             case "Terre":

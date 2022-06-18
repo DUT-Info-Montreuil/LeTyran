@@ -40,8 +40,8 @@ public abstract class Materiau extends Entite {
 
     public void detruire() {
         Materiau materiau;
-        int positionX = (int)this.getX()/TUILE_TAILLE;
-        int positionY = (int)this.getY()/TUILE_TAILLE;
+        int positionX = (int)this.getX() / TUILE_TAILLE;
+        int positionY = (int)this.getY() / TUILE_TAILLE;
         switch (this.getClass().getSimpleName()) {
             case "Pierre": materiau = new Pierre(this.getEnv(), positionX, positionY); break;
             case "Fer": materiau = new Fer(this.getEnv(), positionX, positionY); break;

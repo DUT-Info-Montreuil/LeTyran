@@ -44,16 +44,17 @@ public class EnvironnementControleur {
                 for (int i = 0; i < change.getRemovedSize(); i++) {
                     //int id = (int)((change.getRemoved().get(0).getY() / env.getMapJeu().getWidth()) *  + (change.getRemoved().get(0).getX() / TUILE_TAILLE));
                     //System.out.println((int) change.getRemoved().get(i).getY() * WIDTH + (int) change.getRemoved().get(0).getX());
-                    envVue.supprimerBloc(change.getRemoved().get(0).getId());
+                    envVue.supprimerBloc(change.getRemoved().get(0));
                 }
 
                 for(int i = 0; i < change.getAddedSize(); i++) {
                     Materiau ent = (Materiau) change.getAddedSubList().get(i);
+                    System.out.println(ent.getX());
                     int x = (int)ent.getX() / TUILE_TAILLE;
                     int y = (int)ent.getY() / TUILE_TAILLE;
 
                     env.getMapJeu().getTabMap()[y][x] = 183;
-                    envVue.ajouterBloc(x + y * env.getMapJeu().getWidth(), ent);
+                    envVue.ajouterBloc(ent.getId(), ent);
                 }
             }
         });

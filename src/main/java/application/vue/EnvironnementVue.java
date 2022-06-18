@@ -63,7 +63,7 @@ public class EnvironnementVue {
             for (int j = 0; j < width; j++) {
                 int indexImg = env.getMapJeu().getTabMap()[i][j];
                 //int id = i * 150 + j;
-                ImageViewEnv imgtest = new ImageViewEnv(indexImg);
+                ImageViewEnv imgtest = new ImageViewEnv(indexImg, i, j);
 
                 //img = new ImageView(new Image("file:src/main/resources/application/pack1/Pierre.png"));
                 tileSol.getChildren().add(imgtest);
@@ -79,7 +79,7 @@ public class EnvironnementVue {
 
         for(int i = 0; i < tile.length; i++) {
             for(int j = 0; j < tile[0].length; j++) {
-                tileFondDecor.getChildren().add(new ImageViewEnv(tile[i][j]));
+                tileFondDecor.getChildren().add(new ImageViewEnv(tile[i][j], i, j));
             }
         }
 
@@ -108,21 +108,41 @@ public class EnvironnementVue {
         }*/
     }
 
-    public void supprimerBloc(int id) {
-        ImageView img = (ImageView) tileSol.getChildren().get(id);
-        int profondeur = id / WIDTH;
-        /*if(profondeur > (HEIGHT / 2) + 1)
-            img.setImage(ChargeurRessources.iconObjets.get("Sol"));
-        else*/
-            img.setImage(new Image("file:src/main/resources/application/pack1/tile_transparent.png"));
+    public void supprimerBloc(Entite ent) {
+        boolean trouvee = false;
+        int i = 0;
+
+        while(i < tileSol.getChildren().size() && !trouvee) {
+            ImageViewEnv entView = (ImageViewEnv) tileSol.getChildren().get(i);
+            //entView.setCustomView(ent.getClass().getSimpleName());
+            if(entView.getBlocX() == (int)(ent.getX() / 32) && entView.getBlocY() == (int)(ent.getY()/32)) {
+
+                entView.setCustomView("Vide");
+                trouvee = true;
+            }
+            i++;
+        }
     }
 
     public void ajouterBloc(int id, Entite ent) {
-        int id2 = (int)(ent.getX() / 32 + ent.getY() * env.getMapJeu().getWidth() /32);
-        ImageViewEnv img = (ImageViewEnv) tileSol.getChildren().get(id2);
+
+        boolean trouvee = false;
+        int i = 0;
+
+        while(i < tileSol.getChildren().size() && !trouvee) {
+            ImageViewEnv entView = (ImageViewEnv) tileSol.getChildren().get(i);
+            //entView.setCustomView(ent.getClass().getSimpleName());
+            if(entView.getBlocX() == (int)(ent.getX() / 32) && entView.getBlocY() == (int)(ent.getY()/32)) {
+                System.out.println(id);
+
+                entView.setCustomView(ent.getClass().getSimpleName());
+                trouvee = true;
+            }
+            i++;
+        }
 
         //Temporaire
-        img.setCustomView(ent.getClass().getSimpleName());
+
     }
 
     public void supprimerArbre(int id) {

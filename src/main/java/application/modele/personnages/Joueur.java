@@ -8,6 +8,7 @@ import application.modele.armes.arc.Arc;
 import application.modele.objets.Arbre;
 import application.modele.objets.Coffre;
 import application.modele.objets.Materiau;
+import application.modele.objets.Pierre;
 import application.modele.personnages.ennemi.Ennemi;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -29,12 +30,17 @@ public class Joueur extends Personnage {
         this.inventaire = new Inventaire(super.getEnv());
         this.inventaire.ajouterObjet(new Pioche(getEnv(), 1));
         this.inventaire.ajouterObjet(new Hache(getEnv(), 1));
+        this.inventaire.ajouterObjet(new Pierre());
+        this.inventaire.ajouterObjet(new Pierre());
+        this.inventaire.ajouterObjet(new Pierre());
+        this.inventaire.ajouterObjet(new Pierre());
         mortProperty = new SimpleBooleanProperty(false);
         seReposeProperty = new SimpleBooleanProperty(false);
         avanceProperty = new SimpleBooleanProperty(false);
         freeze = false; delai = 0;
 
-        this.setY(30 * 32);
+        this.setY(39 * 32);
+        this.setX(15 * 32);
 
     }
 
