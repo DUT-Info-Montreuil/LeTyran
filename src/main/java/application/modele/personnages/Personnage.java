@@ -144,8 +144,6 @@ public abstract class Personnage extends Entite {
         this.hauteurSaut = hauteurSaut;
     }
 
-    protected abstract int getVitesse();
-
     public final Direction getDirection() {
         return directionProperty.getValue();
     }

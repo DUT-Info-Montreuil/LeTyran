@@ -13,9 +13,7 @@ public class Entite {
     private Environnement env;
     private Collider collider;
     private IntegerProperty pv;
-
-
-    private boolean tombe = false;
+    private boolean tombe;
 
     public Entite(Environnement env) {
         pv= new SimpleIntegerProperty(100);
@@ -25,6 +23,7 @@ public class Entite {
         //this.getCollider().scaleCollider(32,32);
         this.env = env;
         this.pv = new SimpleIntegerProperty(30);
+        tombe = false;
     }
 
 
@@ -35,6 +34,7 @@ public class Entite {
         this.env = env;
         this.collider = new Collider(this);
         this.pv = new SimpleIntegerProperty(100);
+        tombe = false;
     }
 
     public Entite(Environnement env, int x, int y, int pv) {
@@ -43,11 +43,13 @@ public class Entite {
         this.env = env;
         this.collider = new Collider(this);
         this.pv = new SimpleIntegerProperty(pv);
+        tombe = false;
     }
 
     public Entite() {
         this.xProperty = new SimpleFloatProperty(0);
         this.yProperty = new SimpleFloatProperty(0);
+        tombe = false;
     }
 
     public void update() {
@@ -58,12 +60,16 @@ public class Entite {
     }
 
     private void tomber() {
-        for (int i = 0; i < 3; i++)
-        if (this.getCollider().verifierCollisionDirection(Direction.Bas, 1) == null) {
+        int i = 0;
+        while (i < getVitesse() && getCollider().verifierCollisionDirection(Direction.Bas, 0.60f) == null) {
+            i++;
             tombe = true;
-            this.setY(this.getY() + 1);
+            setY(getY() + 0.60f);
         }
-        tombe = false;
+
+        if (i < getVitesse()) {
+            tombe = false;
+        }
     }
 
     public void detruire() {
@@ -109,6 +115,9 @@ public class Entite {
     //Fonctions qui ont pour but d'être override
     public void quandCollisionDetectee(Entite ent) {}
 
+    protected int getVitesse() {
+        return 4;
+    }
     //region Getter & Setter
     public float getX() {
         return xProperty.getValue();

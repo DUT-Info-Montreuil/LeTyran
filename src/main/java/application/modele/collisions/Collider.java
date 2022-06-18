@@ -72,7 +72,7 @@ public class Collider {
     public Entite verificationCollisionGauche(double valeur) {
         valeur = -Math.abs(valeur);
 
-        if (!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
+        if (!this.getIgnoreCollision()) {
             for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
                 Entite ent = this.getEnt().getEnv().getListeMateriaux().get(i);
                 if (ent != this.getEnt()) {
@@ -100,7 +100,7 @@ public class Collider {
 
     public Entite verificationCollisionDroit(double valeur) {
         valeur = Math.abs(valeur);
-        if (!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
+        if (!this.getIgnoreCollision()) {
             for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
                 Entite ent = this.getEnt().getEnv().getListeMateriaux().get(i);
                 if (ent != this.getEnt()) {
@@ -128,7 +128,7 @@ public class Collider {
     public Entite verificationCollisionHaut(double valeur) {
         valeur = -Math.abs(valeur);
 
-        if (!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
+        if (!this.getIgnoreCollision()) {
             for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
                 Entite ent = this.getEnt().getEnv().getListeMateriaux().get(i);
                 if (ent != this.getEnt()) {
@@ -157,7 +157,7 @@ public class Collider {
     public Entite verificationCollisionBas(double valeur) {
         valeur = Math.abs(valeur);
 
-        if (!this.getIgnoreCollision() && !(this.ent instanceof Materiau)) {
+        if (!this.getIgnoreCollision()) {
             for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
                 Entite ent = this.getEnt().getEnv().getListeMateriaux().get(i);
                 if (ent != this.getEnt()) {

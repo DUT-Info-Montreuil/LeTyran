@@ -25,7 +25,7 @@ public class Lapin extends Animal {
 
     public void saut() {
         if (!getSaute() && !getTombe())
-            if (delaiSaut < 50)
+            if (delaiSaut < 30)
                 delaiSaut++;
             else {
                 setSaute(true);
@@ -33,49 +33,6 @@ public class Lapin extends Animal {
             }
     }
 
-    protected void seDeplacer() {
-        int distance;
-        if (getTombe() || getSaute())
-            distance = getVitesse() + 1;
-        else
-            distance = getVitesse();
-        int i = 0;
-        while (i < distance && super.getCollider().verifierCollisionDirection(getDirection(), 0.45f) == null) {
-            i++;
-            if (getDirection() == Direction.Droit)
-                super.setX(super.getX() + 0.45f);
-            else
-                super.setX(super.getX() - 0.45f);
-        }
-    }
-
-    @Override
-    protected void sauter() {
-        int i = 0;
-        while (i < getVitesse() && getHauteurSaut() < getHauteurMax() && super.getCollider().verifierCollisionDirection(Direction.Haut, 0.10f) == null) {
-            i++;
-            super.setY(super.getY() - 0.10f);
-            setHauteurSaut(getHauteurSaut()+0.10f);
-        }
-        if (i < getVitesse())
-            setSaute(false);
-    }
-
-    @Override
-    protected void tomber() {
-        int i = 0;
-        while (i < getVitesse() && super.getCollider().verifierCollisionDirection(Direction.Bas, 0.10f) == null) {
-            i++;
-            setTombe(true);
-            super.setY(super.getY() + 0.10f);
-        }
-
-        if (i < getVitesse()) {
-            setTombe(false);
-            setHauteurSaut(0);
-        }
-    }
-    
     @Override
     public void update() {
         saut();
@@ -86,7 +43,7 @@ public class Lapin extends Animal {
 
     @Override
     protected int getHauteurMax() {
-        return TUILE_TAILLE/2;
+        return TUILE_TAILLE;
     }
 
     @Override
