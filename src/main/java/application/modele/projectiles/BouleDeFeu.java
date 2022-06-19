@@ -13,7 +13,7 @@ import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class BouleDeFeu extends Projectile {
 
-    private final static int DEGATS = 5;
+    private final static int DEGATS = 3;
 
     private static int idMax = 0;
 
@@ -40,6 +40,7 @@ public class BouleDeFeu extends Projectile {
             deplacementType2();
     }
 
+    //la boule de feu se deplace en arc de cercle
     private void deplacementType1() {
         if (!chuteProperty.getValue()) {
             deplacementType1SousPartie(Haut);
@@ -52,6 +53,7 @@ public class BouleDeFeu extends Projectile {
             deplacementType1SousPartie(Bas);
             force += 0.01f;
             if (force > 0.6f) {
+                System.out.println((getX() - getPerso().getX())/TUILE_TAILLE);
                 getEnv().getListeProjectiles().remove(this);
             }
         }
@@ -80,9 +82,10 @@ public class BouleDeFeu extends Projectile {
         }
     }
 
+    //la boule de feu se deplace en ligne droite
     private void deplacementType2() {
         int i = 0;
-        while (i < getVitesse() && getDistanceParcourue() < 5 * TUILE_TAILLE) {
+        while (i < getVitesse() && getDistanceParcourue() < 8 * TUILE_TAILLE) {
             i++;
             Entite touchee = this.getCollider().verifierCollisionDirection(getDirection(), 0.3f);
             if(touchee != null)

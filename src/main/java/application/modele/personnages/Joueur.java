@@ -16,7 +16,7 @@ import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Joueur extends Personnage {
 
-    public final static int PV_MAX = 30;
+    public final static int PV_MAX = 10;
 
     private Inventaire inventaire;
     private boolean freeze;
@@ -190,7 +190,10 @@ public class Joueur extends Personnage {
             degatSubit = degat - inventaire.getArmure().defendre();
             inventaire.getArmure().decrementerPv(inventaire.getArmure().defendre());
         }
-        setPv(getPv() - degatSubit);
+        if (getPv() - degatSubit < 0)
+            setPv(0);
+        else
+            setPv(getPv() - degatSubit);
         if (getPv() <= 0)
             detruire();
     }

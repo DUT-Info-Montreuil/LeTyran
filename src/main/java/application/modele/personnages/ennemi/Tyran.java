@@ -17,16 +17,22 @@ import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Tyran extends Ennemi {
 
+    private static int DISTANCE_FUITE = 5 * TUILE_TAILLE;
+
     private BooleanProperty chargeProperty;
     private int delaiCharge;
+    private float distanceCharge;
     private int delaiLancer;
+    private boolean touche;
 
     public Tyran(Environnement env, int x, int y, int distance) {
         super(env, x, y, distance, new Epee(env, 3));
-        setPv(100);
+        setPv(50);
         chargeProperty = new SimpleBooleanProperty(false);
         delaiCharge = 0;
+        distanceCharge = 0;
         delaiLancer = 0;
+        touche = false;
     }
 
     protected void deplacement() {
@@ -41,37 +47,45 @@ public class Tyran extends Ennemi {
         }
     }
 
+    //charge le joueur et le blesse s'il le touche
     private void charger() {
-        if (delaiCharge++ > 50) {
+        if (delaiCharge++ > 30) {
             int i = 0;
             Entite ent;
-            while (i < getVitesse() * 3) {
+            while (i < getVitesse() * 3 && distanceCharge < DISTANCE_FUITE) {
                 i++;
 
                 ent = super.getCollider().verifierCollisionDirection(getDirection(), 0.45f);
                 if (ent != null)
                     ent.detruire();
 
-                if (getDirection() == Direction.Droit) {
+                if (getDirection() == Direction.Droit)
                     super.setX(super.getX() + 0.45f);
-                } else
+                else
                     super.setX(super.getX() - 0.45f);
+                distanceCharge += 0.45f;
             }
 
-            if (getDirection() == Droit && getX() > getOrigineX())
-                chargeProperty.setValue(false);
-            else if (getDirection() == Gauche && getX() < getOrigineX())
-                chargeProperty.setValue(false);
-
-            if (Math.abs(getEnv().getJoueur().getX() - getX()) < 5 && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE)
+            if (!touche && Math.abs(getEnv().getJoueur().getX() - getX()) < 5 && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE) {
                 getArme().frapper(this, getEnv().getJoueur());
+                touche = true;
+            }
+
+            if (i < getVitesse() * 3) {
+                chargeProperty.setValue(false);
+                delaiCharge = 0;
+                distanceCharge = 0;
+                touche = false;
+            }
         }
     }
 
+    //fuit le joueur à partir d'une certaine distance et charge si le joueur est trop près
     protected boolean fuitJoueur() {
-        if (!chargeProperty.getValue()) {
-            if (Math.abs(getEnv().getJoueur().getX() - getX()) < 5 * TUILE_TAILLE
-                    && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE
+        if (!chargeProperty.getValue() && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE) {
+            if (Math.abs(getEnv().getJoueur().getX() - getX()) < 2 * TUILE_TAILLE)  {
+                chargeProperty.setValue(true);
+            } else if (Math.abs(getEnv().getJoueur().getX() - getX()) < DISTANCE_FUITE
                     && getX() >= getOrigineX() - getDistance() && getX() <= getOrigineX() + getDistance()) {
                 Direction direction;
                 if (getEnv().getJoueur().getX() - getX() <= 0) {
@@ -90,20 +104,19 @@ public class Tyran extends Ennemi {
                         super.setX(super.getX() - 0.45f);
                 }
                 return true;
-            } else if (getX() < getOrigineX() - getDistance() || (getX() > getOrigineX() + getDistance()))  {
-                chargeProperty.setValue(true);
-                delaiCharge = 0;
             }
         }
         return false;
     }
 
+    //lance des boules de feu
+    //de type 1 si le joueur est loin sinon de type 2
     private void lancer() {
         if (delaiLancer++ >= 90) {
             if (!joueurEnFace() && getEnv().getJoueur().getX() > getOrigineX() - getDistance() &&  getEnv().getJoueur().getX() < getOrigineX() + getDistance()) {
-                if (Math.abs(getEnv().getJoueur().getX() - getX()) >= 7 * TUILE_TAILLE)
+                if (Math.abs(getEnv().getJoueur().getX() - getX()) >= 10 * TUILE_TAILLE)
                     getEnv().getListeProjectiles().add(new BouleDeFeu(getEnv(), this, 1));
-                else if (Math.abs(getEnv().getJoueur().getX() - getX()) >= 3 * TUILE_TAILLE)
+                else if (Math.abs(getEnv().getJoueur().getX() - getX()) >= DISTANCE_FUITE)
                     getEnv().getListeProjectiles().add(new BouleDeFeu(getEnv(), this, 2));
             }
             delaiLancer = 0;
@@ -117,14 +130,11 @@ public class Tyran extends Ennemi {
             charger();
         } else {
             lancer();
-            if (getAttaque())
-                attaquer();
-            if (!getAttaque())
-                detectionJoueur();
             deplacement();
         }
     }
 
+    //drop la clé du château lorsqu'il meurt
     @Override
     public void detruire() {
         getEnv().getListeEntites().add(new Cle(getEnv(), (int) getX(), (int) getY()));
@@ -133,7 +143,7 @@ public class Tyran extends Ennemi {
 
     @Override
     protected int getHauteurMax() {
-        return 5 * TUILE_TAILLE;
+        return 0;
     }
 
     @Override
