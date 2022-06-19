@@ -74,9 +74,11 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        this.controleurQuete = new QueteControleur(this.root.getScene(), conteneurQuetes);
         env = new Environnement();
         modeleDialogue = new ModeleDialogue();
+
+        this.controleurQuete = new QueteControleur(env, this.root.getScene(), conteneurQuetes);
+
 
 
         personnageVue = new PersonnageVue(env.getJoueur(), spriteJoueur);
@@ -92,7 +94,7 @@ public class Controleur implements Initializable {
 //        this.ennemieVue= new EnnemieVue(root,tileSol,ennemie);
 //        this.ennemiControleur= new EnnemiControleur(root,env, tileSol,ennemie,this.ennemieVue);
         this.inventaireControleur = new InventaireControleur(root, controleurQuete, env, inventaireMain, inventaireSac, inventaireEquipement);
-        this.dialogueControleur = new DialogueControleur(vueDialog, modeleDialogue);
+        this.dialogueControleur = new DialogueControleur(vueDialog, modeleDialogue, controleurQuete);
 
         root.addEventHandler(KeyEvent.KEY_PRESSED, new KeyPressed(env));
         root.addEventHandler(KeyEvent.KEY_RELEASED, new KeyReleased(this, env));

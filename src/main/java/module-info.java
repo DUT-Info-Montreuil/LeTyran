@@ -6,6 +6,7 @@ module application.letyran {
     requires javafx.fxml;
     requires javafx.media;
     requires org.json;
+    requires junit;
 
 
     opens application to javafx.fxml;

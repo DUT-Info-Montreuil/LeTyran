@@ -50,7 +50,7 @@ public class ImageViewEnv extends ImageView {
         int bType = 0;
         switch (nom) {
             case "Terre":
-                bType = 26;
+                bType = 91;
                 break;
             case "Pierre":
                 bType = 19;

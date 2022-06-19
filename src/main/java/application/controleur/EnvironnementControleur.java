@@ -87,30 +87,14 @@ public class EnvironnementControleur {
 
         });
 
-            //On a qu'un seul villageois
-            env.getListeAllies().get(0).getInteractionProperty().addListener(e -> {
+        //On a qu'un seul villageois
+        env.getListeAllies().get(0).getInteractionProperty().addListener(e -> {
 
-                System.out.println(env.getListeAllies().get(0).getInteractionAvancement());
-                if (env.getListeAllies().get(0).getInteractionAvancement() == 1) {
-                    controleur.getDialogueControleur().debutDialogue();
-                }
-             });
-        /*env.getListeAllies().addListener(new ListChangeListener<Personnage>() {
-            @Override
-            public void onChanged(Change<? extends Personnage> change) {
-                System.out.println(change);
-                for (int i = 0; i < change.getAddedSize(); i++) {
-                    Allie allie = (Allie) change.getAddedSubList().get(i);
-                    System.out.println(allie);
-                    allie.getInteractionProperty().addListener(e -> {
-                        System.out.println("ok");
-                        if (allie.getInteractionAvancement() == 1) {
-                            controleur.getDialogueControleur().lancerDialogue();
-                        }
-                    });
-                }
+            System.out.println(env.getListeAllies().get(0).getInteractionAvancement());
+            if (env.getListeAllies().get(0).getInteractionAvancement() >= 1) {
+                controleur.getDialogueControleur().debutDialogue();
             }
-        });*/
+         });
 
         env.getListeAnimaux().addListener(new ListChangeListener<Animal>() {
             @Override

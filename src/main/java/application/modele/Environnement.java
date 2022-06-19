@@ -3,6 +3,7 @@ package application.modele;
 import application.modele.armes.arc.Fleche;
 import application.modele.objets.*;
 import application.modele.objets.Materiau;
+import application.modele.objets.materiaux.Pierre;
 import application.modele.objets.materiaux.Terre;
 import application.modele.personnages.*;
 import application.modele.personnages.allies.Allie;
@@ -77,7 +78,9 @@ public class Environnement {
             for (int j = 0; j < mapJeu.getWidth(); j++) {
                 int id = mapJeu.getTabMap()[i][j];
                 //switch (mapJeu.getTabMap()[i][j]) {
-                    if(id != 0) {
+                    if(id == 20) {
+                        getListeMateriaux().add(new Pierre(this, j, i));
+                    } else if(id != 0) {
                         listeMateriaux.add(new Terre(this, j, i));
                     }
                     /*case 183: getListeMateriaux().add(new Terre(this, j, i)); break;

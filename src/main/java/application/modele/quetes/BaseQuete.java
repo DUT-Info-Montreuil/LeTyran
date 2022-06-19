@@ -37,4 +37,8 @@ public class BaseQuete {
     public void setCompletee(boolean finis) {
         this.completee = finis;
     }
+
+    public boolean getCompletee() {
+        return this.completee;
+    }
 }

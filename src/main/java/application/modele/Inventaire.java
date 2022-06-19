@@ -302,8 +302,10 @@ public class Inventaire {
             if (objets.get(i).getEntite().getClass().getSimpleName().equals(nomRessource)) {
                 int quantite = objets.get(i).getNombre();
                 for (int j = 0; j < quantite && cpt < nbRessource; j++) {
-                    objets.get(i).retirerDansStack();
-                    cpt++;
+                    if(objets.get(i).getStackActuelProperty().getValue() >= 1) {
+                        objets.get(i).retirerDansStack();
+                        cpt++;
+                    }
                 }
             }
             i++;

@@ -13,13 +13,18 @@ public class DialogueControleur implements EventHandler<Event> {
 
     private VueDialogue vueDialogue;
     private ModeleDialogue modDialog;
+    private QueteControleur queteControleur;
+
     private int nombreClick = 0;
 
-    public DialogueControleur(VueDialogue vueDialogue, ModeleDialogue modeleDialogue) {
+    public DialogueControleur(VueDialogue vueDialogue, ModeleDialogue modeleDialogue, QueteControleur queteControleur) {
         this.vueDialogue = vueDialogue;
         this.modDialog = modeleDialogue;
+        this.queteControleur = queteControleur;
     }
 
+    //Permet de faire des actions spécifiques en fonction du nombre de fois que le joueur à cliqué sur l'écran
+    //Exemple avancer rapidement le texte, passer à une autre partie du dialogue, etc..
     @Override
     public void handle(Event event) {
 
@@ -36,6 +41,9 @@ public class DialogueControleur implements EventHandler<Event> {
                     nombreClick = 0;
                 } else if (nombreClick == 3 || nombreClick == 2 && this.modDialog.dernierePartie()) {
                     this.vueDialogue.fermer();
+
+                    //Devrait être adapté pour les personnages qui ne donnent pas de quête
+                    this.queteControleur.donnerQuete();
                 }
 
             }
@@ -52,10 +60,19 @@ public class DialogueControleur implements EventHandler<Event> {
     }
 
     public void debutDialogue()  {
+
+        if(this.queteControleur.verifierQueteFini()) {
+            this.modDialog.changerDialogue(2);
+            //System.out.println("vous avez finis la quête");
+        } else if (this.queteControleur.getQueteEnCours()){
+            this.modDialog.changerDialogue(1);
+        }
+
         this.vueDialogue.afficher();
-        if(this.vueDialogue.estAffiche()) {
+        if (this.vueDialogue.estAffiche()) {
             lancerDialogue();
         }
+
     }
 
     public void lancerDialogue() {

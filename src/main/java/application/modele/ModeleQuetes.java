@@ -14,7 +14,7 @@ public class ModeleQuetes {
 
     public ModeleQuetes() {
         quetesDisponibles = new ArrayList<BaseQuete>();
-        this.queteActuel = new SimpleIntegerProperty(0);
+        this.queteActuel = new SimpleIntegerProperty(-1);
         chargerQuetes();
     }
 
@@ -24,14 +24,15 @@ public class ModeleQuetes {
 
 
     public BaseQuete getQueteActuel() {
-        return this.quetesDisponibles.get(this.queteActuel.getValue());
+        if(this.queteActuel.getValue() >= 0) {
+            return this.quetesDisponibles.get(this.queteActuel.getValue());
+        }
+        return null;
     }
 
     public void chargerQuetes() {
         BaseQuete bq = new BaseQuete("Renforce toi");
-        bq.ajouterObjectif(QueteType.TYPE_QUETE.RAMASSER, "Bois", 3);
-        bq.ajouterObjectif(QueteType.TYPE_QUETE.RAMASSER, "Terre", 10);
-        bq.ajouterObjectif(QueteType.TYPE_QUETE.RAMASSER, "Hache en pierre", 10);
+        bq.ajouterObjectif(QueteType.TYPE_QUETE.RAMASSER, "Terre", 3);
 
         this.quetesDisponibles.add(bq);
 

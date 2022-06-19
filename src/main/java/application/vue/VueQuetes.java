@@ -29,7 +29,16 @@ public class VueQuetes {
 
     }
 
+    //On peut pas utiliser clear comme le premier enfant n'est pas un objectif
+    public void supprimerTousLesObjectifs() {
+        for(int i = 1; i < this.vboxObjectifs.getChildren().size(); i++) {
+            this.vboxObjectifs.getChildren().remove(i);
+        }
+    }
+
     public void initialiserQuete(BaseQuete quete) {
+        this.supprimerTousLesObjectifs();
+
         this.ajouterObjectifs(quete.recupererListeObjectifs());
         queteNomText.setText(quete.getNom());
     }
