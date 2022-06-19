@@ -5,6 +5,8 @@ import application.modele.Entite;
 import application.modele.Environnement;
 
 import application.modele.armes.Epee;
+import application.modele.objets.Cle;
+import application.modele.objets.consommable.Potion;
 import application.modele.projectiles.BouleDeFeu;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -121,6 +123,12 @@ public class Tyran extends Ennemi {
                 detectionJoueur();
             deplacement();
         }
+    }
+
+    @Override
+    public void detruire() {
+        getEnv().getListeEntites().add(new Cle(getEnv(), (int) getX(), (int) getY()));
+        getEnv().getListeEnnemis().remove(this);
     }
 
     @Override

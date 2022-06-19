@@ -82,5 +82,6 @@ public class ChargeurRessources {
         iconObjets.put("Viande", new Image("file:src/main/resources/application/ressources/viande.png"));
         iconObjets.put("Potion", new Image("file:src/main/resources/application/ressources/potion.png"));
         iconObjets.put("BouleDeFeu", new Image("file:src/main/resources/application/boule_de_feu.gif"));
+        iconObjets.put("Cle", new Image("file:src/main/resources/application/sprite_cle.png"));
     }
 }

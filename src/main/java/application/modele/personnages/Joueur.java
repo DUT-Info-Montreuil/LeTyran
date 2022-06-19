@@ -3,6 +3,7 @@ package application.modele.personnages;
 import application.modele.*;
 import application.modele.armes.*;
 import application.modele.objets.Arbre;
+import application.modele.objets.Cle;
 import application.modele.objets.Coffre;
 import application.modele.objets.consommable.Consommable;
 import application.modele.objets.materiaux.Materiau;
@@ -144,9 +145,7 @@ public class Joueur extends Personnage {
     }
 
     private boolean miner(int x, int y) {
-
         Materiau minerai = getEnv().getMinerai(x, y);
-
         if (minerai != null) {
             minerai.estFrappe();
             return true;
@@ -156,7 +155,7 @@ public class Joueur extends Personnage {
 
     @Override
     public void quandCollisionDetectee(Entite ent) {
-        if (ent instanceof ObjetJeu || ent instanceof Materiau || ent instanceof Consommable) {
+        if (ent instanceof ObjetJeu || ent instanceof Materiau || ent instanceof Consommable || ent instanceof Cle) {
             this.inventaire.ajouterObjet(ent);
         }
     }

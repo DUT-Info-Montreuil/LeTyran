@@ -1,6 +1,7 @@
 package application.vue;
 
 import application.modele.Entite;
+import application.modele.objets.materiaux.Materiau;
 import application.vue.ChargeurRessources;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,7 +22,8 @@ public class ObjetView extends ImageView {
 
         this.setFitHeight(32);
         this.setFitWidth(32);
-        this.setOpacity(0.5);
+        if (obj instanceof Materiau)
+            this.setOpacity(0.5);
         this.setImage(img);
 
     }
