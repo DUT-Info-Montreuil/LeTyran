@@ -5,7 +5,6 @@ import application.modele.Environnement;
 
 public class Cle extends Entite {
 
-
     public Cle(Environnement env, int x, int y) {
         super(env, x, y);
     }

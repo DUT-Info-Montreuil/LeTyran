@@ -89,12 +89,6 @@ public class Joueur extends Personnage {
         if(objetEquipe != null && !(objetEquipe.getEntite() instanceof Arme)
                 && (x != (int) getX()/TUILE_TAILLE || y != (int) getY()/TUILE_TAILLE)) {
             try {
-
-//                Materiau nouvBloc = (Materiau) objetEquipe.getEntite().getClass().getDeclaredConstructor().newInstance();
-//                nouvBloc.setX(x * TUILE_TAILLE);
-//                nouvBloc.setY(y * TUILE_TAILLE);
-//                nouvBloc.setEnv(this.getEnv());
-//                nouvBloc.setPv(100);
                 if (x > (int) getX()/TUILE_TAILLE && Math.abs(x - getX()/TUILE_TAILLE) < 0.8)
                     x++;
                 if (getEnv().getMinerai(x,y) == null) {
@@ -208,6 +202,7 @@ public class Joueur extends Personnage {
             detruire();
     }
 
+    //attend l'ecran noir avant d'executer pour pas voir les changements avant
     private void seReposer() {
         if (System.currentTimeMillis() - delai >= 5_000) {
             seReposeProperty.setValue(false);

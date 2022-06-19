@@ -77,11 +77,11 @@ public class PersonnageVue {
         construirePerso();
 
     }
-    public PersonnageVue(Pane paneEnnemis, Personnage perso) {
+    public PersonnageVue(Pane panePNJ, Personnage perso) {
         this.perso = perso;
         lastUpdate = System.currentTimeMillis();
         creationSprite();
-        paneEnnemis.getChildren().add(spritePerso);
+        panePNJ.getChildren().add(spritePerso);
     }
 
     private void creationSprite() {
@@ -102,9 +102,9 @@ public class PersonnageVue {
         inverserSprite();
     }
 
+    //modifie le sprite tout les 200 ms
     public void animerDeplacement() {
         long now = System.currentTimeMillis();
-        //modifie les sprites tout les 200 ms
         if (now - lastUpdate >= 200) {
             lastUpdate = now;
             spritePerso.setImage(LISTE_SPRITES.get(perso.getClass().getSimpleName()).get(indexSprite++));
@@ -120,6 +120,7 @@ public class PersonnageVue {
             spritePerso.setScaleX(-1);
     }
 
+    //met le sprite du perso immobile
     public void immobile() {
         spritePerso.setImage(LISTE_SPRITES.get(perso.getClass().getSimpleName()).get(0));
     }

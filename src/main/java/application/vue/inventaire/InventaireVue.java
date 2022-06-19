@@ -112,9 +112,6 @@ public class InventaireVue {
                 seletecSlot = (InvSlot) this.paneSacInventaire.getChildren().get(regarderDansPane(this.paneSacInventaire));
 
             }
-            //InvSlot comparerDeux = (InvSlot) this.paneSacInventaire.getChildren().get(regarderDansPane(this.paneSacInventaire));
-
-            //seletecSlot = prendrePlusPetit(comparerUn, comparerDeux, this.paneInventaireMain.getLayoutY(), this.paneSacInventaire.getLayoutY());
 
             if(seletecSlot != slotParent) {
 

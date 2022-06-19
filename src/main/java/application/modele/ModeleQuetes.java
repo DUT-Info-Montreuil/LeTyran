@@ -39,19 +39,5 @@ public class ModeleQuetes {
         bq.ajouterObjectif(QueteType.TYPE_QUETE.RAMASSER, "Terre", 3);
 
         this.quetesDisponibles.add(bq);
-
-        /*File repertoire = new File("src/main/java/application/modele/quetes/listes");
-        File[] quetesTrouvee = repertoire.listFiles((dir, name) -> {
-            try {
-                String nom = name.substring(0, name.indexOf(".java"));
-                Class cl = ClassLoader.getSystemClassLoader().loadClass("application.modele.quetes.listes." + nom);
-
-                System.out.println(cl instanceof BaseQuete);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            return false;
-        });*/
-
     }
 }

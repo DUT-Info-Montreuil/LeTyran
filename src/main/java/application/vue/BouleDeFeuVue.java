@@ -14,11 +14,11 @@ public class BouleDeFeuVue {
     private BouleDeFeu bouleDeFeu;
     private ImageView spriteBouleDeFeu;
 
-    public BouleDeFeuVue(Pane paneEnnemis, BouleDeFeu bouleDeFeu) {
+    public BouleDeFeuVue(Pane panePNJ, BouleDeFeu bouleDeFeu) {
         this.bouleDeFeu = bouleDeFeu;
         spriteBouleDeFeu = new ImageView(ChargeurRessources.iconObjets.get("BouleDeFeu"));
         spriteBouleDeFeu.setId(bouleDeFeu.getId());
-
+        //orientation de la boule de feu
         if (bouleDeFeu.getType() == 1)
             if (bouleDeFeu.getDirection() == Direction.Droit)
                 spriteBouleDeFeu.setRotate(-30);
@@ -32,10 +32,11 @@ public class BouleDeFeuVue {
         spriteBouleDeFeu.setFitHeight(TUILE_TAILLE);
         spriteBouleDeFeu.translateXProperty().bind(bouleDeFeu.getXProperty());
         spriteBouleDeFeu.translateYProperty().bind(bouleDeFeu.getYProperty());
-        paneEnnemis.getChildren().add(spriteBouleDeFeu);
-        System.out.println(spriteBouleDeFeu);
+
+        panePNJ.getChildren().add(spriteBouleDeFeu);
     }
 
+    // avoir un arc de cercle fluide
     public void chute() {
         RotateTransition rt = new RotateTransition(Duration.millis(300), spriteBouleDeFeu);
         if (bouleDeFeu.getDirection() == Direction.Droit)

@@ -35,7 +35,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="paneEnnemis" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="panePNJ" prefHeight="200.0" prefWidth="200.0" />
       <ImageView fx:id="spriteJoueur" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="spriteArme" fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
 

@@ -76,19 +76,11 @@ public class Environnement {
         for (int i = 0; i < mapJeu.getHeight(); i++) {
             for (int j = 0; j < mapJeu.getWidth(); j++) {
                 int id = mapJeu.getTabMap()[i][j];
-                //switch (mapJeu.getTabMap()[i][j]) {
                     if(id == 20) {
                         getListeMateriaux().add(new Pierre(this, j, i));
                     } else if(id != 0) {
                         listeMateriaux.add(new Terre(this, j, i));
                     }
-                    /*case 183: getListeMateriaux().add(new Terre(this, j, i)); break;
-                    case 167: getListeMateriaux().add(new Terre(this, j, i)); break;
-                    case 88: getListeMateriaux().add(new Terre(this, j, i)); break;
-                    case 52: getListeMateriaux().add(new Pierre(this, j, i)); break;
-                    case 53: getListeMateriaux().add(new Fer(this, j, i)); break;
-                    case 54: getListeMateriaux().add(new Platine(this, j, i)); break;*/
-                //}
             }
         }
     }

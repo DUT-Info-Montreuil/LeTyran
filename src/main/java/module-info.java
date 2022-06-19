@@ -1,6 +1,3 @@
-/**
- *
- */
 module application.letyran {
     requires javafx.controls;
     requires javafx.fxml;

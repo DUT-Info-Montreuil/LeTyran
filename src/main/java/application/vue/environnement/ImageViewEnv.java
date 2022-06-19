@@ -2,9 +2,6 @@ package application.vue.environnement;
 
 import application.controleur.Constantes;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class ImageViewEnv extends ImageView {
@@ -64,17 +61,5 @@ public class ImageViewEnv extends ImageView {
         int x = bType - y * width;
 
         this.setViewport(new Rectangle2D(32 * x, 32 * y, 32,32));
-        /*int blocID =0;
-        switch (nom) {
-            case "Terre":
-                blocID = 183;
-                break;
-            case "Fer":
-                break;
-
-        }
-        int y = blocID / width;
-        int x = blocID - y * width;
-        this.setViewport(new Rectangle2D(32 * x, 32 * y, 32,32));*/
     }
 }

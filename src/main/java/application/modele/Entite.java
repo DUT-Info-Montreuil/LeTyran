@@ -20,7 +20,7 @@ public class Entite {
         this.xProperty = new SimpleFloatProperty(0);
         this.yProperty = new SimpleFloatProperty(0);
         this.collider = new Collider(this);
-        //this.getCollider().scaleCollider(32,32);
+
         this.env = env;
         this.pv = new SimpleIntegerProperty(10);
         tombe = false;
@@ -77,14 +77,6 @@ public class Entite {
     }
 
     public void collide() {
-//        if(!this.getCollider().getIgnoreCollision()) {
-//            for (int i = 0; i < env.getListeEntites().size(); i++) {
-//                Entite ent = env.getListeEntites().get(i);
-//                if (ent != this && !ent.getCollider().getIgnoreCollision() && this.getCollider().intersect(ent)) {
-//                    this.quandCollisionDetectee(ent);
-//                }
-//            }
-//        }
         verifCollide(env.getListeEntites());
         verifCollide(env.getListeEnnemis());
         verifCollide(env.getListeAnimaux());

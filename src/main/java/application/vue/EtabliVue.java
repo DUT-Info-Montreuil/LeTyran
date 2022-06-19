@@ -4,12 +4,10 @@ import application.modele.Etabli;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-import java.util.HashMap;
 import java.util.Iterator;
 
 import static application.Main.HEIGHT_FENETRE;
@@ -33,18 +31,21 @@ public class EtabliVue {
         spriteEtabli.setX(etabli.getX() * TUILE_TAILLE);
         spriteEtabli.setY(etabli.getY() * TUILE_TAILLE);
 
+        //l'opacité à 0.5 aux armes non dispo
         Iterator iterator = etabli.getObjetsID().iterator();
         while (iterator.hasNext()) {
             ((ScrollPane) bPaneEtabli.lookup("#sPObjets")).getContent().lookup("#" + iterator.next()).setOpacity(0.5);
         }
     }
 
-    public void affichageArmeSelected(Color color) {
+    //met un contour blanc à l'arme selectionné
+    public void affichageObjetSelected(Color color) {
         ((HBox) ((ScrollPane) bPaneEtabli.lookup("#sPObjets")).getContent().lookup("#" + etabli.getObjetSelected()))
                 .setBorder(new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
     }
 
-    public void affichageInfosArmeSelected() {
+    //affichage de la partie droite avec l'image de l'arme et des matériaux
+    public void affichageInfosObjetSelected() {
         Node vBoxFabriquer = bPaneEtabli.lookup("#VboxFabriquer");
         ((ImageView) vBoxFabriquer.lookup("#imgViewObjet")).setImage(iconObjets.get(etabli.getObjetSelected()));
 
@@ -63,6 +64,7 @@ public class EtabliVue {
         }
     }
 
+    //change l'opacité du bouton
     public void affichageBouton(double opacity) {
         bPaneEtabli.lookup("#VboxFabriquer").lookup("#boutonFabriquer").setOpacity(opacity);
     }
@@ -70,7 +72,7 @@ public class EtabliVue {
     public void affichageEtabli() {
         bPaneEtabli.setVisible(!bPaneEtabli.isVisible());
         if (bPaneEtabli.isVisible())
-            affichageArmeSelected(Color.WHITE);
+            affichageObjetSelected(Color.WHITE);
     }
 
     public BorderPane getbPaneEtabli() {

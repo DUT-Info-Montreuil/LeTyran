@@ -18,9 +18,6 @@ public class InventaireControleur implements EventHandler<Event> {
     private Pane root;
     private Environnement jeu;
     private Inventaire inv;
-
-
-
     private InventaireVue invVue;
 
     public InventaireControleur(Pane root, QueteControleur controleurQuete, Environnement jeu, Pane inventaireMain, Pane inventaireSac, Pane inventaireEquip) {

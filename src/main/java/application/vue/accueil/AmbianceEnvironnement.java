@@ -5,8 +5,6 @@ import javafx.scene.media.AudioClip;
 
 public class AmbianceEnvironnement {
 
-    //private AudioClip sonAmbiance
-
     private AudioClip ambianceSonoreActuel;
     private String sonActuel;
 

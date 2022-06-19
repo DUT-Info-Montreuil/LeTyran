@@ -18,8 +18,7 @@ public class InventaireListener implements ListChangeListener {
     @Override
     public void onChanged(Change change) {
         change.next();
-//        for (int i = 0; i < change.getRemoved().size(); i++)
-//            invVue.enleverObjetAffichage(((ObjetInventaire) change.getRemoved().get(i)).getPlaceInventaire());
+
         for (int i = 0; i < change.getRemovedSize(); i++) {
             invVue.enleverObjetAffichage(((ObjetInventaire) change.getRemoved().get(i)).getPlaceInventaire());
         }
