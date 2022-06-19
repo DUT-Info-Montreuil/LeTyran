@@ -18,6 +18,7 @@ public class MousePressed implements EventHandler<MouseEvent> {
     //calcule les coordonnées selon la position de la souris et du personnage
     @Override
     public void handle(MouseEvent mouseEvent) {
+        System.out.println("Joueur " + (int) env.getJoueur().getX()/TUILE_TAILLE + " " + (int) env.getJoueur().getY()/TUILE_TAILLE);
         if (mouseEvent.getX() < (WIDTH * TUILE_TAILLE) / 2 + 5*TUILE_TAILLE && mouseEvent.getX() > (WIDTH * TUILE_TAILLE) / 2 - 5*TUILE_TAILLE
                 && mouseEvent.getY() < (HEIGHT * TUILE_TAILLE) / 2 + 5*TUILE_TAILLE && mouseEvent.getY() > (HEIGHT * TUILE_TAILLE) / 2 - 5*TUILE_TAILLE) {
             int mouseX, mouseY;
