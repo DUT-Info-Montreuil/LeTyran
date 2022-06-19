@@ -5,7 +5,10 @@ import application.modele.personnages.Personnage;
 import application.modele.personnages.ennemi.Tyran;
 import application.vue.ArmeVue;
 import application.vue.FeuDeCampVue;
+import application.vue.FinDeJeuVue;
 import application.vue.PersonnageVue;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
 public class PersonnageListeners {
 
@@ -48,17 +51,28 @@ public class PersonnageListeners {
         });
 
         //retourne le sprite du perso
-        perso.getDirectionProperty().addListener((observableValue, o, t1) ->  {
-                persoVue.inverserSprite();
-                armeVue.inverserSprite();
+        perso.getDirectionProperty().addListener((observableValue, o, t1) -> {
+            persoVue.inverserSprite();
+            armeVue.inverserSprite();
         });
-        if (perso instanceof Tyran)
-            ((Tyran) perso).getChargeProperty().addListener((observableValue, aBoolean, t1) -> {
+    }
+
+
+    public PersonnageListeners(Personnage perso, PersonnageVue persoVue, ArmeVue armeVue, Pane root) {
+        //appel la méthode animationDeplacement à chaque fois que x change et donc que le joueur se déplace et udpate la position de son arme
+        this(perso, persoVue, armeVue);
+        ((Tyran) perso).getChargeProperty().addListener((observableValue, aBoolean, t1) -> {
                 if (t1)
                     armeVue.rendreVisible();
                 else
                     armeVue.rendreInvisible();
             });
+        perso.getPVProperty().addListener((observableValue, number, t1) -> {
+                if ((Integer) t1 <= 0) {
+                    FinDeJeuVue finDeJeuVue = new FinDeJeuVue((Label) root.lookup("#labelFinDeJeu"));
+                    finDeJeuVue.transition();
+                }
+        });
     }
 
     public PersonnageListeners(Personnage perso, PersonnageVue persoVue) {

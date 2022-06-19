@@ -2,6 +2,7 @@ package application.controleur;
 
 import application.controleur.listeners.PersonnageListeners;
 import application.modele.Environnement;
+import application.modele.personnages.ennemi.Tyran;
 import application.modele.projectiles.BouleDeFeu;
 import application.modele.projectiles.Fleche;
 import application.modele.objets.Arbre;
@@ -12,6 +13,7 @@ import application.modele.personnages.animaux.Animal;
 import application.modele.projectiles.Projectile;
 import application.vue.*;
 import javafx.collections.ListChangeListener;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 import static application.modele.MapJeu.*;
@@ -69,11 +71,16 @@ public class EnvironnementControleur {
             @Override
             public void onChanged(Change<? extends Personnage> change) {
                 change.next();
-                for (int i = 0; i < change.getRemovedSize(); i++)
+                for (int i = 0; i < change.getRemovedSize(); i++) {
                     envVue.supprimerPNJ(change.getRemoved().get(i).getId());
-
+                }
                 for (int i = 0; i < change.getAddedSize(); i++) {
                     Personnage perso = change.getAddedSubList().get(i);
+                    if (perso instanceof Tyran)
+                        new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#panePNJ"), perso), new ArmeVue((Pane) root.lookup("#panePNJ"), perso), root);
+                    else
+                        new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#panePNJ"), perso), new ArmeVue((Pane) root.lookup("#panePNJ"), perso));
+                    //System.out.println(perso);
                     new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#panePNJ"), perso), new ArmeVue((Pane) root.lookup("#panePNJ"), perso, controleur ));
                 }
             }
@@ -119,7 +126,6 @@ public class EnvironnementControleur {
                     else {
                         BouleDeFeuVue bouleDeFeuVue = new BouleDeFeuVue((Pane) root.lookup("#panePNJ"), (BouleDeFeu) change.getAddedSubList().get(i));
                         ((BouleDeFeu) change.getAddedSubList().get(i)).getChuteProperty().addListener(observable -> bouleDeFeuVue.chute());
-                        controleur.getAmbianceEnvironnement().jouerSonObjet("BouleFeu");
                     }
                 for (int i = 0; i < change.getRemovedSize(); i++)
                     envVue.supprimerProjectile(change.getRemoved().get(i).getId());

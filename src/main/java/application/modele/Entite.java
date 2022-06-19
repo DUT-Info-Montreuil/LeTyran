@@ -60,9 +60,6 @@ public class Entite {
         tombe = false;
     }
 
-    /**
-     * On créer une entitee vide, ça peut être utile pour des tests ou quand on veut créer des faux murs
-     */
     public Entite() {
         this.xProperty = new SimpleFloatProperty(0);
         this.yProperty = new SimpleFloatProperty(0);
@@ -70,20 +67,14 @@ public class Entite {
         tombe = false;
     }
 
-    /**
-     * On check les collisions tout les 0.017 secondes
-     */
     public void update() {
         if(this.getCollider() != null) {
             collide();
         }
-        //tomber();
+        tomber();
     }
 
-    /**
-     * On fait tomber l'entitee tant qu'elle n'a pas détecté une collision avec le sol
-     */
-    private void tomber() {
+    protected void tomber() {
         int i = 0;
         while (i < getVitesse() && getCollider().verifierCollisionDirection(Direction.Bas, 0.60f) == null) {
             i++;

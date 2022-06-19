@@ -363,6 +363,11 @@
             <Font size="80.0" />
          </font>
       </Label>
+      <Label fx:id="labelFinDeJeu" alignment="CENTER" contentDisplay="CENTER" opacity="0.0" style="-fx-background-color: black;" text="FIN" textFill="WHITE">
+         <font>
+            <Font size="80.0" />
+         </font>
+      </Label>
       <Pane fx:id="inventaireEquipement" layoutX="10.0" layoutY="100.0" prefHeight="90.0" prefWidth="40.0" visible="false">
          <children>
             <Pane layoutY="13.0" prefHeight="32.0" prefWidth="32.0">

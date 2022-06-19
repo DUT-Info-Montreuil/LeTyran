@@ -8,6 +8,7 @@ import application.modele.Environnement;
 import application.modele.armes.Epee;
 import application.modele.objets.Cle;
 import application.modele.objets.consommable.Potion;
+import application.modele.personnages.allies.Allie;
 import application.modele.projectiles.BouleDeFeu;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -137,6 +138,7 @@ public class Tyran extends Ennemi {
     //drop la clé du château lorsqu'il meurt
     @Override
     public void detruire() {
+        System.out.println("mort");
         getEnv().getListeEntites().add(new Cle(getEnv(), (int) getX(), (int) getY()));
         getEnv().getListeEnnemis().remove(this);
     }

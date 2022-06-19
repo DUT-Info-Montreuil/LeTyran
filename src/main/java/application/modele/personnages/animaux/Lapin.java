@@ -6,7 +6,7 @@ import application.modele.Environnement;
 
 public class Lapin extends Animal {
 
-    public final static int PV_MAX = 6;
+    public final static int PV_MAX = 2;
 
     private static int id = 0;
     private int delaiSaut;

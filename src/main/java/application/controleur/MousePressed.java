@@ -47,11 +47,8 @@ public class MousePressed implements EventHandler<MouseEvent> {
 
 
             if(mouseX >= 0 && mouseX < env.getMapJeu().getWidth() && mouseY < env.getMapJeu().getHeight()) {
-                if (env.getJoueur().interagit(mouseX, mouseY)) {
+                if (env.getJoueur().interagit(mouseX, mouseY))
                     controleur.getArmeVue().animationFrappe();
-                } else {
-                    env.getJoueur().poserBloc(mouseX, mouseY);
-                }
             }
         }
     }

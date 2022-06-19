@@ -79,6 +79,7 @@ public abstract class Personnage extends Entite {
     }
 
 
+    @Override
     protected void tomber() {
         int i = 0;
         while (i < getVitesse() && super.getCollider().verifierCollisionDirection(Direction.Bas, 0.60f) == null) {
