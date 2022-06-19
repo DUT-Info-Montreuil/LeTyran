@@ -51,10 +51,10 @@ public class PersonnageVue {
             add(new Image("file:src/main/resources/application/perso/sanglier/sanglier_3.png"));
         }});
         put("Tyran", new ArrayList<>() {{
-            add(new Image("file:src/main/resources/application/perso/ennemi/tyran2/tyran_immobile.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/tyran2/tyran_mouvement1.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/tyran2/tyran_immobile.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/tyran2/tyran_mouvement2.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_mouvement1.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_mouvement2.png"));
         }});
         put("ChefVillage", new ArrayList<>() {{
             add(new Image("file:src/main/resources/application/personnages/chef_village.png"));
