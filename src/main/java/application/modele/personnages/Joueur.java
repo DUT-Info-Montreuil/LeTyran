@@ -91,6 +91,8 @@ public class Joueur extends Personnage {
             try {
                 if (x > (int) getX()/TUILE_TAILLE && Math.abs(x - getX()/TUILE_TAILLE) < 0.8)
                     x++;
+                if (y > (int) getY()/TUILE_TAILLE && Math.abs(y - getY()/TUILE_TAILLE) < 0.8)
+                    y++;
                 if (getEnv().getMinerai(x,y) == null) {
                     Materiau materiau;
                     switch (objetEquipe.getEntite().getClass().getSimpleName()) {
