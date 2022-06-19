@@ -5,6 +5,8 @@ import application.modele.Entite;
 import application.modele.Environnement;
 
 import application.modele.armes.Epee;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 import static application.modele.Direction.Droit;
 import static application.modele.Direction.Gauche;
@@ -12,18 +14,18 @@ import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Tyran extends Ennemi {
 
-    private boolean charge;
+    private BooleanProperty chargeProperty;
     private int delaiCharge;
 
     public Tyran(Environnement env, int x, int y, int distance) {
         super(env, x, y, distance, new Epee(env, 3));
         setPv(100);
-        charge = false;
+        chargeProperty = new SimpleBooleanProperty(false);
         delaiCharge = 0;
     }
 
     protected void deplacement() {
-        if (charge)
+        if (chargeProperty.getValue())
             charger();
         else if (!fuitJoueur() && (Math.abs(getEnv().getJoueur().getX() - (getX())) - 4 >= 6 * TUILE_TAILLE
                 || Math.abs(getEnv().getJoueur().getY() - getY()) > TUILE_TAILLE)
@@ -37,7 +39,7 @@ public class Tyran extends Ennemi {
         if (delaiCharge > 50) {
             int i = 0;
             Entite ent;
-            while (i < getVitesse() * 2) {
+            while (i < getVitesse() * 3) {
                 i++;
 
                 ent = super.getCollider().verifierCollisionDirection(getDirection(), 0.45f);
@@ -51,9 +53,9 @@ public class Tyran extends Ennemi {
             }
 
             if (getDirection() == Droit && getX() > getOrigineX() + getDistance() - TUILE_TAILLE)
-                charge = false;
+                chargeProperty.setValue(false);
             else if (getDirection() == Gauche && getX() < getOrigineX() - getDistance() + TUILE_TAILLE)
-                charge = false;
+                chargeProperty.setValue(false);
 
             if (Math.abs(getEnv().getJoueur().getX() - getX()) < 5 && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE)
                 getEnv().getJoueur().decrementerPv(5);
@@ -62,7 +64,7 @@ public class Tyran extends Ennemi {
     }
 
     protected boolean fuitJoueur() {
-        if (!charge) {
+        if (!chargeProperty.getValue()) {
             if (Math.abs(getEnv().getJoueur().getX() - getX()) < 6 * TUILE_TAILLE
                     && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE
                     && getX() >= getOrigineX() - getDistance() && getX() <= getOrigineX() + getDistance()) {
@@ -82,11 +84,11 @@ public class Tyran extends Ennemi {
                 return true;
             } else if (getX() < getOrigineX() - getDistance()) {
                 setDirection(Droit);
-                charge = true;
+                chargeProperty.setValue(true);
                 delaiCharge = 0;
             } else if (getX() > getOrigineX() + getDistance()) {
                 setDirection(Gauche);
-                charge = true;
+                chargeProperty.setValue(true);
                 delaiCharge = 0;
             }
         }
@@ -95,12 +97,9 @@ public class Tyran extends Ennemi {
 
     @Override
     public void update() {
-        if (charge) {
+        tomber();
+        if (chargeProperty.getValue()) {
             charger();
-            if (getDistancePoussee() != 0)
-                setDistancePoussee(0);
-        } if (getDistancePoussee() != 0) {
-            estPoussee();
         } else {
 //            if (getAttaque())
 //                attaquer();
@@ -118,5 +117,9 @@ public class Tyran extends Ennemi {
     @Override
     protected int getVitesse() {
         return 3;
+    }
+
+    public BooleanProperty getChargeProperty() {
+        return chargeProperty;
     }
 }

@@ -93,10 +93,11 @@ public class Environnement {
 
     public void initListeEnnemis() {
         listeEnnemis.clear();
-        listeEnnemis.add(new Archer(this, 1, 20, 11, 0));
-        listeEnnemis.add(new Lancier(this, 1, 15, 11, 0));
-        listeEnnemis.add(new Epeiste(this,1, 20, 0, 5));
-        listeEnnemis.add(new Epeiste(this,1, 18, 18, 10));
+//        listeEnnemis.add(new Archer(this, 1, 20, 11, 0));
+//        listeEnnemis.add(new Lancier(this, 1, 15, 11, 0));
+//        listeEnnemis.add(new Epeiste(this,1, 20, 0, 5));
+//        listeEnnemis.add(new Epeiste(this,1, 18, 18, 10));
+        listeEnnemis.add(new Tyran(this, 10, 30, 10));
     }
 
     private void initListeCoffres() {

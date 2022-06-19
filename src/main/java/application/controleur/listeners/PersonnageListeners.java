@@ -2,6 +2,7 @@ package application.controleur.listeners;
 
 import application.modele.personnages.Joueur;
 import application.modele.personnages.Personnage;
+import application.modele.personnages.ennemi.Tyran;
 import application.vue.ArmeVue;
 import application.vue.FeuDeCampVue;
 import application.vue.PersonnageVue;
@@ -51,6 +52,10 @@ public class PersonnageListeners {
                 persoVue.inverserSprite();
                 armeVue.inverserSprite();
         });
+        if (perso instanceof Tyran)
+            ((Tyran) perso).getChargeProperty().addListener((observableValue, aBoolean, t1) -> {
+                armeVue.rendreVisible();
+            });
     }
 
     public PersonnageListeners(Personnage perso, PersonnageVue persoVue) {
