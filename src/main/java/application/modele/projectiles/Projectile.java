@@ -36,6 +36,12 @@ public abstract class Projectile extends Entite {
 
     public abstract void seDeplacer();
 
+    @Override
+    public void update() {
+        super.collide();
+        seDeplacer();
+    }
+
     public Direction getDirection() {
         return direction;
     }
@@ -70,5 +76,9 @@ public abstract class Projectile extends Entite {
 
     public Personnage getPerso() {
         return perso;
+    }
+
+    protected int getVitesse() {
+        return 7;
     }
 }

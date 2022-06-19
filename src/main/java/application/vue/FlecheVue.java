@@ -8,12 +8,9 @@ import javafx.scene.layout.Pane;
 import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class FlecheVue {
-
-    public FlecheVue(Pane root, Fleche fleche) {
+    public FlecheVue(Pane paneEnnemis, Fleche fleche) {
         ImageView spriteFleche = new ImageView(ChargeurRessources.iconObjets.get("Fleche1"));
         spriteFleche.setId(fleche.getId());
-        if (fleche.getDirection() == Direction.Gauche)
-            spriteFleche.setScaleX(-1);
         switch (fleche.getDirection()) {
             case Gauche -> spriteFleche.setScaleX(-1);
             case Bas -> spriteFleche.setRotate(90);
@@ -23,6 +20,6 @@ public class FlecheVue {
         spriteFleche.setFitHeight(TUILE_TAILLE);
         spriteFleche.translateXProperty().bind(fleche.getXProperty());
         spriteFleche.translateYProperty().bind(fleche.getYProperty());
-        root.getChildren().add(spriteFleche);
+        paneEnnemis.getChildren().add(spriteFleche);
     }
 }
