@@ -205,8 +205,9 @@ public class Inventaire {
 
         for(int i = 0; i < this.getObjets().size(); i++) {
             ObjetInventaire objetStockee = this.getObjets().get(i);
-            if(objetStockee.getEntite().getClass() == ent.getClass()) {
-
+            if(objetStockee.getEntite().getClass() == ent.getClass()
+                    && (!(ent instanceof Arme) || ((Arme) objetStockee.getEntite()).getQualite() == ((Arme) ent).getQualite())
+                    && (!(ent instanceof Armure) || ((Armure) objetStockee.getEntite()).getQualite() == ((Armure) ent).getQualite())) {
                 if(objetStockee.getNombre() < stackMax && placeActuel < objetStockee.getPlaceInventaire()) {
                     placeActuel = objetStockee.getPlaceInventaire();
                     indexStack = i;
