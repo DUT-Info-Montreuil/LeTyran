@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class BaseQuete {
 
 
-    public HashMap<QueteType.TYPE_QUETE, HashMap<String, ObjectifNombreNecessaire>> listeObjectifs;
+    private HashMap<QueteType.TYPE_QUETE, HashMap<String, ObjectifNombreNecessaire>> listeObjectifs;
 
     private String nom;
     private boolean completee;

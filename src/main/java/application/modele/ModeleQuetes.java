@@ -10,24 +10,28 @@ import java.util.ArrayList;
 public class ModeleQuetes {
 
     private ArrayList<BaseQuete> quetesDisponibles;
-    private IntegerProperty queteActuel;
+    private IntegerProperty queteActuelProperty;
 
     public ModeleQuetes() {
         quetesDisponibles = new ArrayList<BaseQuete>();
-        this.queteActuel = new SimpleIntegerProperty(-1);
+        this.queteActuelProperty = new SimpleIntegerProperty(-1);
         chargerQuetes();
     }
 
     public void chargerQuete(int indexQuete) {
-        this.queteActuel.setValue(indexQuete);
+        this.queteActuelProperty.setValue(indexQuete);
     }
 
 
     public BaseQuete getQueteActuel() {
-        if(this.queteActuel.getValue() >= 0) {
-            return this.quetesDisponibles.get(this.queteActuel.getValue());
+        if(this.queteActuelProperty.getValue() >= 0) {
+            return this.quetesDisponibles.get(this.queteActuelProperty.getValue());
         }
         return null;
+    }
+
+    public IntegerProperty getQueteActuelProperty() {
+        return queteActuelProperty;
     }
 
     public void chargerQuetes() {

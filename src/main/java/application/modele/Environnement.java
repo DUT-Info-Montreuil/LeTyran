@@ -41,7 +41,7 @@ public class Environnement {
 
         mapJeu = new MapJeu();
         etabli = new Etabli(this);
-        feuDeCamp = new FeuDeCamp(this, 13, 8);
+        feuDeCamp = new FeuDeCamp(this, 13, 21);
 
         listeEntites = FXCollections.observableArrayList();
         listeEntites.add(joueur);

@@ -45,15 +45,9 @@ public class ChargeurRessources {
         ensembleSonJeu.put("battle", new AudioClip(ChargeurRessources.class.getResource("/application/sons/ambiances/battle_theme_loop.wav").toExternalForm()));
         ensembleSonJeu.put("introjeu", new AudioClip(ChargeurRessources.class.getResource("/application/sons/ambiances/music_intro.wav").toExternalForm()));
         ensembleSonJeu.put("mort", new AudioClip(ChargeurRessources.class.getResource("/application/sons/ambiances/mort.mp3").toExternalForm()));
-        //ensembleSonJeu.put("battle", new AudioClip(ChargeurRessources.class.getResource("/application/sons/ambiances/music_intro.wav").toExternalForm()));
-
+        ensembleSonJeu.put("village", new AudioClip(ChargeurRessources.class.getResource("/application/sons/ambiances/village.wav").toExternalForm()));
 
         //Icon objets
-//        iconObjets.put("Terre", new Image("file:src/main/resources/application/ressources/Terre.png"));
-//        iconObjets.put("Bois", new Image("file:src/main/resources/application/ressources/Bois.png"));
-//        iconObjets.put("Pierre", new Image("file:src/main/resources/application/ressources/Pierre.png"));
-//        iconObjets.put("Fer", new Image("file:src/main/resources/application/ressources/Fer.png"));
-//        iconObjets.put("Platine", new Image("file:src/main/resources/application/ressources/Platine.png"));
         iconObjets.put("Sol", new Image("file:src/main/resources/application/pack1/Sol.png"));
         iconObjets.put("Terre", new Image("file:src/main/resources/application/pack1/Terre.png"));
         iconObjets.put("Bois", new Image("file:src/main/resources/application/pack1/Bois.png"));

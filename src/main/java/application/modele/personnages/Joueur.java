@@ -42,7 +42,7 @@ public class Joueur extends Personnage {
         avanceProperty = new SimpleBooleanProperty(false);
         freeze = false; delai = 0;
 
-        this.setY(39 * 32);
+        this.setY(21 * 32);
         this.setX(15 * 32);
 
     }

@@ -3,6 +3,7 @@ package application.controleur;
 import application.modele.Environnement;
 import application.modele.ModeleQuetes;
 import application.modele.ObjetInventaire;
+import application.modele.personnages.ennemi.Tyran;
 import application.modele.quetes.ObjectifNombreNecessaire;
 import application.modele.quetes.QueteType;
 import application.vue.VueQuetes;
@@ -31,7 +32,11 @@ public class QueteControleur {
 
 
     public boolean verifierQueteFini() {
-        if(this.modeleQuetes.getQueteActuel() != null) {
+        if(this.modeleQuetes.getQueteActuelProperty() != null && this.modeleQuetes.getQueteActuelProperty().getValue() >= 0) {
+            if(this.modeleQuetes.getQueteActuel().getCompletee()) {
+                rendreQuete();
+                this.vueQuetes.rendreQuete();
+            }
             return this.modeleQuetes.getQueteActuel().getCompletee();
         }
         return false;
@@ -49,13 +54,15 @@ public class QueteControleur {
 
     public boolean getQueteEnCours() {
         return this.queteEncours;
+
     }
 
     /**
      *     Permet de vérifier une première fois l'inventaire si jamais on ramasse des objets avant d'avoir récupéré la quête
      */
     public void verifierRessourcesInventaire() {
-        HashMap<String, ObjectifNombreNecessaire> objectifs = this.modeleQuetes.getQueteActuel().listeObjectifs.get(QueteType.TYPE_QUETE.RAMASSER);
+        HashMap<String, ObjectifNombreNecessaire> objectifs = this.modeleQuetes.getQueteActuel().recupererListeObjectifs().get(QueteType.TYPE_QUETE.RAMASSER);
+        System.out.println(this.modeleQuetes.getQueteActuel().recupererListeObjectifs());
         for(String ressource : objectifs.keySet()) {
             objectifs.get(ressource).setNombreActuelProperty(env.getJoueur().getInventaire().recupererNombreRessources(ressource));
         }
@@ -64,7 +71,7 @@ public class QueteControleur {
     }
 
     public void objetAEteRetireeInventaire(ObjetInventaire obj) {
-        HashMap<String, ObjectifNombreNecessaire> objectifs = this.modeleQuetes.getQueteActuel().listeObjectifs.get(QueteType.TYPE_QUETE.RAMASSER);
+        HashMap<String, ObjectifNombreNecessaire> objectifs = this.modeleQuetes.getQueteActuel().recupererListeObjectifs().get(QueteType.TYPE_QUETE.RAMASSER);
         String nomEntite = obj.getEntite().getClass().getSimpleName();
         if(objectifs.get(nomEntite) != null) {
             objectifs.get(nomEntite).retirerNombreObjectif(obj.getStackActuelProperty().getValue());
@@ -75,7 +82,7 @@ public class QueteControleur {
 
     public void objetAEteAjouteeInventaire(ObjetInventaire obj) {
         if(this.modeleQuetes.getQueteActuel() != null) {
-            HashMap<String, ObjectifNombreNecessaire> objectifs = this.modeleQuetes.getQueteActuel().listeObjectifs.get(QueteType.TYPE_QUETE.RAMASSER);
+            HashMap<String, ObjectifNombreNecessaire> objectifs = this.modeleQuetes.getQueteActuel().recupererListeObjectifs().get(QueteType.TYPE_QUETE.RAMASSER);
             String nomEntite = obj.getEntite().getClass().getSimpleName();
             if (objectifs.get(nomEntite) != null) {
                 int nombreAAJoutee = 0;
@@ -92,10 +99,10 @@ public class QueteControleur {
      */
     public void verifierQueteCompletee() {
 
-        if(this.modeleQuetes.getQueteActuel() != null) {
+        if(this.modeleQuetes.getQueteActuelProperty() != null) {
             boolean queteCompletee = true;
 
-            HashMap<QueteType.TYPE_QUETE, HashMap<String, ObjectifNombreNecessaire>> objectifsActuels = this.modeleQuetes.getQueteActuel().listeObjectifs;
+            HashMap<QueteType.TYPE_QUETE, HashMap<String, ObjectifNombreNecessaire>> objectifsActuels = this.modeleQuetes.getQueteActuel().recupererListeObjectifs();
 
             Iterator iterationQueteTYpe = objectifsActuels.entrySet().iterator();
 
@@ -120,6 +127,11 @@ public class QueteControleur {
             System.out.println("L'objectif est completee : " + queteCompletee);
         }
 
+    }
+
+    public void rendreQuete() {
+        //On fait apparaître le tyran une fois que la quête a été rendu
+        this.env.getListeEnnemis().add(new Tyran(this.env, 100, 39, 20));
     }
 
 

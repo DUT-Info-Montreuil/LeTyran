@@ -73,7 +73,7 @@ public class EnvironnementVue {
 
         this.tileFondDecor.setPrefSize(env.getMapJeu().getTabMap()[0].length * TUILE_TAILLE, env.getMapJeu().getTabMap().length * TUILE_TAILLE);
 
-        int [][]tile = ChargementTileMap.recupererTileMap(0);
+        int [][]tile = ChargementTileMap.recupererTileMap(1);
 
         for(int i = 0; i < tile.length; i++) {
             for(int j = 0; j < tile[0].length; j++) {

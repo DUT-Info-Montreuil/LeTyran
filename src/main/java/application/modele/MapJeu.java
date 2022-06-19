@@ -20,7 +20,7 @@ public class MapJeu {
     }
 
     private void construireMap() {
-        tabMap = ChargementTileMap.recupererTileMap(1);
+        tabMap = ChargementTileMap.recupererTileMap(0);
 
     }
 
