@@ -34,7 +34,7 @@ public class MousePressed implements EventHandler<MouseEvent> {
 //                }
 //            }
 //        }
-        System.out.println("Joueur " + (int) env.getJoueur().getX()/TUILE_TAILLE + " " + (int) env.getJoueur().getY()/TUILE_TAILLE);
+
         if (mouseEvent.getX() < (WIDTH * TUILE_TAILLE) / 2 + 5*TUILE_TAILLE && mouseEvent.getX() > (WIDTH * TUILE_TAILLE) / 2 - 5*TUILE_TAILLE
                 && mouseEvent.getY() < (HEIGHT * TUILE_TAILLE) / 2 + 5*TUILE_TAILLE && mouseEvent.getY() > (HEIGHT * TUILE_TAILLE) / 2 - 5*TUILE_TAILLE) {
             int mouseX, mouseY;
@@ -62,11 +62,13 @@ public class MousePressed implements EventHandler<MouseEvent> {
             else
                 mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE);
 
-            System.out.println(mouseX + " " + mouseY);
-            if (env.getJoueur().interagit(mouseX, mouseY)) {
-                controleur.getArmeVue().animationFrappe();
-            } else {
-                env.getJoueur().poserBloc(mouseX, mouseY);
+
+            if(mouseX >= 0 && mouseX < env.getMapJeu().getWidth() && mouseY < env.getMapJeu().getHeight()) {
+                if (env.getJoueur().interagit(mouseX, mouseY)) {
+                    controleur.getArmeVue().animationFrappe();
+                } else {
+                    env.getJoueur().poserBloc(mouseX, mouseY);
+                }
             }
         }
     }

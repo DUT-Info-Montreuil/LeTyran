@@ -56,7 +56,7 @@ public class Joueur extends Personnage {
 
         Allie chefvillage = getEnv().getListeAllies().get(0);
         double distance = Math.abs(chefvillage.getX() - this.getX()) + Math.abs(chefvillage.getY() - this.getY());
-        if(distance < 100) {
+        if(distance <= 32) {
             chefvillage.ajouterStatutInteragir();
             //System.out.println(chefvillage.getInteractionAvancement());
             return true;

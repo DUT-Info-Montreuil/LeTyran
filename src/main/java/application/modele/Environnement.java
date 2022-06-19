@@ -44,6 +44,7 @@ public class Environnement {
         feuDeCamp = new FeuDeCamp(this, 13, 21);
 
         listeEntites = FXCollections.observableArrayList();
+        listeCoffres = FXCollections.observableArrayList();
         listeEntites.add(joueur);
 
         initListeMateriaux();
@@ -94,42 +95,35 @@ public class Environnement {
 
     public void initListeEnnemis() {
         listeEnnemis.clear();
-        listeEnnemis.add(new Archer(this, 1, 27, 38, 0));
-        listeEnnemis.add(new Epeiste(this,1, 28, 38, 8));
-        listeEnnemis.add(new Lancier(this, 2, 58, 35, 0));
-        listeEnnemis.add(new Epeiste(this,2, 63, 44, 9));
-        listeEnnemis.add(new Epeiste(this,2, 64, 44, 9));
-        listeEnnemis.add(new Archer(this, 3, 84, 41, 0));
-        listeEnnemis.add(new Archer(this, 3, 102, 37, 0));
-        listeEnnemis.add(new Lancier(this, 3, 99, 37, 0));
+        listeEnnemis.add(new Archer(this, 1, 27, 21, 0));
+        listeEnnemis.add(new Epeiste(this,1, 28, 21, 8));
+        listeEnnemis.add(new Lancier(this, 2, 58, 21, 0));
+        listeEnnemis.add(new Epeiste(this,2, 63, 21, 9));
+        listeEnnemis.add(new Epeiste(this,2, 64, 21, 9));
+        listeEnnemis.add(new Archer(this, 3, 84, 21, 0));
+        listeEnnemis.add(new Archer(this, 3, 102, 21, 0));
+        listeEnnemis.add(new Lancier(this, 3, 99, 21, 0));
         //listeEnnemis.add(new Tyran(this, 10, 30, 20));
     }
 
     private void initListeCoffres() {
-        listeCoffres = FXCollections.observableArrayList();
-        for (int i = 0; i < mapJeu.getHeight(); i++) {
-            for (int j = 0; j < mapJeu.getWidth(); j++) {
-                if (mapJeu.getTabMap()[i][j] == 58) {
-                    listeCoffres.add(new Coffre(this, j, i));
-                }
-            }
-        }
+        listeCoffres.add(new Coffre(this, 114, 50));
     }
 
     public void initListeAnimaux() {
         listeAnimaux.clear();
-        listeAnimaux.add(new Lapin(this, 32,43, 4));
-        listeAnimaux.add(new Lapin(this, 26,42, 5));
-        listeAnimaux.add(new Sanglier(this, 39,35, 8));
-        listeAnimaux.add(new Sanglier(this, 48,35, 8));
-        listeAnimaux.add(new Lapin(this, 74,43, 4));
-        listeAnimaux.add(new Sanglier(this, 106,40, 9));
-        listeAnimaux.add(new Sanglier(this, 107,40, 9));
+        listeAnimaux.add(new Lapin(this, 32,21, 4));
+        listeAnimaux.add(new Lapin(this, 26,21, 5));
+        listeAnimaux.add(new Sanglier(this, 39,21, 8));
+        listeAnimaux.add(new Sanglier(this, 48,21, 8));
+        listeAnimaux.add(new Lapin(this, 74,21, 4));
+        listeAnimaux.add(new Sanglier(this, 106,21, 9));
+        listeAnimaux.add(new Sanglier(this, 107,21, 9));
     }
 
     public void initListeAllies() {
         listeAllies.clear();
-        listeAllies.add(new ChefVillage(this, 2,39, 11));
+        listeAllies.add(new ChefVillage(this, 2,21, 11));
     }
             //endregion
 

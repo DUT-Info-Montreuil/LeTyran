@@ -1,5 +1,6 @@
 package application.modele.collisions;
 
+import application.controleur.Constantes;
 import application.modele.Direction;
 import application.modele.Entite;
 
@@ -69,6 +70,9 @@ public class Collider {
     }
 
     public Entite verificationCollisionGauche(double valeur) {
+        if(this.ent.getX() <= 0) {
+            return new Entite();
+        }
         valeur = -Math.abs(valeur);
 
         if (!this.getIgnoreCollision()) {
@@ -98,6 +102,10 @@ public class Collider {
     }
 
     public Entite verificationCollisionDroit(double valeur) {
+        if(this.ent.getX() >= (this.ent.getEnv().getMapJeu().getWidth() - 1) * 32) {
+            return new Entite();
+        }
+
         valeur = Math.abs(valeur);
         if (!this.getIgnoreCollision()) {
             for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
@@ -155,7 +163,9 @@ public class Collider {
 
     public Entite verificationCollisionBas(double valeur) {
         valeur = Math.abs(valeur);
-
+        if(this.ent.getY() >= (this.ent.getEnv().getMapJeu().getHeight() -1)  * 32) {
+            return new Entite();
+        }
         if (!this.getIgnoreCollision()) {
             for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
                 Entite ent = this.getEnt().getEnv().getListeMateriaux().get(i);
