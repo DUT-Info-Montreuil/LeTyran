@@ -37,7 +37,7 @@ public class VieVue  {
         this.viePane.getChildren().add(this.image);
         this.rootPane.getChildren().add(this.viePane);
 
-
+        listeImageVie();
         this.afficherVie(Joueur.PV_MAX);
 
     }
@@ -49,44 +49,8 @@ public class VieVue  {
     }
 
     // fonction qu affiche les differente image en fonction de la vie
-    public void afficherVie(int pv ){
-        this.listeImageVie();
-
-        if  (pv>=100){
-            image.setImage(this.listeVie[10]);
-        }
-        else if (pv>=90){
-            image.setImage(this.listeVie[9]);
-        }
-        else if (pv>=80){
-            image.setImage(this.listeVie[8]);
-        }
-        else if (pv>=70){
-            image.setImage(this.listeVie[7]);
-        }
-        else if (pv>=60){
-            image.setImage(this.listeVie[6]);
-        }
-        else if (pv>=50){
-            image.setImage(this.listeVie[5]);
-        }
-        else if (pv>=40){
-            image.setImage(this.listeVie[4]);
-        }
-        else if (pv>=30){
-            image.setImage(this.listeVie[3]);
-        }
-        else if (pv>=20){
-            image.setImage(this.listeVie[2]);
-        }
-        else if (pv>=10){
-            image.setImage(this.listeVie[1]);
-        }
-        else {
-            image.setImage(this.listeVie[0]);
-        }
-
-
+    public void afficherVie(int pv){
+        image.setImage(listeVie[pv]);
     }
 
 

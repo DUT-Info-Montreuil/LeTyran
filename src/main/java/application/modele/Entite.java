@@ -22,7 +22,7 @@ public class Entite {
         this.collider = new Collider(this);
         //this.getCollider().scaleCollider(32,32);
         this.env = env;
-        this.pv = new SimpleIntegerProperty(30);
+        this.pv = new SimpleIntegerProperty(10);
         tombe = false;
     }
 

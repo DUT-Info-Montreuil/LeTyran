@@ -13,7 +13,7 @@ import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class BouleDeFeu extends Projectile {
 
-    private final static int DEGATS = 5;
+    private final static int DEGATS = 3;
 
     private static int idMax = 0;
 

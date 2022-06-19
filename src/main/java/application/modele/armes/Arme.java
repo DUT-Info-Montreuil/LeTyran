@@ -16,15 +16,19 @@ public abstract class Arme extends Entite {
     }
 
 
+    //la pioche et la hache n'inflige que 1 point de degat
     public void frapper(Personnage perso,Personnage ennemi) {
-        ennemi.decrementerPv(nbDegat());
+        if (this instanceof Pioche || this instanceof Hache)
+            ennemi.decrementerPv();
+        else
+            ennemi.decrementerPv(nbDegat());
         if (perso instanceof Joueur)
             decrementerPv();
     }
 
     //renvoie les dégâts de l'arme selon la qualité
     public int nbDegat() {
-        return qualite*3;
+        return qualite;
     }
 
     public int getQualite() {

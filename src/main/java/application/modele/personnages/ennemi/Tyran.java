@@ -23,14 +23,16 @@ public class Tyran extends Ennemi {
     private int delaiCharge;
     private float distanceCharge;
     private int delaiLancer;
+    private boolean touche;
 
     public Tyran(Environnement env, int x, int y, int distance) {
         super(env, x, y, distance, new Epee(env, 3));
-        setPv(100);
+        setPv(50);
         chargeProperty = new SimpleBooleanProperty(false);
         delaiCharge = 0;
         distanceCharge = 0;
         delaiLancer = 0;
+        touche = false;
     }
 
     protected void deplacement() {
@@ -47,7 +49,7 @@ public class Tyran extends Ennemi {
 
     //charge le joueur et le blesse s'il le touche
     private void charger() {
-        if (delaiCharge++ > 50) {
+        if (delaiCharge++ > 30) {
             int i = 0;
             Entite ent;
             while (i < getVitesse() * 3 && distanceCharge < DISTANCE_FUITE) {
@@ -64,11 +66,17 @@ public class Tyran extends Ennemi {
                 distanceCharge += 0.45f;
             }
 
-            if (i < getVitesse() * 3)
-                chargeProperty.setValue(false);
-
-            if (Math.abs(getEnv().getJoueur().getX() - getX()) < 5 && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE)
+            if (!touche && Math.abs(getEnv().getJoueur().getX() - getX()) < 5 && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE) {
                 getArme().frapper(this, getEnv().getJoueur());
+                touche = true;
+            }
+
+            if (i < getVitesse() * 3) {
+                chargeProperty.setValue(false);
+                delaiCharge = 0;
+                distanceCharge = 0;
+                touche = false;
+            }
         }
     }
 
@@ -77,8 +85,6 @@ public class Tyran extends Ennemi {
         if (!chargeProperty.getValue() && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE) {
             if (Math.abs(getEnv().getJoueur().getX() - getX()) < 2 * TUILE_TAILLE)  {
                 chargeProperty.setValue(true);
-                delaiCharge = 0;
-                distanceCharge = 0;
             } else if (Math.abs(getEnv().getJoueur().getX() - getX()) < DISTANCE_FUITE
                     && getX() >= getOrigineX() - getDistance() && getX() <= getOrigineX() + getDistance()) {
                 Direction direction;
