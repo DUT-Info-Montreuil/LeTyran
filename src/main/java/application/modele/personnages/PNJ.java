@@ -46,7 +46,7 @@ public abstract class PNJ extends Personnage {
 
     protected boolean estBloque() {
         Entite collide1 = super.getCollider().verifierCollisionDirection(getDirection(), 0.45);
-        Entite collide2 = super.getCollider().verifierCollisionDirection(getDirectionOpposee(), 0.45);
+        Entite collide2 = super.getCollider().verifierCollisionDirection(getDirectionOpposee(), 10);
         return (collide1 != null && collide1 instanceof Materiau) && (collide2 == null || !(collide2 instanceof Materiau));
     }
 

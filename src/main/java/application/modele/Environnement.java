@@ -94,6 +94,7 @@ public class Environnement {
         listeEnnemis.add(new Archer(this, 3, 84, 21, 0));
         listeEnnemis.add(new Archer(this, 3, 102, 21, 0));
         listeEnnemis.add(new Lancier(this, 3, 99, 21, 0));
+        //listeEnnemis.add(new Tyran(this, 10, 30, 20));
     }
 
     private void initListeCoffres() {
