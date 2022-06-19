@@ -1,17 +1,14 @@
 package application.modele.personnages;
 
 import application.modele.*;
-import application.modele.armes.Arme;
-import application.modele.armes.Hache;
-import application.modele.armes.Pioche;
-import application.modele.armes.arc.Arc;
+import application.modele.armes.*;
 import application.modele.objets.Arbre;
+import application.modele.objets.Cle;
 import application.modele.objets.Coffre;
 import application.modele.objets.consommable.Consommable;
-import application.modele.objets.Materiau;
+import application.modele.objets.materiaux.Materiau;
 import application.modele.objets.materiaux.Pierre;
 import application.modele.personnages.allies.Allie;
-import application.modele.personnages.allies.ChefVillage;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -39,6 +36,7 @@ public class Joueur extends Personnage {
         this.inventaire.ajouterObjet(new Pierre());
         this.inventaire.ajouterObjet(new Pioche(getEnv(), 3));
         this.inventaire.ajouterObjet(new Hache(getEnv(), 3));
+        this.inventaire.ajouterObjet(new Epee(getEnv(), 3));
         this.inventaire.ajouterObjet(new Arc(getEnv(), 3));
         mortProperty = new SimpleBooleanProperty(false);
         seReposeProperty = new SimpleBooleanProperty(false);
@@ -147,9 +145,7 @@ public class Joueur extends Personnage {
     }
 
     private boolean miner(int x, int y) {
-
         Materiau minerai = getEnv().getMinerai(x, y);
-
         if (minerai != null) {
             minerai.estFrappe();
             return true;
@@ -159,7 +155,7 @@ public class Joueur extends Personnage {
 
     @Override
     public void quandCollisionDetectee(Entite ent) {
-        if (ent instanceof ObjetJeu || ent instanceof Materiau || ent instanceof Consommable) {
+        if (ent instanceof ObjetJeu || ent instanceof Materiau || ent instanceof Consommable || ent instanceof Cle) {
             this.inventaire.ajouterObjet(ent);
         }
     }
@@ -242,7 +238,7 @@ public class Joueur extends Personnage {
 
     @Override
     protected int getHauteurMax() {
-        return 2 * TUILE_TAILLE;
+        return (int) (2.5 * TUILE_TAILLE);
     }
 
     @Override

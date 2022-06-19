@@ -2,7 +2,7 @@ package application.controleur;
 
 import application.modele.Direction;
 import application.modele.Environnement;
-import application.modele.armes.arc.Fleche;
+import application.modele.projectiles.Fleche;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 

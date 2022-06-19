@@ -22,22 +22,22 @@ public class PersonnageVue {
             add(new Image("file:src/main/resources/application/perso/joueur/perso_mouvement2.png"));
         }});
         put("Epeiste", new ArrayList<>() {{
-            add(new Image("file:src/main/resources/application/perso/ennemi/ennemi_immobile.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/ennemi_mouvement1.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/ennemi_immobile.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/ennemi_mouvement2.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/epeiste/epeiste_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/epeiste/epeiste_mouvement1.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/epeiste/epeiste_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/epeiste/epeiste_mouvement2.png"));
         }});
         put("Lancier", new ArrayList<>() {{
-            add(new Image("file:src/main/resources/application/perso/ennemi/ennemi_immobile.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/ennemi_mouvement1.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/ennemi_immobile.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/ennemi_mouvement2.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/lancier/lancier_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/lancier/lancier_mouvement1.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/lancier/lancier_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/lancier/lancier_mouvement2.png"));
         }});
         put("Archer", new ArrayList<>() {{
-            add(new Image("file:src/main/resources/application/perso/ennemi/ennemi_immobile.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/ennemi_mouvement1.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/ennemi_immobile.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/ennemi_mouvement2.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/archer/archer_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/archer/archer_mouvement1.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/archer/archer_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/archer/archer_mouvement2.png"));
         }});
         put("Lapin", new ArrayList<>() {{
             add(new Image("file:src/main/resources/application/perso/lapin/lapin_1.png"));
@@ -49,7 +49,12 @@ public class PersonnageVue {
             add(new Image("file:src/main/resources/application/perso/sanglier/sanglier_2.png"));
             add(new Image("file:src/main/resources/application/perso/sanglier/sanglier_3.png"));
         }});
-
+        put("Tyran", new ArrayList<>() {{
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_mouvement1.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_mouvement2.png"));
+        }});
         put("ChefVillage", new ArrayList<>() {{
             add(new Image("file:src/main/resources/application/personnages/chef_village.png"));
         }});

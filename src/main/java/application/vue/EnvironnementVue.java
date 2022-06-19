@@ -163,7 +163,7 @@ public class EnvironnementVue {
         bruitCoffre.play();
     }
 
-    public void supprimerFleche(String id) {
+    public void supprimerProjectile(String id) {
         ((Pane) root.lookup("#paneEnnemis")).getChildren().remove(root.lookup("#" + id));
     }
 

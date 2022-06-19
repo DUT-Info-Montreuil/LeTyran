@@ -2,7 +2,6 @@ package application.modele.objets.materiaux;
 
 import application.modele.Environnement;
 import application.modele.armes.Hache;
-import application.modele.objets.Materiau;
 
 public class Bois extends Materiau {
 

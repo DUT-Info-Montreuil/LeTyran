@@ -1,5 +1,6 @@
 package application.vue;
 
+import application.modele.personnages.Joueur;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -37,7 +38,7 @@ public class VieVue  {
         this.rootPane.getChildren().add(this.viePane);
 
 
-        this.afficherVie(100);
+        this.afficherVie(Joueur.PV_MAX);
 
     }
     // fonction pour cree une image View qui contient toute les images de la vie

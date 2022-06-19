@@ -37,26 +37,10 @@ public class MousePressed implements EventHandler<MouseEvent> {
 //                }
 //            }
 //        }
-        System.out.println("Joueur " + env.getJoueur().getX()/TUILE_TAILLE % 1 + " " + env.getJoueur().getX()/TUILE_TAILLE);
+        System.out.println("Joueur " + (int) env.getJoueur().getX()/TUILE_TAILLE + " " + (int) env.getJoueur().getY()/TUILE_TAILLE);
         if (mouseEvent.getX() < (WIDTH * TUILE_TAILLE) / 2 + 5*TUILE_TAILLE && mouseEvent.getX() > (WIDTH * TUILE_TAILLE) / 2 - 5*TUILE_TAILLE
                 && mouseEvent.getY() < (HEIGHT * TUILE_TAILLE) / 2 + 5*TUILE_TAILLE && mouseEvent.getY() > (HEIGHT * TUILE_TAILLE) / 2 - 5*TUILE_TAILLE) {
             int mouseX, mouseY;
-            if (mouseEvent.getX() > (WIDTH * TUILE_TAILLE) / 2 + TUILE_TAILLE)
-                if ((env.getJoueur().getX() / TUILE_TAILLE) % 1 > 0.8)
-                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE) + 2;
-                else
-                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE) + 1;
-            else if (mouseEvent.getX() < (WIDTH * TUILE_TAILLE) / 2)
-                if ((env.getJoueur().getX() / TUILE_TAILLE) % 1 > 0.5)
-                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE);
-                else
-                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE) - 1;
-            else
-                if ((env.getJoueur().getX() / TUILE_TAILLE) % 1 > 0.5)
-                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE) + 1;
-                else
-                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE);
-
 
             if (mouseEvent.getY() < (HEIGHT * TUILE_TAILLE) / 2)
                 mouseY = (int) (env.getJoueur().getY() / TUILE_TAILLE) - 1;
@@ -65,6 +49,23 @@ public class MousePressed implements EventHandler<MouseEvent> {
             else
                 mouseY = (int) (env.getJoueur().getY() / TUILE_TAILLE);
 
+            if (mouseEvent.getX() > (WIDTH * TUILE_TAILLE) / 2 + TUILE_TAILLE)
+                if ((env.getJoueur().getX() / TUILE_TAILLE) % 1 > 0.8)
+                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE) + 2;
+                else
+                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE) + 1;
+            else if (mouseEvent.getX() < (WIDTH * TUILE_TAILLE) / 2)
+                if ((env.getJoueur().getX() / TUILE_TAILLE) % 1 > 0.8 && mouseY != (int) (env.getJoueur().getY() / TUILE_TAILLE))
+                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE);
+                else
+                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE) - 1;
+            else
+            if ((env.getJoueur().getX() / TUILE_TAILLE) % 1 > 0.5)
+                mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE) + 1;
+            else
+                mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE);
+
+            System.out.println(mouseX + " " + mouseY);
             if (env.getJoueur().interagit(mouseX, mouseY)) {
                 controleur.getArmeVue().animationFrappe();
             } else {
