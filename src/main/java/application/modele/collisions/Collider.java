@@ -56,9 +56,7 @@ public class Collider {
         return false;
     }
 
-    public Entite verificationCollisionGauche(double valeur) {
-        valeur = -Math.abs(valeur);
-
+    public Entite verificationCollisionHorizontal(double valeur) {
         if (!this.getIgnoreCollision()) {
             for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
                 Entite ent = this.getEnt().getEnv().getListeMateriaux().get(i);
@@ -85,36 +83,7 @@ public class Collider {
         return null;
     }
 
-    public Entite verificationCollisionDroit(double valeur) {
-        valeur = Math.abs(valeur);
-        if (!this.getIgnoreCollision()) {
-            for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
-                Entite ent = this.getEnt().getEnv().getListeMateriaux().get(i);
-                if (ent != this.getEnt()) {
-                    double entRecX = ent.getX();
-                    double entRecY = ent.getY();
-                    double entColWidth = ent.getCollider().getHitBox().getWidth();
-                    double entColHeight = ent.getCollider().getHitBox().getHeight();
-
-                    double colRecX = this.getEnt().getX();
-                    double colRecY = this.getEnt().getY();
-                    double colWidth = this.getHitBox().getWidth();
-                    double colRecHeight = this.getHitBox().getHeight();
-
-                    if (colRecX + colWidth + valeur > entRecX
-                            && colRecX + valeur < entRecX + entColWidth
-                            && colRecY + colRecHeight > entRecY && colRecY < entRecY + entColHeight) {
-                        return ent;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    public Entite verificationCollisionHaut(double valeur) {
-        valeur = -Math.abs(valeur);
-
+    public Entite verificationCollisionVertical(double valeur) {
         if (!this.getIgnoreCollision()) {
             for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
                 Entite ent = this.getEnt().getEnv().getListeMateriaux().get(i);
@@ -133,37 +102,6 @@ public class Collider {
                             && colRecX < entRecX + entColWidth
                             && colRecY + colRecHeight + valeur > entRecY &&
                             colRecY + valeur < entRecY + entColHeight) {
-                        return ent;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    public Entite verificationCollisionBas(double valeur) {
-        valeur = Math.abs(valeur);
-
-        if (!this.getIgnoreCollision()) {
-            for (int i = 0; i < this.getEnt().getEnv().getListeMateriaux().size(); i++) {
-                Entite ent = this.getEnt().getEnv().getListeMateriaux().get(i);
-                if (ent != this.getEnt()) {
-
-                    double entRecX = ent.getX();
-                    double entRecY = ent.getY();
-                    double entColWidth = ent.getCollider().getHitBox().getWidth();
-                    double entColHeight = ent.getCollider().getHitBox().getHeight();
-
-                    double colRecX = this.getEnt().getX();
-                    double colRecY = this.getEnt().getY();
-                    double colWidth = this.getHitBox().getWidth();
-                    double colRecHeight = this.getHitBox().getHeight();
-
-                    if (colRecX + colWidth > entRecX
-                            && colRecX < entRecX + entColWidth
-                            && colRecY + colRecHeight + valeur > entRecY &&
-                            colRecY + valeur < entRecY + entColHeight) {
-
                         return ent;
                     }
                 }
@@ -175,13 +113,13 @@ public class Collider {
     public Entite verifierCollisionDirection(Direction direction, double valeur) {
         switch (direction) {
             case Droit:
-                return verificationCollisionDroit(valeur);
+                return verificationCollisionHorizontal(Math.abs(valeur));
             case Gauche:
-                return verificationCollisionGauche(valeur);
+                return verificationCollisionHorizontal(-Math.abs(valeur));
             case Haut:
-                return verificationCollisionHaut(valeur);
+                return verificationCollisionVertical(-Math.abs(valeur));
             case Bas:
-                return verificationCollisionBas(valeur);
+                return verificationCollisionVertical(Math.abs(valeur));
         }
 
         return null;
