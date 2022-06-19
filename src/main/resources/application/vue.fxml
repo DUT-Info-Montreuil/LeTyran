@@ -363,7 +363,7 @@
             <Font size="80.0" />
          </font>
       </Label>
-      <Label fx:id="labelFinDeJeu" alignment="CENTER" contentDisplay="CENTER" opacity="0.0" style="-fx-background-color: black;" text="FIN DU JEU" textFill="WHITE">
+      <Label fx:id="labelFinDeJeu" alignment="CENTER" contentDisplay="CENTER" opacity="0.0" style="-fx-background-color: black;" text="FIN" textFill="WHITE">
          <font>
             <Font size="80.0" />
          </font>
