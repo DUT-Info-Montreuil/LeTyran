@@ -52,7 +52,7 @@ public class BouleDeFeu extends Projectile {
         } else {
             deplacementType1SousPartie(Bas);
             force += 0.01f;
-            if (force > 0.6f) {
+            if (force > 0.62f) {
                 System.out.println((getX() - getPerso().getX())/TUILE_TAILLE);
                 getEnv().getListeProjectiles().remove(this);
             }

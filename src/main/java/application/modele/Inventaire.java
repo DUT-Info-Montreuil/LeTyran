@@ -120,7 +120,10 @@ public class Inventaire {
         while (i < this.getObjets().size() && !trouver) {
             ObjetInventaire obj = this.getObjets().get(i);
             if (obj.getPlaceInventaire() == index) {
+                System.out.println(index + " " + obj.getEntite());
                 this.objetMain = obj;
+                if (obj.getEntite() instanceof Arme || obj.getEntite() instanceof Armure)
+                    mettreEquipement(obj);
             }
             i++;
         }
@@ -311,6 +314,14 @@ public class Inventaire {
             }
             i++;
         }
+    }
+
+    public ObjetInventaire getObjetMain() {
+        return objetMain;
+    }
+
+    public void setObjetMain(ObjetInventaire objetMain) {
+        this.objetMain = objetMain;
     }
 
     public String toString() {
