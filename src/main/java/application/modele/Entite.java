@@ -49,6 +49,7 @@ public class Entite {
     public Entite() {
         this.xProperty = new SimpleFloatProperty(0);
         this.yProperty = new SimpleFloatProperty(0);
+        this.collider = new Collider(this);
         tombe = false;
     }
 

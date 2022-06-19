@@ -19,7 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Pane root = FXMLLoader.load(getClass().getResource("vue.fxml"));
+            Pane root = FXMLLoader.load(getClass().getResource("vue_accueil.fxml"));
             Scene scene = new Scene(root, WIDTH*TUILE_TAILLE,HEIGHT*TUILE_TAILLE);
             root.requestFocus();
 

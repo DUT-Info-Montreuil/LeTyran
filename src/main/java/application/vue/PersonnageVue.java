@@ -1,6 +1,7 @@
 package application.vue;
 
 import application.modele.Direction;
+import application.modele.personnages.Joueur;
 import application.modele.personnages.Personnage;
 import application.modele.MapJeu;
 import javafx.scene.image.Image;
@@ -50,10 +51,10 @@ public class PersonnageVue {
             add(new Image("file:src/main/resources/application/perso/sanglier/sanglier_3.png"));
         }});
         put("Tyran", new ArrayList<>() {{
-            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_immobile.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_mouvement1.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_immobile.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_mouvement2.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran2/tyran_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran2/tyran_mouvement1.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran2/tyran_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran2/tyran_mouvement2.png"));
         }});
         put("ChefVillage", new ArrayList<>() {{
             add(new Image("file:src/main/resources/application/personnages/chef_village.png"));
@@ -74,6 +75,7 @@ public class PersonnageVue {
         lastUpdate = System.currentTimeMillis();
         indexSprite = 0;
         construirePerso();
+
     }
     public PersonnageVue(Pane paneEnnemis, Personnage perso) {
         this.perso = perso;

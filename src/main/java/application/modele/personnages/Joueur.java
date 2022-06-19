@@ -96,6 +96,7 @@ public class Joueur extends Personnage {
                 nouvBloc.setX(x * TUILE_TAILLE);
                 nouvBloc.setY(y * TUILE_TAILLE);
                 nouvBloc.setEnv(this.getEnv());
+                nouvBloc.setPv(100);
 
                 objetEquipe.retirerDansStack();
 

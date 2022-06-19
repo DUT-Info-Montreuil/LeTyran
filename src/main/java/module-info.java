@@ -36,4 +36,6 @@ module application.letyran {
     opens application.modele.objets.consommable to javafx.fxml;
     exports application.modele.projectiles;
     opens application.modele.projectiles to javafx.fxml;
+    exports application.controleur.listeners;
+    opens application.controleur.listeners to javafx.fxml;
 }

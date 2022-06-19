@@ -1,6 +1,9 @@
 package application.controleur;
 
 import application.modele.MapJeu;
+import application.vue.ChargeurRessources;
+import application.vue.accueil.AmbianceEnvironnement;
+import application.vue.accueil.InteractionUI;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
@@ -15,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -23,6 +27,9 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static application.Main.HEIGHT_FENETRE;
+import static application.Main.WIDTH_FENETRE;
 
 public class ControleurAccueil implements Initializable {
     @FXML
@@ -48,18 +55,26 @@ public class ControleurAccueil implements Initializable {
     private double textRedColor = 1;
     private int nbFrame = 0;
 
+    private AmbianceEnvironnement ambianceEnvironnement;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Font font = Font.loadFont("file:src/main/resources/application/fonts/IMMORTAL.ttf", 50);
 
+        ChargeurRessources.charger();
         root.setPrefSize(150 * 32, 34 * 32);
         this.paneNuages.setPrefSize(root.getPrefWidth(), root.getPrefHeight());
 
-        btnQuitNouv.setLayoutX(root.getPrefWidth() / 2 - btnQuitNouv.getPrefWidth() / 2);
-        btnQuitNouv.setLayoutY(root.getPrefHeight() / 2 + btnQuitNouv.getPrefHeight() / 3);
+        System.out.println(btnQuitNouv.isVisible());
+        btnQuitNouv.setLayoutX(WIDTH_FENETRE / 2 - btnQuitNouv.getPrefWidth() / 2);
+        btnQuitNouv.setLayoutY(HEIGHT_FENETRE / 2 + btnQuitNouv.getPrefHeight() / 3);
 
-        nomJeu.setLayoutX(root.getPrefWidth() / 2 - nomJeu.getBoundsInLocal().getMaxX() );
-        nomJeu.setLayoutY(100);
+        new InteractionUI(nouvellePartie, quitterJeu);
+        ambianceEnvironnement = new AmbianceEnvironnement();
+
+
+        /*nouvellePartie.setOnMouseEntered(e -> {
+            new AudioClip()
+        });*/
 
         initAnimation();
         ajouterNuages();
@@ -76,7 +91,6 @@ public class ControleurAccueil implements Initializable {
                 // on définit le FPS (nbre de frame par seconde)
                 Duration.seconds(0.017),
                 (ev ->{
-                    animerText();
                     animerNuages();
                     nbFrame++;
                 })
@@ -84,24 +98,6 @@ public class ControleurAccueil implements Initializable {
         gameLoop.getKeyFrames().add(kf);
     }
 
-    private void animerText() {
-        textRedColor += 0.05;
-        Double colorToSet;
-        if(textRedColor > 10) {
-            colorToSet = Math.cos(textRedColor);
-
-        } else {
-            colorToSet = 0d;
-        }
-
-        if(colorToSet < 0) {
-
-            colorToSet = 0d;
-        }
-
-        nomJeu.opacityProperty().setValue(textRedColor * 0.03);
-        nomJeu.setTextFill(Color.color(Math.cos(colorToSet),0, 0));
-    }
 
     public void ajouterNuages() {
         ImageView previous = null;
@@ -139,9 +135,16 @@ public class ControleurAccueil implements Initializable {
     }
 
     public void lancerJeu() throws IOException {
-        Pane nouveauRoot = FXMLLoader.load(getClass().getResource("/application/vue.fxml"));
-        this.root.getScene().setRoot(nouveauRoot);
-        nouveauRoot.requestFocus();
+        URL location = getClass().getResource("/application/vue.fxml");
+        FXMLLoader loader = new FXMLLoader(location);
+        Pane root = loader.load(location.openStream());
+
+        Controleur controleurJeu = (Controleur) loader.getController();
+        controleurJeu.setAmbianceEnvironnement(this.ambianceEnvironnement);
+        this.root.getScene().setRoot(root);
+        root.requestFocus();
+
+        //Controleur controleurJeu = (Controleur) nouveauRoot
 
     }
 

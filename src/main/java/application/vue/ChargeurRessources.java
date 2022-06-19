@@ -4,6 +4,7 @@ import application.modele.armes.Arme;
 import application.vue.ArmeVue;
 import application.vue.ArmeVue;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ public class ChargeurRessources {
 
     public static ArrayList<Image> tileMapAssets = new ArrayList<Image>();
     public static HashMap<String, Image> iconObjets = new HashMap<>();
+    public static HashMap<String, AudioClip> ensembleSonJeu = new HashMap<>();
 
     private Image tilesetSol = new Image("file:src/main/resources/application/tilemap/tileset_sol.png");
 
@@ -39,6 +41,11 @@ public class ChargeurRessources {
         tileMapAssets.add(58, new Image("file:src/main/resources/application/Coffre/CoffreOrFerm.png"));
 
 
+
+        ensembleSonJeu.put("battle", new AudioClip(ChargeurRessources.class.getResource("/application/sons/ambiances/battle_theme_loop.wav").toExternalForm()));
+        ensembleSonJeu.put("introjeu", new AudioClip(ChargeurRessources.class.getResource("/application/sons/ambiances/music_intro.wav").toExternalForm()));
+        ensembleSonJeu.put("mort", new AudioClip(ChargeurRessources.class.getResource("/application/sons/ambiances/mort.mp3").toExternalForm()));
+        //ensembleSonJeu.put("battle", new AudioClip(ChargeurRessources.class.getResource("/application/sons/ambiances/music_intro.wav").toExternalForm()));
 
 
         //Icon objets

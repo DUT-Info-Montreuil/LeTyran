@@ -11,6 +11,7 @@ public abstract class Materiau extends Entite {
     private int idMateriau;
 
     public Materiau() {
+        super(null, 0, 0, 100);
     }
 
     public Materiau(Environnement env,  int x, int y, int pv) {

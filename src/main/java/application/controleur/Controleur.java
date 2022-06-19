@@ -1,10 +1,8 @@
 package application.controleur;
 
-import application.controleur.listeners.ArmeListener;
-import application.controleur.listeners.ArmureListener;
-import application.controleur.listeners.PersonnageListeners;
-import application.controleur.listeners.VieListener;
+import application.controleur.listeners.*;
 import application.modele.Environnement;
+import application.modele.personnages.Joueur;
 import application.vue.ArmeVue;
 import application.vue.EtabliVue;
 import application.vue.PersonnageVue;
@@ -12,6 +10,7 @@ import application.vue.VieVue;
 import application.vue.EnvironnementVue;
 import application.modele.ModeleDialogue;
 import application.vue.*;
+import application.vue.accueil.AmbianceEnvironnement;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.Event;
@@ -71,6 +70,9 @@ public class Controleur implements Initializable {
     @FXML private VBox vBoxPause;
     @FXML private VBox vBoxSuicide;
 
+
+    private AmbianceEnvironnement ambianceEnvironnement;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -105,11 +107,17 @@ public class Controleur implements Initializable {
 
         env.getJoueur().getInventaire().getArmeProperty().addListener(new ArmeListener(armeVue, inventaireControleur.getInvVue()));
         env.getJoueur().getInventaire().getArmureProperty().addListener(new ArmureListener(inventaireControleur.getInvVue()));
+
+
         this.env.getJoueur().getPVProperty().addListener(new VieListener(vievue, this.env.getJoueur()));
 
         new EtabliControleur(root,env, etabliVue);
         new PersonnageListeners(env.getJoueur(), personnageVue, armeVue, feuDeCampVue);
         new EnvironnementControleur(root, envVue, env, this);
+
+
+        //On va surtout s'occuper des sons ici
+
 
 
 
@@ -136,6 +144,16 @@ public class Controleur implements Initializable {
                 })
         );
         gameLoop.getKeyFrames().add(kf);
+    }
+
+    public void setAmbianceEnvironnement(AmbianceEnvironnement amb) {
+        this.ambianceEnvironnement = amb;
+        this.ambianceEnvironnement.stopperSon();
+        new JoueurListener(env.getJoueur(), this);
+    }
+
+    public AmbianceEnvironnement getAmbianceEnvironnement() {
+        return this.ambianceEnvironnement;
     }
 
     public ArmeVue getArmeVue() {
