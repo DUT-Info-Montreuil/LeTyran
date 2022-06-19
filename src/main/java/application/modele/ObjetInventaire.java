@@ -10,6 +10,12 @@ public class ObjetInventaire {
     private int placeInventaire;
     private IntegerProperty stackActuel;
 
+
+    /**
+     * On encaspule l'entitee dans une super class ObjetInventaire afin de ne pas perdre ses données
+     * @param inventaire l'inventaire du personnage
+     * @param ent l'entité que l'ObjetInventaire contient
+     */
     public ObjetInventaire(Inventaire inventaire, Entite ent) {
         this.inventaire = inventaire;
         this.entite = ent;
@@ -17,12 +23,15 @@ public class ObjetInventaire {
 
     }
 
+    /**
+     * Permet de récupérer la position de l'entité
+     * @return la place actuel de l'inventaire
+     */
     public int getPlaceInventaire() {
         return this.placeInventaire;
     }
 
     public void setPlaceInventaire(int nouvellePlace) {
-        System.out.println("nouvelle place " + nouvellePlace);
         this.placeInventaire = nouvellePlace;
     }
 

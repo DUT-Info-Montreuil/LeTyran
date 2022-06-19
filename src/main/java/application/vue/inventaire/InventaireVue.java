@@ -78,7 +78,6 @@ public class InventaireVue {
         int indexConteneurTrouve = -1;
 
         while(!trouver && index < paneChoisi.getChildren().size()) {
-            //System.out.println(index + " " + this.invPaneConteneur.getChildren().get(index));
             if(paneChoisi.getChildren().get(index) instanceof InvSlot) {
                 InvSlot img = (InvSlot) paneChoisi.getChildren().get(index);
                 InvSlot parent = (InvSlot)this.objPrit.getParent();
@@ -130,7 +129,6 @@ public class InventaireVue {
                     this.controleur.echangerObjet(this.objPrit, selectSlotItem, indexConteneurTrouve, autrePlace);
 
                 } else {
-                    System.out.println("Slot attribué" + seletecSlot.getId());
                     this.controleur.objetPlaceInventaireChanger(objPrit, slotParent.getIndex(), seletecSlot.getIndex());
 
                     slotParent.getChildren().remove(this.objPrit);
@@ -157,19 +155,14 @@ public class InventaireVue {
     }
 
     public void ajouterUnObjet(ObjetInventaire obj) {
-        //System.out.println(obj.getPlaceInventaire());
         InvSlot slot;
 
         if(obj.getPlaceInventaire() < 5) {
-            //System.out.println("On cherche le slot" + obj.getPlaceInventaire());
 
-            //slot = (InvSlot) this.paneInventaireMain.getChildren().get(obj.getPlaceInventaire());
             slot = (InvSlot) this.paneInventaireMain.lookup("#slot"+obj.getPlaceInventaire());
         } else {
-            //System.out.println("On cherche le slot" + (obj.getPlaceInventaire()));
 
             slot = (InvSlot) this.paneSacInventaire.lookup("#slot"+(obj.getPlaceInventaire()));
-            //slot = (InvSlot) this.paneSacInventaire.lookup("#slot"+16);
         }
 
 
@@ -204,7 +197,6 @@ public class InventaireVue {
 
                 //On vérifie que l'index ne dépasse pas le nombre d'objets actuellement portés
                 if (indexItem < inv.getObjets().size()) {
-                    System.out.println(inv.getObjets().get(indexItem));
                     InvItem slot = new InvItem(this, inv.getObjets().get(indexItem), 0);
                     slot.setPrefWidth(TAILLE_ICON_INVENTAIRE);
                     slot.setPrefHeight(TAILLE_ICON_INVENTAIRE);

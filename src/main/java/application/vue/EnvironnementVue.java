@@ -113,17 +113,13 @@ public class EnvironnementVue {
 
         while(i < tileSol.getChildren().size() && !trouvee) {
             ImageViewEnv entView = (ImageViewEnv) tileSol.getChildren().get(i);
-            //entView.setCustomView(ent.getClass().getSimpleName());
             if(entView.getBlocX() == (int)(ent.getX() / 32) && entView.getBlocY() == (int)(ent.getY()/32)) {
-                System.out.println(id);
 
                 entView.setCustomView(ent.getClass().getSimpleName());
                 trouvee = true;
             }
             i++;
         }
-
-        //Temporaire
 
     }
 

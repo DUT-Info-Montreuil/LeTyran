@@ -58,6 +58,10 @@ public class ModeleDialogue {
         return this.texteEntier.get(indexDialogue).get(partieActuelle);
     }
 
+    /**
+     * Permet de récupérer la partie du texte à affiché
+     * @param index l'index de la partie voulue
+     */
     public void changerDialogue(int index) {
         indexDialogue = index;
         partieActuelle = 0;

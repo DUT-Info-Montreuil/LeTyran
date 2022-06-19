@@ -17,6 +17,9 @@ public class FeuDeCamp {
 
     }
 
+    /**
+     * On fait réapparaître les ennemis et animaux, on enlève les projectiles et enfin, on redonne des pv et réactualise la position du joueur
+     */
     public void seReposer() {
         env.initListeEnnemis();
         env.initListeAnimaux();

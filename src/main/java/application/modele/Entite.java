@@ -28,6 +28,13 @@ public class Entite {
 
 
     //Pour les matériaux
+
+    /**
+     * On initialise l'entitee
+     * @param env L'environnement dans lequel se situe l'entité
+     * @param x sa position en x
+     * @param y sa position en y
+     */
     public Entite(Environnement env, int x, int y) {
         this.xProperty = new SimpleFloatProperty(x);
         this.yProperty = new SimpleFloatProperty(y);
@@ -37,6 +44,13 @@ public class Entite {
         tombe = false;
     }
 
+    /**
+     * On initialise l'entitee
+     * @param env L'environnement dans lequel se situe l'entité
+     * @param x sa position en x
+     * @param y sa position en y
+     * @param pv on définit des pv qu'on veut à l'entitée
+     */
     public Entite(Environnement env, int x, int y, int pv) {
         this.xProperty = new SimpleFloatProperty(x);
         this.yProperty = new SimpleFloatProperty(y);
@@ -46,6 +60,9 @@ public class Entite {
         tombe = false;
     }
 
+    /**
+     * On créer une entitee vide, ça peut être utile pour des tests ou quand on veut créer des faux murs
+     */
     public Entite() {
         this.xProperty = new SimpleFloatProperty(0);
         this.yProperty = new SimpleFloatProperty(0);
@@ -53,6 +70,9 @@ public class Entite {
         tombe = false;
     }
 
+    /**
+     * On check les collisions tout les 0.017 secondes
+     */
     public void update() {
         if(this.getCollider() != null) {
             collide();
@@ -60,6 +80,9 @@ public class Entite {
         //tomber();
     }
 
+    /**
+     * On fait tomber l'entitee tant qu'elle n'a pas détecté une collision avec le sol
+     */
     private void tomber() {
         int i = 0;
         while (i < getVitesse() && getCollider().verifierCollisionDirection(Direction.Bas, 0.60f) == null) {
@@ -76,6 +99,9 @@ public class Entite {
     public void detruire() {
     }
 
+    /**
+     * On vérifié les collisions avec les entites qui nous intéresses
+     */
     public void collide() {
         verifCollide(env.getListeEntites());
         verifCollide(env.getListeEnnemis());
@@ -93,11 +119,19 @@ public class Entite {
         }
     }
 
+    /**
+     * Permet de retirer les pv un par un
+     */
     public void decrementerPv() {
         pv.setValue(pv.getValue() - 1);
         if (getPv() <= 0)
             detruire();
     }
+
+    /**
+     * Permet de retirer un certain nombre de pv
+     * @param degat
+     */
 
     public void decrementerPv(int degat) {
         pv.setValue(pv.getValue() - degat);
@@ -105,7 +139,10 @@ public class Entite {
             detruire();
     }
 
-    //Fonctions qui ont pour but d'être override
+    /**
+     * Cette fonction permet de transmettre quelles entites ont été détecté comme collision
+     * @param ent Contient l'entité avec qui on est rentré en collision
+     */
     public void quandCollisionDetectee(Entite ent) {}
 
     protected int getVitesse() {

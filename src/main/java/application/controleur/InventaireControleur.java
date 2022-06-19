@@ -42,6 +42,10 @@ public class InventaireControleur implements EventHandler<Event> {
 
     }
 
+    /**
+     * Permet de savoir quand on appuie sur une touche, au quel cas on vérifie si ça correspond à une voulue
+     * @param keyvent
+     */
     public void gererEntreeClavier(KeyEvent keyvent) {
         if(keyvent.getCode() == KeyCode.I) {
             this.invVue.afficherInventaire();
@@ -49,12 +53,14 @@ public class InventaireControleur implements EventHandler<Event> {
     }
 
 
+    /**
+     * Permet de savoir quand on a scroll vers le haut ou vers le bas, si c'est le cas, on change l'index de l'objet équipé
+     * @param scrollEvent
+     */
     public void gererEntreeSouris(ScrollEvent scrollEvent) {
         if(scrollEvent.getDeltaY() > 0) {
-            System.out.println("-1");
             this.inv.scrollObjetMain(-1);
         } else if(scrollEvent.getDeltaY() < 0) {
-            System.out.println("+1");
             this.inv.scrollObjetMain(+1);
 
         }
@@ -62,7 +68,6 @@ public class InventaireControleur implements EventHandler<Event> {
 
     @Override
     public void handle(Event event) {
-        //System.out.println(event.);
         if(event.getEventType() == KeyEvent.KEY_PRESSED) {
             gererEntreeClavier((KeyEvent) event);
         } else if(event.getEventType() == ScrollEvent.SCROLL) {
@@ -71,6 +76,12 @@ public class InventaireControleur implements EventHandler<Event> {
     }
 
 
+    /**
+     * Permet de changer la place d'un objet quand le deplace dans avec l'UI
+     * @param objetInventaire l'objet actuel
+     * @param anciennePlace l'ancienne place dans l'inventaire
+     * @param nouvellePlace la nouvelle place une fois le déplacement fait
+     */
     public void objetPlaceInventaireChanger(InvItem objetInventaire, int anciennePlace, int nouvellePlace) {
         this.inv.libererPlacePrise(anciennePlace);
         this.inv.definirPlacePrise(nouvellePlace);
@@ -78,16 +89,26 @@ public class InventaireControleur implements EventHandler<Event> {
         objetInventaire.getObjetInventaire().setPlaceInventaire(nouvellePlace);
     }
 
+    /**
+     * Permet de drop un objet
+     * @param vueObjet la case avec l'objet correspondant
+     */
     public void jeterObjet(InvItem vueObjet) {
         this.inv.lacherObjet(vueObjet.getObjetInventaire());
 
     }
 
+
+    /**
+     * Permet d'échanger la place entre deux objets
+     * @param premier Premier objet
+     * @param second Second objet
+     * @param nouvPlacePrem nouvelle place dans l'inventaire du premier objet
+     * @param nouvPlaceSec nouvelle place dans l'inventaire du second objet
+     */
     public void echangerObjet(InvItem premier, InvItem second, int nouvPlacePrem, int nouvPlaceSec) {
         int placeEchange = second.getObjetInventaire().getPlaceInventaire();
 
-
-        //System.out.println(second.getParent());
 
         second.getObjetInventaire().setPlaceInventaire(premier.getObjetInventaire().getPlaceInventaire());
         premier.getObjetInventaire().setPlaceInventaire(placeEchange);
@@ -95,6 +116,10 @@ public class InventaireControleur implements EventHandler<Event> {
 
     }
 
+    /**
+     * Permet de récupérer la vue associé à l'inventaire
+     * @return
+     */
     public InventaireVue getInvVue() {
         return invVue;
     }

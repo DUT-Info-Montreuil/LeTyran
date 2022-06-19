@@ -81,7 +81,6 @@ public class Inventaire {
 
     private boolean mettreEquipement(ObjetInventaire objetInventaire) {
         if(objetInventaire.getEntite() instanceof Armure) {
-            System.out.println("Vous vous êtes équiper de " + objetInventaire);
             armureProperty.setValue(objetInventaire);
             return true;
         } else if (objetInventaire.getEntite() instanceof Arme) {
@@ -100,12 +99,10 @@ public class Inventaire {
     }
 
     public void desequiperArmure() {
-        System.out.println("Vous avez retirer l'objet");
         armureProperty.setValue(null);
     }
 
     public void desequiperArme() {
-        System.out.println("Vous déséquiper l'arme");
         armeProperty.setValue(null);
     }
 
@@ -120,7 +117,6 @@ public class Inventaire {
         while (i < this.getObjets().size() && !trouver) {
             ObjetInventaire obj = this.getObjets().get(i);
             if (obj.getPlaceInventaire() == index) {
-                System.out.println(index + " " + obj.getEntite());
                 this.objetMain = obj;
                 if (obj.getEntite() instanceof Arme || obj.getEntite() instanceof Armure)
                     mettreEquipement(obj);
@@ -154,7 +150,6 @@ public class Inventaire {
         }
 
         selectionnerObjetDansMain(this.getArmeIndex());
-        System.out.println("VOus vous équipez de l'objet situé à la place " + armeIndexProperty + " " + objetMain);
     }
 
     public void definirPlacePrise(int place) {
@@ -197,7 +192,7 @@ public class Inventaire {
         }
     }
 
-    public boolean ajouterObjetVersionDeux(Entite ent) {
+    public boolean ajouterObjet(Entite ent) {
 
         boolean ajouter = false;
         //On stock l'index de l'endroit dans lequel on peut empiler
@@ -223,7 +218,6 @@ public class Inventaire {
             if(placeTrouve >= 0) {
                 ObjetInventaire nouvObjet = new ObjetInventaire(this, ent);
 
-                System.out.println("Place trouvé " + placeTrouve + " " + ent);
                 nouvObjet.setPlaceInventaire(placeTrouve);
 
                 definirPlacePrise(placeTrouve);
@@ -231,27 +225,21 @@ public class Inventaire {
                 this.getObjets().add(nouvObjet);
                 ajouter = true;
             } else {
-                System.out.println("L'inventaire est rempli");
+                ajouter = false;
             }
         } else {
             this.getObjets().get(indexStack).ajouterDansStack();
             ajouter = true;
 
         }
+
+        if (ajouter && this.env.getListeEntites() != null) {
+            this.env.getListeEntites().remove(ent);
+        }
+
         return ajouter;
     }
 
-    public void ajouterObjet(Entite obj) {
-
-        if(ajouterObjetVersionDeux(obj)) {
-            if (this.env.getListeEntites() != null) {
-                this.env.getListeEntites().remove(obj);
-            }
-
-            //trierObjetInventaireParPlace();
-        }
-
-    }
 
     public void retirerObjet(ObjetInventaire objetInventaire) {
         libererPlacePrise(objetInventaire.getPlaceInventaire());

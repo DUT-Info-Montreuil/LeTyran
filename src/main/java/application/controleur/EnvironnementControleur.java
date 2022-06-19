@@ -42,14 +42,11 @@ public class EnvironnementControleur {
             public void onChanged(Change<? extends Materiau> change) {
                 change.next();
                 for (int i = 0; i < change.getRemovedSize(); i++) {
-                    //int id = (int)((change.getRemoved().get(0).getY() / env.getMapJeu().getWidth()) *  + (change.getRemoved().get(0).getX() / TUILE_TAILLE));
-                    //System.out.println((int) change.getRemoved().get(i).getY() * WIDTH + (int) change.getRemoved().get(0).getX());
                     envVue.supprimerBloc(change.getRemoved().get(0));
                 }
 
                 for(int i = 0; i < change.getAddedSize(); i++) {
                     Materiau ent = (Materiau) change.getAddedSubList().get(i);
-                    System.out.println(ent.getX());
                     int x = (int)ent.getX() / Constantes.TAILLE_TUILE;
                     int y = (int)ent.getY() / Constantes.TAILLE_TUILE;
 
@@ -78,7 +75,6 @@ public class EnvironnementControleur {
                 for (int i = 0; i < change.getAddedSize(); i++) {
                     Personnage perso = change.getAddedSubList().get(i);
                     new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#panePNJ"), perso), new ArmeVue((Pane) root.lookup("#panePNJ"), perso, controleur ));
-                    //System.out.println(perso);
                 }
             }
 
@@ -87,7 +83,6 @@ public class EnvironnementControleur {
         //On a qu'un seul villageois
         env.getListeAllies().get(0).getInteractionProperty().addListener(e -> {
 
-            System.out.println(env.getListeAllies().get(0).getInteractionAvancement());
             if (env.getListeAllies().get(0).getInteractionAvancement() >= 1) {
                 controleur.getDialogueControleur().debutDialogue();
             }

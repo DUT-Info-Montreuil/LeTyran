@@ -10,17 +10,6 @@ public class InventaireTest {
     Environnement env = new Environnement();
     Inventaire inventaire = new Inventaire(env);
 
-    @Test
-    public void scrollObjetMain() {
-    }
-
-    @Test
-    public void recupererPlaceDispo() {
-    }
-
-    @Test
-    public void ajouterObjetVersionDeux() {
-    }
 
     @Test
     public void recupererNombreRessources() {
@@ -48,6 +37,57 @@ public class InventaireTest {
     }
 
     @Test
+    public void retirerObjet() {
+        Environnement env = new Environnement();
+        env.getListeEntites().add(new Terre());
+
+        for(int i = 0; i < 800; i++) {
+            env.getJoueur().getInventaire().ajouterObjet(new Terre());
+        }
+
+        assertEquals(2, env.getListeEntites().size());
+
+
+    }
+
+    @Test
+    public void ajouterObjetInventaire() {
+
+        // /!\ Attention il faut prendre en compte que le joueur possède un set d'objet de départ
+        Environnement env = new Environnement();
+        env.getListeEntites().add(new Terre());
+
+
+        //On vérifie que c'est bien égale à 2 (le premier étant le joueur)
+        assertEquals(2, env.getListeEntites().size());
+
+        env.getJoueur().getInventaire().ajouterObjet(env.getListeEntites().get(1));
+
+        //Le jeu retire l'objet de la liste des entites quand il est ramassé, donc on devrait avoir 1
+        assertEquals(1, env.getListeEntites().size());
+
+        //On va remplir l'inventaire seulement de terre
+        for(int i = 0; i < 800; i++) {
+            env.getJoueur().getInventaire().ajouterObjet(new Terre());
+        }
+
+        env.getListeEntites().add(new Pierre());
+
+
+        //L'inventaire étant que de terre, cette fonction est censé pouvoir récupérer de la pierre
+
+        assertEquals(true, env.getJoueur().getInventaire().ajouterObjet(env.getListeEntites().get(1)));
+        assertEquals(1, env.getListeEntites().size());
+
+        env.getListeEntites().add(new Terre());
+        assertEquals(false, env.getJoueur().getInventaire().ajouterObjet(env.getListeEntites().get(1)));
+        assertEquals(2, env.getListeEntites().size());
+
+        //Par contre si on tente d'ajouter de la terre, c'est pas censé pouvoir la récupérer
+
+    }
+
+    @Test
     public void retirerNbRessources() {
         inventaire.getObjets().clear();
 
@@ -66,10 +106,6 @@ public class InventaireTest {
         inventaire.retirerNbRessources("Terre", 10);
 
         assertEquals(19, inventaire.recupererNombreRessources("Terre"));
-
-        //On enlève tout ce qui reste
-        inventaire.retirerNbRessources("Terre", 19);
-        assertEquals(0, inventaire.recupererNombreRessources("Terre"));
 
     }
 }

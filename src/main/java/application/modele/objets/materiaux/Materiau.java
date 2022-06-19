@@ -18,7 +18,6 @@ public abstract class Materiau extends Entite {
 
         super(env, x * Constantes.TAILLE_TUILE, y * Constantes.TAILLE_TUILE, pv);
 
-        //System.out.println(x + (y/env.getMapJeu().getWidth()) * env.getMapJeu().getWidth());
         this.idMateriau = x + y * env.getMapJeu().getWidth();
     }
 

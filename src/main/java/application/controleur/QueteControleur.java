@@ -64,7 +64,6 @@ public class QueteControleur {
      */
     public void verifierRessourcesInventaire() {
         HashMap<String, ObjectifNombreNecessaire> objectifs = this.modeleQuetes.getQueteActuel().recupererListeObjectifs().get(QueteType.TYPE_QUETE.RAMASSER);
-        System.out.println(this.modeleQuetes.getQueteActuel().recupererListeObjectifs());
         for(String ressource : objectifs.keySet()) {
             objectifs.get(ressource).setNombreActuelProperty(env.getJoueur().getInventaire().recupererNombreRessources(ressource));
         }
@@ -125,8 +124,6 @@ public class QueteControleur {
 
 
             this.modeleQuetes.getQueteActuel().setCompletee(queteCompletee);
-
-            System.out.println("L'objectif est completee : " + queteCompletee);
         }
 
     }

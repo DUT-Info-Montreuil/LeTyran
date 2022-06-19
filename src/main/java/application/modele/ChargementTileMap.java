@@ -7,6 +7,11 @@ import java.io.*;
 
 public class ChargementTileMap {
 
+    /**
+     * Permet de récupérer sous forme de string le contenu d'un fichier, utile pour un format JSON
+     * @param file lien du fichier
+     * @return le contenu du fichier sous forme JSON
+     */
     private static String recupererString(FileInputStream file) {
         StringBuilder sb = new StringBuilder();
         try {
@@ -23,6 +28,11 @@ public class ChargementTileMap {
         return sb.toString();
     }
 
+    /**
+     * Permet de récupérer la tilemap correspondante en fonction de l'index voulue, sachant que par défaut, 1 c'est ce qu'il y a en fond et 0 ça contient les blocs
+     * @param index
+     * @return
+     */
     public static int[][] recupererTileMap(int index) {
 
         int[][] tileMap;
@@ -53,8 +63,6 @@ public class ChargementTileMap {
                 }
 
                 return tileMap;
-
-                //System.out.println(mapDetails.get("data"));
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

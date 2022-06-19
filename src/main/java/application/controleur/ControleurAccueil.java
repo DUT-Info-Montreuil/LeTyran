@@ -57,7 +57,6 @@ public class ControleurAccueil implements Initializable {
         root.setPrefSize(150 * 32, 34 * 32);
         this.paneNuages.setPrefSize(root.getPrefWidth(), root.getPrefHeight());
 
-        System.out.println(btnQuitNouv.isVisible());
         btnQuitNouv.setLayoutX(WIDTH_FENETRE / 2 - btnQuitNouv.getPrefWidth() / 2);
         btnQuitNouv.setLayoutY(HEIGHT_FENETRE / 2 + btnQuitNouv.getPrefHeight() / 3);
 

@@ -70,7 +70,6 @@ public class EtabliControleur {
 
         //rend le bouton fabriquer utilisable ou non si l'arme selectionné est fabricable
         env.getEtabli().getFabricableProperty().addListener((observableValue, aBoolean, t1) -> {
-            System.out.println(t1);
             if (t1) {
                 boutonFabriquer.setDisable(false);
                 etabliVue.affichageBouton(1);

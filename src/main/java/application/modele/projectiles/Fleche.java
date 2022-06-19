@@ -76,7 +76,6 @@ public class Fleche extends Projectile {
     @Override
     public void quandCollisionDetectee(Entite ent) {
         if (!getTouche() && ent != getPerso() && !(ent instanceof Fleche) && !(ent instanceof Arbre) && !(ent instanceof Consommable)) {
-            System.out.println(ent);
             setTouche(true);
             if (!(ent instanceof Materiau))
                 ent.decrementerPv(degat);

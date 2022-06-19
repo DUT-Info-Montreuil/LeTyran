@@ -58,7 +58,6 @@ public class Joueur extends Personnage {
         double distance = Math.abs(chefvillage.getX() - this.getX()) + Math.abs(chefvillage.getY() - this.getY());
         if(distance <= 32) {
             chefvillage.ajouterStatutInteragir();
-            //System.out.println(chefvillage.getInteractionAvancement());
             return true;
         }
 
@@ -91,7 +90,7 @@ public class Joueur extends Personnage {
             try {
                 if (x > (int) getX()/Constantes.TAILLE_TUILE && Math.abs(x - getX()/Constantes.TAILLE_TUILE) < 0.8)
                     x++;
-                if (y > (int) getY()/TUILE_TAILLE && Math.abs(y - getY()/TUILE_TAILLE) < 0.8)
+                if (y > (int) getY()/Constantes.TAILLE_TUILE && Math.abs(y - getY()/Constantes.TAILLE_TUILE ) < 0.8)
                     y++;
                 if (getEnv().getMinerai(x,y) == null) {
                     Materiau materiau;
@@ -106,10 +105,8 @@ public class Joueur extends Personnage {
 
                     objetEquipe.retirerDansStack();
                     this.getEnv().getListeMateriaux().add(materiau);
-                    System.out.println("Bloc ajouté");
                 }
             } catch(Exception exception) {
-                System.out.println("Impossible d'ajouter un bloc");
                 exception.printStackTrace();
             }
         }

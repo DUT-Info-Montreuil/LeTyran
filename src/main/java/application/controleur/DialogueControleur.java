@@ -67,7 +67,6 @@ public class DialogueControleur implements EventHandler<Event> {
 
         if(this.queteControleur.verifierQueteFini()) {
             this.modDialog.changerDialogue(2);
-            //System.out.println("vous avez finis la quête");
         } else if (this.queteControleur.getQueteEnCours()){
             this.modDialog.changerDialogue(1);
         }

@@ -80,7 +80,6 @@ public class InvItem extends StackPane {
         this.setOnMousePressed(mouseEvent -> {
 
             if(mouseEvent.getButton() == MouseButton.PRIMARY) {
-                System.out.println("L'objet est situé à la place " + obj.getPlaceInventaire()  + " parent " + this.getParent());
                 this.invVue.definirObjetPrit(this);
                 dragActive = true;
             } else if (mouseEvent.getButton() == MouseButton.SECONDARY && !dragActive) {
