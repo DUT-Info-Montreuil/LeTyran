@@ -23,6 +23,7 @@ public class VueQuetes {
 
     public VueQuetes(TextFlow paneQuete, Scene scene) {
         this.paneQuete = paneQuete;
+        this.paneQuete.setVisible(false);
         this.vboxObjectifs = (VBox) paneQuete.getChildren().get(0);
         this.queteNomText = (Text) this.paneQuete.lookup("#nomQuete");
 
@@ -37,10 +38,13 @@ public class VueQuetes {
     }
 
     public void initialiserQuete(BaseQuete quete) {
-        this.supprimerTousLesObjectifs();
+        if(!quete.getCompletee()) {
+            this.supprimerTousLesObjectifs();
 
-        this.ajouterObjectifs(quete.recupererListeObjectifs());
-        queteNomText.setText(quete.getNom());
+            this.ajouterObjectifs(quete.recupererListeObjectifs());
+            queteNomText.setText(quete.getNom());
+            this.paneQuete.setVisible(true);
+        }
     }
 
     public void ajouterObjectifs(HashMap<QueteType.TYPE_QUETE, HashMap<String, ObjectifNombreNecessaire>> objectifs) {
@@ -59,6 +63,10 @@ public class VueQuetes {
 
         }
         //this.vboxObjectifs.getChildren().add(new QueteObjectif(objectifs))
+    }
+
+    public void rendreQuete() {
+        this.paneQuete.setVisible(false);
     }
 
 

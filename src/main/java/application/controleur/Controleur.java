@@ -148,7 +148,7 @@ public class Controleur implements Initializable {
 
     public void setAmbianceEnvironnement(AmbianceEnvironnement amb) {
         this.ambianceEnvironnement = amb;
-        this.ambianceEnvironnement.stopperSon();
+        this.ambianceEnvironnement.changerSon("village");
         new JoueurListener(env.getJoueur(), this);
     }
 

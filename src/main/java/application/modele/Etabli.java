@@ -30,7 +30,7 @@ public class Etabli {
 
     public Etabli(Environnement env) {
         x = 5;
-        y = 11;
+        y = 21;
         ouvertProperty = new SimpleBooleanProperty(false);
         fabricableProperty = new SimpleBooleanProperty(false);
         niveauProperty = new SimpleIntegerProperty(0);

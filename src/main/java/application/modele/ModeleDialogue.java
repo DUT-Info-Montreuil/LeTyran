@@ -36,7 +36,7 @@ public class ModeleDialogue {
         dialogueQueteEncours.add("Vous êtes mon seul espoir de pouvoir revoir ma fille..");
 
         ArrayList<String> dialogueQueteFini = new ArrayList<>();
-        dialogueQueteFini.add("Vous revoilà aventurier ! Je pense que vous êtes fin prêt à affronter Momo le Tyran."
+        dialogueQueteFini.add("Vous revoilà.. Je pense que vous êtes fin prêt à affronter Momo le Tyran."
                  + "Mais prenez garde, la route sera ardue et le combat ne sera pas facile");
         dialogueQueteFini.add("Faîtes preuve de prudence, et que votre route soit accompagnée par la chance...");
 

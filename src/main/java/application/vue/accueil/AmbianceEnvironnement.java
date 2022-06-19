@@ -13,7 +13,7 @@ public class AmbianceEnvironnement {
 
     public AmbianceEnvironnement() {
         ambianceSonoreActuel = ChargeurRessources.ensembleSonJeu.get("introjeu");
-        ambianceSonoreActuel.setVolume(0.1);
+        ambianceSonoreActuel.setVolume(0.05);
         ambianceSonoreActuel.play();
     }
 
@@ -30,6 +30,14 @@ public class AmbianceEnvironnement {
             ambianceSonoreActuel.play();
         }
 
+    }
+
+    /**
+     *Permet de jouer des sons indépendamment de celui de l'environnement, est utile pour par exemple les armes
+     */
+    public void jouerSonObjet(String nom) {
+        ChargeurRessources.ensembleSonJeu.get(nom).setVolume(0.05);
+        ChargeurRessources.ensembleSonJeu.get(nom).play();
     }
 
     public void stopperSon() {

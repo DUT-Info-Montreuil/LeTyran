@@ -25,6 +25,7 @@ public class DialogueControleur implements EventHandler<Event> {
 
     //Permet de faire des actions spécifiques en fonction du nombre de fois que le joueur à cliqué sur l'écran
     //Exemple avancer rapidement le texte, passer à une autre partie du dialogue, etc..
+
     @Override
     public void handle(Event event) {
 
@@ -59,6 +60,9 @@ public class DialogueControleur implements EventHandler<Event> {
 
     }
 
+    /**
+     * S'occupe d'afficher le bon dialogue en fonction du statut de la quête (récupéré, en cours, terminer)
+     */
     public void debutDialogue()  {
 
         if(this.queteControleur.verifierQueteFini()) {

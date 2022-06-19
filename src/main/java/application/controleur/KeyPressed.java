@@ -33,12 +33,6 @@ public class KeyPressed implements EventHandler<KeyEvent> {
                     env.getJoueur().setAvance(true);
                 }
                 break;
-            case W:
-                this.env.getJoueur().setPv(this.env.getJoueur().getPv() - 10);
-                break;
-            case X:
-                this.env.getJoueur().setPv(this.env.getJoueur().getPv() + 10);
-                break;
             case R:
                 this.env.getJoueur().getInventaire().ajouterObjet(new Fleche());
                 break;

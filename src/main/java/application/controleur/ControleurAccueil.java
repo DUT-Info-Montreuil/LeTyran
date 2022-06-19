@@ -22,6 +22,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -72,10 +73,6 @@ public class ControleurAccueil implements Initializable {
         ambianceEnvironnement = new AmbianceEnvironnement();
 
 
-        /*nouvellePartie.setOnMouseEntered(e -> {
-            new AudioClip()
-        });*/
-
         initAnimation();
         ajouterNuages();
 
@@ -101,8 +98,6 @@ public class ControleurAccueil implements Initializable {
 
     public void ajouterNuages() {
         ImageView previous = null;
-        int minWidth = 100;
-        int maxWidth = 150;
         for(int i = 0; i < 7; i++) {
             ImageView imgView = new ImageView(new Image("file:src/main/resources/application/ciel/nuage_" + (int)(Math.random() * 6 +1) + ".png"));
             imgView.setFitWidth(100);
@@ -146,6 +141,12 @@ public class ControleurAccueil implements Initializable {
 
         //Controleur controleurJeu = (Controleur) nouveauRoot
 
+    }
+
+
+    public void quitterLeJeu() {
+        Stage stage = (Stage) this.root.getScene().getWindow();
+        stage.close();
     }
 
 }

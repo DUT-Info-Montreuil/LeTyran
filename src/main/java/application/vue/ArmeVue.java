@@ -118,6 +118,8 @@ public class ArmeVue {
                         inverserSprite();
                 });
                 rt.play();
+
+                System.out.println(perso.getArme());
             }
         }
     }

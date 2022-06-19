@@ -39,7 +39,7 @@ public class Environnement {
 
         mapJeu = new MapJeu();
         etabli = new Etabli(this);
-        feuDeCamp = new FeuDeCamp(this, 13, 8);
+        feuDeCamp = new FeuDeCamp(this, 13, 21);
 
         listeEntites = FXCollections.observableArrayList();
         listeEntites.add(joueur);
@@ -92,11 +92,11 @@ public class Environnement {
 
     public void initListeEnnemis() {
         listeEnnemis.clear();
-//        listeEnnemis.add(new Archer(this, 1, 20, 11, 0));
-//        listeEnnemis.add(new Lancier(this, 1, 15, 11, 0));
+        listeEnnemis.add(new Archer(this, 1, 40, 39, 0));
+        listeEnnemis.add(new Lancier(this, 1, 40, 39, 0));
 //        listeEnnemis.add(new Epeiste(this,1, 20, 0, 5));
 //        listeEnnemis.add(new Epeiste(this,1, 18, 18, 10));
-        listeEnnemis.add(new Tyran(this, 10, 30, 20));
+
     }
 
     private void initListeCoffres() {
@@ -118,7 +118,7 @@ public class Environnement {
 
     public void initListeAllies() {
         listeAllies.clear();
-        listeAllies.add(new ChefVillage(this, 2,39, 11));
+        listeAllies.add(new ChefVillage(this, 2,21, 11));
     }
             //endregion
 
