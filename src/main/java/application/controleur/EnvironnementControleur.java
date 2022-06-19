@@ -21,7 +21,7 @@ public class EnvironnementControleur {
     private Controleur controleur;
     public EnvironnementControleur(Pane root, EnvironnementVue envVue, Environnement env, Controleur controleur) {
         this.controleur = controleur;
-        ((Pane) root.lookup("#paneEnnemis")).setPrefSize(WIDTH * TUILE_TAILLE, HEIGHT * TUILE_TAILLE);
+        ((Pane) root.lookup("#panePNJ")).setPrefSize(WIDTH * TUILE_TAILLE, HEIGHT * TUILE_TAILLE);
 
         root.lookup("#tileSol").translateXProperty().bind(env.getJoueur().getXProperty().multiply(-1).add(((TUILE_TAILLE * WIDTH)) / 2));
         root.lookup("#tileSol").translateYProperty().bind(env.getJoueur().getYProperty().multiply(-1).add(((TUILE_TAILLE * HEIGHT)) / 2));
@@ -33,8 +33,8 @@ public class EnvironnementControleur {
 
         root.lookup("#paneDecors").translateXProperty().bind(env.getJoueur().getXProperty().multiply(-1).add(((TUILE_TAILLE * WIDTH)) /2));
         root.lookup("#paneDecors").translateYProperty().bind(env.getJoueur().getYProperty().multiply(-1).add(((TUILE_TAILLE * HEIGHT)) / 2));
-        root.lookup("#paneEnnemis").translateXProperty().bind(env.getJoueur().getXProperty().multiply(-1).add(((TUILE_TAILLE * WIDTH)) / 2));
-        root.lookup("#paneEnnemis").translateYProperty().bind(env.getJoueur().getYProperty().multiply(-1).add(((TUILE_TAILLE * HEIGHT)) / 2));
+        root.lookup("#panePNJ").translateXProperty().bind(env.getJoueur().getXProperty().multiply(-1).add(((TUILE_TAILLE * WIDTH)) / 2));
+        root.lookup("#panePNJ").translateYProperty().bind(env.getJoueur().getYProperty().multiply(-1).add(((TUILE_TAILLE * HEIGHT)) / 2));
 
         env.getListeMateriaux().addListener(new ListChangeListener<Materiau>() {
             @Override
@@ -76,7 +76,7 @@ public class EnvironnementControleur {
 
                 for (int i = 0; i < change.getAddedSize(); i++) {
                     Personnage perso = change.getAddedSubList().get(i);
-                    new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#paneEnnemis"), perso), new ArmeVue((Pane) root.lookup("#paneEnnemis"), perso));
+                    new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#panePNJ"), perso), new ArmeVue((Pane) root.lookup("#panePNJ"), perso));
                     //System.out.println(perso);
                 }
             }
@@ -100,7 +100,7 @@ public class EnvironnementControleur {
                     envVue.supprimerPNJ(change.getRemoved().get(i).getId());
 
                 for (int i = 0; i < change.getAddedSize(); i++)
-                    new PersonnageListeners(change.getAddedSubList().get(i), new PersonnageVue((Pane) root.lookup("#paneEnnemis"), change.getAddedSubList().get(i)));
+                    new PersonnageListeners(change.getAddedSubList().get(i), new PersonnageVue((Pane) root.lookup("#panePNJ"), change.getAddedSubList().get(i)));
             }
         });
 
@@ -119,9 +119,9 @@ public class EnvironnementControleur {
                 change.next();
                 for (int i = 0; i < change.getAddedSize(); i++)
                     if (change.getAddedSubList().get(i) instanceof Fleche)
-                        new FlecheVue((Pane) root.lookup("#paneEnnemis"), (Fleche) change.getAddedSubList().get(i));
+                        new FlecheVue((Pane) root.lookup("#panePNJ"), (Fleche) change.getAddedSubList().get(i));
                     else {
-                        BouleDeFeuVue bouleDeFeuVue = new BouleDeFeuVue((Pane) root.lookup("#paneEnnemis"), (BouleDeFeu) change.getAddedSubList().get(i));
+                        BouleDeFeuVue bouleDeFeuVue = new BouleDeFeuVue((Pane) root.lookup("#panePNJ"), (BouleDeFeu) change.getAddedSubList().get(i));
                         ((BouleDeFeu) change.getAddedSubList().get(i)).getChuteProperty().addListener(observable -> bouleDeFeuVue.chute());
                     }
                 for (int i = 0; i < change.getRemovedSize(); i++)

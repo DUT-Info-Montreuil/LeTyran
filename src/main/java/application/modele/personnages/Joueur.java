@@ -208,6 +208,7 @@ public class Joueur extends Personnage {
             detruire();
     }
 
+    //attend l'ecran noir avant d'executer pour pas voir les changements avant
     private void seReposer() {
         if (System.currentTimeMillis() - delai >= 5_000) {
             seReposeProperty.setValue(false);

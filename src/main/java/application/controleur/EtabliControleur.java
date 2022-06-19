@@ -11,8 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
-
 public class EtabliControleur {
 
     public EtabliControleur(Pane root, Environnement env, EtabliVue etabliVue) {
@@ -32,21 +30,21 @@ public class EtabliControleur {
 
         //pour afficher les infos de l'etabli lorsque cliquée
         vBoxObjets.getChildren().get(0).setOnMouseClicked(mouseEvent -> {
-            etabliVue.affichageArmeSelected(Color.BLACK);
+            etabliVue.affichageObjetSelected(Color.BLACK);
             env.getEtabli().setObjetSelected(((HBox)mouseEvent.getSource()).getId());
-            etabliVue.affichageArmeSelected(Color.WHITE);
+            etabliVue.affichageObjetSelected(Color.WHITE);
             if (env.getEtabli().getNiveau() < 3)
-                etabliVue.affichageInfosArmeSelected();
+                etabliVue.affichageInfosObjetSelected();
             env.getEtabli().peutFabriquer();
         });
 
         //pour afficher les infos d'une arme lorsque cliquée
         for (int i = 1; i < vBoxObjets.getChildren().size(); i++) {
             vBoxObjets.getChildren().get(i).setOnMouseClicked(mouseEvent -> {
-                etabliVue.affichageArmeSelected(Color.BLACK);
+                etabliVue.affichageObjetSelected(Color.BLACK);
                 env.getEtabli().setObjetSelected(((HBox)mouseEvent.getSource()).getId());
-                etabliVue.affichageArmeSelected(Color.WHITE);
-                etabliVue.affichageInfosArmeSelected();
+                etabliVue.affichageObjetSelected(Color.WHITE);
+                etabliVue.affichageInfosObjetSelected();
                 env.getEtabli().peutFabriquer();
             });
         }
@@ -56,7 +54,7 @@ public class EtabliControleur {
             env.getEtabli().fabriquer();
             if (env.getEtabli().getObjetSelected().equals("Etabli"))
                 if (env.getEtabli().getNiveau() < 3)
-                    etabliVue.affichageInfosArmeSelected();
+                    etabliVue.affichageInfosObjetSelected();
                 else
                     ((ScrollPane) etabliVue.getbPaneEtabli().lookup("#sPObjets")).getContent().lookup("#Etabli").setOpacity(0.5);
             root.requestFocus();

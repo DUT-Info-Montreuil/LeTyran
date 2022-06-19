@@ -41,6 +41,7 @@ public class Etabli {
         objetSelected = "Etabli";
     }
 
+    //listes des matériaux nécessaire à l'amélioration de l'établi
     private void initListeMateriauxEtabli() {
         listeMateriauxEtabli = new HashMap[3];
         listeMateriauxEtabli[0] = new HashMap<>() {{
@@ -54,6 +55,7 @@ public class Etabli {
         }};
     }
 
+    //listes des matériaux nécessaire à la fabrication des différents objets
     private void initListeMateriauxArmes() {
         listeMateriauxObjets = FXCollections.observableHashMap();
         listeMateriauxObjets.put("Fleche1", new HashMap<>() {{
@@ -132,6 +134,7 @@ public class Etabli {
         ouvertProperty.setValue(!ouvertProperty.getValue());
     }
 
+    //fabrique l'objet selectionne
     public void fabriquer() {
         Set listeMateriaux;
         if (objetSelected.equals("Etabli"))
@@ -149,10 +152,11 @@ public class Etabli {
         if (objetSelected.equals("Etabli"))
             niveauProperty.setValue(niveauProperty.getValue() + 1);
         else
-            inventaire.ajouterObjet(armeCorrespondant());
+            inventaire.ajouterObjet(getObjetCorrespondant());
         peutFabriquer();
     }
 
+    //vérifie si l'on peut fabriquer l'objet sélectionné
     public void peutFabriquer() {
         boolean fabricable = false;
         Set listeMateriaux = null;
@@ -181,7 +185,8 @@ public class Etabli {
         peutFabriquer();
     }
 
-    private Entite armeCorrespondant() {
+    //renvoie l'objet correspondant à l'arme selectionné
+    private Entite getObjetCorrespondant() {
         Entite objet;
         switch (objetSelected.substring(0, objetSelected.length() - 1)) {
             case "Fleche": objet = new Fleche(); break;

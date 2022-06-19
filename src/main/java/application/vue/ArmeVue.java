@@ -28,23 +28,22 @@ public class ArmeVue {
         this.perso = perso;
         this.spriteArme = spriteArme;
         spriteArme.setVisible(false);
-        //spriteArme.setImage(ChargeurRessources.iconObjets.get(perso.getArme().getClass().getSimpleName() + perso.getArme().getQualite()));
         rt = new RotateTransition(Duration.millis(90), spriteArme);
         tt = new TranslateTransition(Duration.millis(150), spriteArme);
-        initDirection(); /*initAnimation();*/ initTt();
+        initDirection(); initTt();
         spriteArme.setX(PersonnageVue.POSITION_VUE_JOUEUR_X + dir * 10);
         spriteArme.setY(PersonnageVue.POSITION_VUE_JOUEUR_Y);
         rendreVisible = false;
     }
 
-    public ArmeVue(Pane paneEnnemis, Personnage perso) {
+    public ArmeVue(Pane panePNJ, Personnage perso) {
         this.perso = perso;
         initSprite();
         rt = new RotateTransition(Duration.millis(90), spriteArme);
         tt = new TranslateTransition(Duration.millis(150), spriteArme);
         initDirection(); initAnimation();
         if (perso.getArme() instanceof Lance) initTt();
-        paneEnnemis.getChildren().add(spriteArme);
+        panePNJ.getChildren().add(spriteArme);
         ((Ennemi) perso).getAttaqueProperty().addListener(new AttaqueListener(this));
         rendreVisible = false;
         updatePositon();
@@ -67,6 +66,7 @@ public class ArmeVue {
             dir = 1;
     }
 
+    //change l'orientation de l'imageView pour que le sprite soit vertical
     public void initAnimation() {
         rt.setDuration(Duration.ONE);
         rt.setCycleCount(1);
@@ -112,6 +112,7 @@ public class ArmeVue {
                     rt.setCycleCount(2);
                 }
                 rt.setOnFinished(actionEvent -> {
+                    //rend le sprite invisible et l'inverse si nécessaire
                     spriteArme.setVisible(rendreVisible);
                     rendreVisible = false;
                     if (perso.getDirection() == Direction.Droit && dir == -1 || perso.getDirection() == Direction.Gauche && dir == 1)
@@ -157,6 +158,7 @@ public class ArmeVue {
         spriteArme.setTranslateY(perso.getY());
     }
 
+    //change l'image et remet l'imageView à son orientation initial
     public void changementArme() {
         spriteArme.setImage(ChargeurRessources.iconObjets.get(perso.getArme().getClass().getSimpleName() + perso.getArme().getQualite()));
         RotateTransition rt = new RotateTransition(Duration.ONE, spriteArme);

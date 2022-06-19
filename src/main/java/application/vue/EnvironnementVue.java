@@ -40,14 +40,12 @@ public class EnvironnementVue {
         construireDecor();
         construireFond();
 
-
-
         for (Ennemi ennemi : env.getListeEnnemis())
-            new PersonnageListeners(ennemi, new PersonnageVue(((Pane) root.lookup("#paneEnnemis")), ennemi), new ArmeVue(((Pane) root.lookup("#paneEnnemis")), ennemi));
+            new PersonnageListeners(ennemi, new PersonnageVue(((Pane) root.lookup("#panePNJ")), ennemi), new ArmeVue(((Pane) root.lookup("#panePNJ")), ennemi));
         for (Animal animal : env.getListeAnimaux())
-            new PersonnageListeners(animal, new PersonnageVue((Pane) root.lookup("#paneEnnemis"), animal));
+            new PersonnageListeners(animal, new PersonnageVue((Pane) root.lookup("#panePNJ"), animal));
         for (Allie allie : env.getListeAllies())
-            new PersonnageListeners(allie, new PersonnageVue((Pane) root.lookup("#paneEnnemis"), allie));
+            new PersonnageListeners(allie, new PersonnageVue((Pane) root.lookup("#panePNJ"), allie));
 
     }
 
@@ -88,24 +86,6 @@ public class EnvironnementVue {
     private void construireFond() {
         this.tileFond.setPrefSize(env.getMapJeu().getTabMap()[0].length * TUILE_TAILLE, env.getMapJeu().getTabMap().length * TUILE_TAILLE);
         tileFond.setBackground(Background.fill(Color.LIGHTBLUE));
-
-
-        /*for (int i = 0; i < HEIGHT; i++) {
-            try {
-                line = br.readLine();
-                tabLine = line.split(" ");
-                for (int j = 0; j < WIDTH; j++) {
-                    switch (Integer.parseInt(tabLine[j])) {
-                        case 0: img = new ImageView(imageTransparent); break;
-                        case 1: img = new ImageView(imageTerre); break;
-                        default: img = null; break;
-                    }
-                    tileFond.getChildren().add(img);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
     }
 
     public void supprimerBloc(Entite ent) {
@@ -154,8 +134,8 @@ public class EnvironnementVue {
     }
 
     public void supprimerPNJ(String id) {
-        ((Pane) root.lookup("#paneEnnemis")).getChildren().remove(root.lookup("#" + id));
-        ((Pane) root.lookup("#paneEnnemis")).getChildren().remove(root.lookup("#" + id + "Arme"));
+        ((Pane) root.lookup("#panePNJ")).getChildren().remove(root.lookup("#" + id));
+        ((Pane) root.lookup("#panePNJ")).getChildren().remove(root.lookup("#" + id + "Arme"));
     }
 
     public void changerImgCoffre(int id) {
@@ -164,7 +144,7 @@ public class EnvironnementVue {
     }
 
     public void supprimerProjectile(String id) {
-        ((Pane) root.lookup("#paneEnnemis")).getChildren().remove(root.lookup("#" + id));
+        ((Pane) root.lookup("#panePNJ")).getChildren().remove(root.lookup("#" + id));
     }
 
     public Pane getRoot() {

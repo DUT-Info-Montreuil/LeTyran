@@ -58,7 +58,7 @@ public class Controleur implements Initializable {
     @FXML private ImageView spriteFeuDeCamp;
 
     @FXML private Pane paneDecors;
-    @FXML private Pane paneEnnemis;
+    @FXML private Pane panePNJ;
     @FXML private Pane inventaireMain;
     @FXML private Pane inventaireSac;
     @FXML private Pane inventaireEquipement;
