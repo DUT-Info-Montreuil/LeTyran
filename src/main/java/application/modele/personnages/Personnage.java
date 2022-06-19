@@ -24,12 +24,6 @@ public abstract class Personnage extends Entite {
 
         this.getCollider().getHitBox().setWidth(26);
         this.getCollider().getHitBox().setHeight(28);
-
-        //this.getCollider().getHitBox().set()
-        //this.getCollider().scaleCollider(32,32);
-        //System.out.println(this.getCollider());
-        //System.out.println(this.getCollider().getHitBox());
-        //inventaire.ajouterObjet();
     }
 
     public Personnage(Environnement env, String id, int x, int y) {
@@ -41,10 +35,6 @@ public abstract class Personnage extends Entite {
         distancePoussee = 0;
         this.getCollider().getHitBox().setWidth(26);
         this.getCollider().getHitBox().setHeight(28);
-        //this.getCollider().scaleCollider(32,32);
-        //System.out.println(this.getCollider());
-        //System.out.println(this.getCollider().getHitBox());
-        //inventaire.ajouterObjet();
     }
 
     public Personnage(Environnement env, String id, int x, int y, int pv) {
@@ -56,10 +46,6 @@ public abstract class Personnage extends Entite {
         distancePoussee = 0;
         this.getCollider().getHitBox().setWidth(26);
         this.getCollider().getHitBox().setHeight(28);
-        //this.getCollider().scaleCollider(32,32);
-        //System.out.println(this.getCollider());
-        //System.out.println(this.getCollider().getHitBox());
-        //inventaire.ajouterObjet();
     }
 
     protected void seDeplacer() {

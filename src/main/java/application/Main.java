@@ -22,15 +22,8 @@ public class Main extends Application {
             Pane root = FXMLLoader.load(getClass().getResource("vue_accueil.fxml"));
             Scene scene = new Scene(root, WIDTH*TUILE_TAILLE,HEIGHT*TUILE_TAILLE);
             root.requestFocus();
-
-            //controleurScene.montrerEcranJeu();
-
             primaryStage.setTitle("Le Tyran");
-            //primaryStage.setResizable(true);
-            //primaryStage.setMaximized(true);
             primaryStage.setScene(scene);
-
-            //Jeu jeu = new Jeu(scene);
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();

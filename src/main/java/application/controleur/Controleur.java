@@ -92,9 +92,6 @@ public class Controleur implements Initializable {
         feuDeCampVue = new FeuDeCampVue(env.getFeuDeCamp(), spriteFeuDeCamp, labelMort);
         vueDialog = new VueDialogue(modeleDialogue, dialogFlow,  texteDialogue);
 
-//        this.ennemie= new Ennemie(env, 500, 350);
-//        this.ennemieVue= new EnnemieVue(root,tileSol,ennemie);
-//        this.ennemiControleur= new EnnemiControleur(root,env, tileSol,ennemie,this.ennemieVue);
         this.inventaireControleur = new InventaireControleur(root, controleurQuete, env, inventaireMain, inventaireSac, inventaireEquipement);
         this.dialogueControleur = new DialogueControleur(vueDialog, modeleDialogue, controleurQuete);
 

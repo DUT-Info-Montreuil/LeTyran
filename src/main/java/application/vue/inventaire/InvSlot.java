@@ -16,7 +16,6 @@ public class InvSlot extends Pane {
         imgView.setImage(img);
 
         this.getChildren().add(imgView);
-        //this.setBackground(Background.);
     }
 
     public InvSlot(Image img, boolean placeMain) {
