@@ -5,6 +5,7 @@ import application.modele.Entite;
 import application.modele.Environnement;
 
 import application.modele.armes.Epee;
+import application.modele.projectiles.BouleDeFeu;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -16,12 +17,14 @@ public class Tyran extends Ennemi {
 
     private BooleanProperty chargeProperty;
     private int delaiCharge;
+    private int delaiLancer;
 
     public Tyran(Environnement env, int x, int y, int distance) {
         super(env, x, y, distance, new Epee(env, 3));
         setPv(100);
         chargeProperty = new SimpleBooleanProperty(false);
         delaiCharge = 0;
+        delaiLancer = 0;
     }
 
     protected void deplacement() {
@@ -37,7 +40,7 @@ public class Tyran extends Ennemi {
     }
 
     private void charger() {
-        if (delaiCharge > 50) {
+        if (delaiCharge++ > 50) {
             int i = 0;
             Entite ent;
             while (i < getVitesse() * 3) {
@@ -60,8 +63,7 @@ public class Tyran extends Ennemi {
 
             if (Math.abs(getEnv().getJoueur().getX() - getX()) < 5 && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE)
                 getArme().frapper(this, getEnv().getJoueur());
-        } else
-            delaiCharge++;
+        }
     }
 
     protected boolean fuitJoueur() {
@@ -94,12 +96,25 @@ public class Tyran extends Ennemi {
         return false;
     }
 
+    private void lancer() {
+        if (delaiLancer++ >= 90) {
+            if (!joueurEnFace() && getEnv().getJoueur().getX() > getOrigineX() - getDistance() &&  getEnv().getJoueur().getX() < getOrigineX() + getDistance()) {
+                if (Math.abs(getEnv().getJoueur().getX() - getX()) >= 7 * TUILE_TAILLE)
+                    getEnv().getListeProjectiles().add(new BouleDeFeu(getEnv(), this, 1));
+                else if (Math.abs(getEnv().getJoueur().getX() - getX()) >= 3 * TUILE_TAILLE)
+                    getEnv().getListeProjectiles().add(new BouleDeFeu(getEnv(), this, 2));
+            }
+            delaiLancer = 0;
+        }
+    }
+
     @Override
     public void update() {
         tomber();
         if (chargeProperty.getValue()) {
             charger();
         } else {
+            lancer();
             if (getAttaque())
                 attaquer();
             if (!getAttaque())

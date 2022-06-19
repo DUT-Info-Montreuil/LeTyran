@@ -3,7 +3,7 @@ package application.modele.personnages;
 import application.modele.Direction;
 import application.modele.Entite;
 import application.modele.Environnement;
-import application.modele.objets.Materiau;
+import application.modele.objets.materiaux.Materiau;
 
 import static application.modele.Direction.Droit;
 import static application.modele.Direction.Gauche;

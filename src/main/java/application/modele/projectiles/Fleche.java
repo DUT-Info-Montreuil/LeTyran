@@ -3,7 +3,7 @@ package application.modele.projectiles;
 import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.objets.Arbre;
-import application.modele.objets.Materiau;
+import application.modele.objets.materiaux.Materiau;
 import application.modele.objets.consommable.Consommable;
 import application.modele.personnages.Joueur;
 import application.modele.personnages.Personnage;
@@ -65,7 +65,7 @@ public class Fleche extends Projectile {
                 case Bas: setY(getY() + 0.5f); break;
                 case Haut: setY(getY() - 0.5f); break;
             }
-            incrementerDistanceParcourue();
+            incrementerDistanceParcourue(0.5f);
             //collide();
         }
 

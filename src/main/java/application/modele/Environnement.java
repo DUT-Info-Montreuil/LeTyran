@@ -1,7 +1,7 @@
 package application.modele;
 
 import application.modele.objets.*;
-import application.modele.objets.Materiau;
+import application.modele.objets.materiaux.Materiau;
 import application.modele.objets.materiaux.Terre;
 import application.modele.personnages.*;
 import application.modele.personnages.allies.Allie;
@@ -93,7 +93,7 @@ public class Environnement {
 //        listeEnnemis.add(new Lancier(this, 1, 15, 11, 0));
 //        listeEnnemis.add(new Epeiste(this,1, 20, 0, 5));
 //        listeEnnemis.add(new Epeiste(this,1, 18, 18, 10));
-        listeEnnemis.add(new Tyran(this, 10, 30, 10));
+        listeEnnemis.add(new Tyran(this, 10, 30, 20));
     }
 
     private void initListeCoffres() {

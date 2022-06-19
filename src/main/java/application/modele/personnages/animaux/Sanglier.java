@@ -23,9 +23,7 @@ public class Sanglier extends Animal {
 
     @Override
     public void deplacement() {
-        if (delaiCharge < 50)
-            delaiCharge++;
-        else {
+        if (delaiCharge++ > 50) {
             deplacementAllerRetour();
             seDeplacer();
         }

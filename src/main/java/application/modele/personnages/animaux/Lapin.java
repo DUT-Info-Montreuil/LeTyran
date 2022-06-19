@@ -1,6 +1,5 @@
 package application.modele.personnages.animaux;
 
-import application.modele.Direction;
 import application.modele.Environnement;
 
 import static application.modele.MapJeu.TUILE_TAILLE;
@@ -25,9 +24,7 @@ public class Lapin extends Animal {
 
     public void saut() {
         if (!getSaute() && !getTombe())
-            if (delaiSaut < 30)
-                delaiSaut++;
-            else {
+            if (delaiSaut++ > 30) {
                 setSaute(true);
                 delaiSaut = 0;
             }

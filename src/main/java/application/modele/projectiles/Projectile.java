@@ -58,8 +58,8 @@ public abstract class Projectile extends Entite {
         this.distanceParcourue = distanceParcourue;
     }
 
-    public void incrementerDistanceParcourue() {
-        this.distanceParcourue+=0.5f;
+    public void incrementerDistanceParcourue(float valeur) {
+        this.distanceParcourue+=valeur;
     }
 
     public boolean getTouche() {

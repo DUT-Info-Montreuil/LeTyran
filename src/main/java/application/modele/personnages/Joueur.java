@@ -1,14 +1,11 @@
 package application.modele.personnages;
 
 import application.modele.*;
-import application.modele.armes.Arme;
-import application.modele.armes.Hache;
-import application.modele.armes.Pioche;
-import application.modele.armes.Arc;
+import application.modele.armes.*;
 import application.modele.objets.Arbre;
 import application.modele.objets.Coffre;
 import application.modele.objets.consommable.Consommable;
-import application.modele.objets.Materiau;
+import application.modele.objets.materiaux.Materiau;
 import application.modele.objets.materiaux.Pierre;
 import application.modele.personnages.allies.Allie;
 import javafx.beans.property.BooleanProperty;
@@ -38,6 +35,7 @@ public class Joueur extends Personnage {
         this.inventaire.ajouterObjet(new Pierre());
         this.inventaire.ajouterObjet(new Pioche(getEnv(), 3));
         this.inventaire.ajouterObjet(new Hache(getEnv(), 3));
+        this.inventaire.ajouterObjet(new Epee(getEnv(), 3));
         this.inventaire.ajouterObjet(new Arc(getEnv(), 3));
         mortProperty = new SimpleBooleanProperty(false);
         seReposeProperty = new SimpleBooleanProperty(false);
@@ -241,7 +239,7 @@ public class Joueur extends Personnage {
 
     @Override
     protected int getHauteurMax() {
-        return 2 * TUILE_TAILLE;
+        return (int) (2.5 * TUILE_TAILLE);
     }
 
     @Override
