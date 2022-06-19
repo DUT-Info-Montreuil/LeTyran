@@ -1,8 +1,8 @@
 package application.modele;
 
+import application.controleur.Constantes;
 import application.modele.personnages.Joueur;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class FeuDeCamp {
 
@@ -21,8 +21,8 @@ public class FeuDeCamp {
         env.initListeEnnemis();
         env.initListeAnimaux();
         env.getListeProjectiles().clear();
-        env.getJoueur().setX(x * TUILE_TAILLE - TUILE_TAILLE);
-        env.getJoueur().setY(y * TUILE_TAILLE);
+        env.getJoueur().setX(x * Constantes.TAILLE_TUILE - Constantes.TAILLE_TUILE);
+        env.getJoueur().setY(y * Constantes.TAILLE_TUILE);
         env.getJoueur().setPv(Joueur.PV_MAX);
     }
 

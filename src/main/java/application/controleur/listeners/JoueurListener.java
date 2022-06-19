@@ -1,13 +1,13 @@
 package application.controleur.listeners;
 
-import application.controleur.Controleur;
+import application.controleur.ControleurJeu;
 import application.modele.personnages.Joueur;
 import application.vue.accueil.AmbianceEnvironnement;
 
 public class JoueurListener {
     private AmbianceEnvironnement ambianceEnvironnement;
 
-    public JoueurListener(Joueur joueur, Controleur controleur) {
+    public JoueurListener(Joueur joueur, ControleurJeu controleur) {
         this.ambianceEnvironnement = controleur.getAmbianceEnvironnement();
 
         joueur.getPVProperty().addListener((arg, ancien, nouveau) -> {

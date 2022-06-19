@@ -1,5 +1,7 @@
 package application.vue;
 
+import application.controleur.Constantes;
+import application.controleur.ControleurJeu;
 import application.controleur.listeners.AttaqueListener;
 import application.modele.Direction;
 import application.modele.armes.Lance;
@@ -13,8 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
-
 public class ArmeVue {
 
     private Personnage perso;
@@ -24,7 +24,10 @@ public class ArmeVue {
     private int dir;
     private boolean rendreVisible;
 
-    public ArmeVue(Personnage perso, ImageView spriteArme) {
+    private ControleurJeu controleur;
+
+    public ArmeVue(Personnage perso, ImageView spriteArme, ControleurJeu controleur) {
+        this.controleur = controleur;
         this.perso = perso;
         this.spriteArme = spriteArme;
         spriteArme.setVisible(false);
@@ -36,7 +39,9 @@ public class ArmeVue {
         rendreVisible = false;
     }
 
-    public ArmeVue(Pane panePNJ, Personnage perso) {
+
+    public ArmeVue(Pane panePNJ, Personnage perso, ControleurJeu controleur) {
+        this.controleur = controleur;
         this.perso = perso;
         initSprite();
         rt = new RotateTransition(Duration.millis(90), spriteArme);
@@ -99,7 +104,7 @@ public class ArmeVue {
         if (rt.getCurrentRate() == 0 && tt.getCurrentRate() == 0 && perso.getArme() != null) {
             if (perso instanceof Joueur) rendreVisible();
             if (perso.getArme() instanceof Lance) {
-                tt.setByX(dir*TUILE_TAILLE);
+                tt.setByX(dir* Constantes.TAILLE_TUILE);
                 tt.play();
             } else {
                 if (perso.getArme() instanceof Arc) {
@@ -120,7 +125,9 @@ public class ArmeVue {
                 });
                 rt.play();
 
-                System.out.println(perso.getArme());
+
+                this.controleur.getAmbianceEnvironnement().jouerSonObjet("Bruit"+perso.getArme().getClass().getSimpleName());
+
             }
         }
     }
@@ -173,4 +180,5 @@ public class ArmeVue {
     public void retirer() {
         spriteArme.setImage(null);
     }
+
 }

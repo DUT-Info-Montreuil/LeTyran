@@ -7,10 +7,10 @@ import javafx.scene.input.MouseEvent;
 import static application.modele.MapJeu.*;
 
 public class MousePressed implements EventHandler<MouseEvent> {
-    private Controleur controleur;
+    private ControleurJeu controleur;
     private Environnement env;
 
-    public MousePressed(Controleur controleur, Environnement env) {
+    public MousePressed(ControleurJeu controleur, Environnement env) {
         this.controleur = controleur;
         this.env = env;
     }
@@ -18,32 +18,32 @@ public class MousePressed implements EventHandler<MouseEvent> {
     //calcule les coordonnées selon la position de la souris et du personnage
     @Override
     public void handle(MouseEvent mouseEvent) {
-        if (mouseEvent.getX() < (WIDTH * TUILE_TAILLE) / 2 + 5*TUILE_TAILLE && mouseEvent.getX() > (WIDTH * TUILE_TAILLE) / 2 - 5*TUILE_TAILLE
-                && mouseEvent.getY() < (HEIGHT * TUILE_TAILLE) / 2 + 5*TUILE_TAILLE && mouseEvent.getY() > (HEIGHT * TUILE_TAILLE) / 2 - 5*TUILE_TAILLE) {
+        if (mouseEvent.getX() < (WIDTH * Constantes.TAILLE_TUILE) / 2 + 5*Constantes.TAILLE_TUILE && mouseEvent.getX() > (WIDTH * Constantes.TAILLE_TUILE) / 2 - 5* Constantes.TAILLE_TUILE
+                && mouseEvent.getY() < (HEIGHT * Constantes.TAILLE_TUILE) / 2 + 5*Constantes.TAILLE_TUILE && mouseEvent.getY() > (HEIGHT * Constantes.TAILLE_TUILE) / 2 - 5*Constantes.TAILLE_TUILE) {
             int mouseX, mouseY;
 
-            if (mouseEvent.getY() < (HEIGHT * TUILE_TAILLE) / 2)
-                mouseY = (int) (env.getJoueur().getY() / TUILE_TAILLE) - 1;
-            else if (mouseEvent.getY() > (HEIGHT * TUILE_TAILLE) / 2 + TUILE_TAILLE)
-                mouseY = (int) (env.getJoueur().getY() / TUILE_TAILLE) + 1;
+            if (mouseEvent.getY() < (HEIGHT * Constantes.TAILLE_TUILE) / 2)
+                mouseY = (int) (env.getJoueur().getY() / Constantes.TAILLE_TUILE) - 1;
+            else if (mouseEvent.getY() > (HEIGHT * Constantes.TAILLE_TUILE) / 2 + Constantes.TAILLE_TUILE)
+                mouseY = (int) (env.getJoueur().getY() / Constantes.TAILLE_TUILE) + 1;
             else
-                mouseY = (int) (env.getJoueur().getY() / TUILE_TAILLE);
+                mouseY = (int) (env.getJoueur().getY() / Constantes.TAILLE_TUILE);
 
-            if (mouseEvent.getX() > (WIDTH * TUILE_TAILLE) / 2 + TUILE_TAILLE)
-                if ((env.getJoueur().getX() / TUILE_TAILLE) % 1 > 0.8)
-                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE) + 2;
+            if (mouseEvent.getX() > (WIDTH * Constantes.TAILLE_TUILE) / 2 + Constantes.TAILLE_TUILE)
+                if ((env.getJoueur().getX() / Constantes.TAILLE_TUILE) % 1 > 0.8)
+                    mouseX = (int) (env.getJoueur().getX() / Constantes.TAILLE_TUILE) + 2;
                 else
-                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE) + 1;
-            else if (mouseEvent.getX() < (WIDTH * TUILE_TAILLE) / 2)
-                if ((env.getJoueur().getX() / TUILE_TAILLE) % 1 > 0.8 && mouseY != (int) (env.getJoueur().getY() / TUILE_TAILLE))
-                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE);
+                    mouseX = (int) (env.getJoueur().getX() / Constantes.TAILLE_TUILE) + 1;
+            else if (mouseEvent.getX() < (WIDTH * Constantes.TAILLE_TUILE) / 2)
+                if ((env.getJoueur().getX() / Constantes.TAILLE_TUILE) % 1 > 0.8 && mouseY != (int) (env.getJoueur().getY() / Constantes.TAILLE_TUILE))
+                    mouseX = (int) (env.getJoueur().getX() / Constantes.TAILLE_TUILE);
                 else
-                    mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE) - 1;
+                    mouseX = (int) (env.getJoueur().getX() / Constantes.TAILLE_TUILE) - 1;
             else
-            if ((env.getJoueur().getX() / TUILE_TAILLE) % 1 > 0.5)
-                mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE) + 1;
+            if ((env.getJoueur().getX() / Constantes.TAILLE_TUILE) % 1 > 0.5)
+                mouseX = (int) (env.getJoueur().getX() / Constantes.TAILLE_TUILE) + 1;
             else
-                mouseX = (int) (env.getJoueur().getX() / TUILE_TAILLE);
+                mouseX = (int) (env.getJoueur().getX() / Constantes.TAILLE_TUILE);
 
 
             if(mouseX >= 0 && mouseX < env.getMapJeu().getWidth() && mouseY < env.getMapJeu().getHeight()) {

@@ -6,10 +6,10 @@ import javafx.scene.input.KeyEvent;
 
 public class KeyReleased implements EventHandler<KeyEvent> {
 
-    private Controleur controleur;
+    private ControleurJeu controleur;
     private Environnement jeu;
 
-    public KeyReleased(Controleur controleur, Environnement jeu) {
+    public KeyReleased(ControleurJeu controleur, Environnement jeu) {
         this.controleur = controleur;
         this.jeu = jeu;
     }

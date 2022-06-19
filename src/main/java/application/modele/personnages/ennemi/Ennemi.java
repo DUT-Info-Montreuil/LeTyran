@@ -1,5 +1,6 @@
 package application.modele.personnages.ennemi;
 
+import application.controleur.Constantes;
 import application.modele.Direction;
 import application.modele.Environnement;
 import application.modele.armes.Arme;
@@ -11,7 +12,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 
 import static application.modele.Direction.Droit;
 import static application.modele.Direction.Gauche;
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public abstract class Ennemi extends PNJ {
 
@@ -49,15 +49,15 @@ public abstract class Ennemi extends PNJ {
     }
 
     protected boolean joueurEnFace() {
-        return Math.abs(getEnv().getJoueur().getX() - getX()) < arme.getDistance() * TUILE_TAILLE
-                && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE
+        return Math.abs(getEnv().getJoueur().getX() - getX()) < arme.getDistance() * Constantes.TAILLE_TUILE
+                && Math.abs(getEnv().getJoueur().getY() - getY()) < Constantes.TAILLE_TUILE
                 && ((getDirection() == Gauche && getEnv().getJoueur().getX() - getX() < 1)
                 || (getDirection() == Droit && getEnv().getJoueur().getX() - getX() > -1));
     }
 
     protected void retourneDansZone() {
-        if (((getX() < getOrigineX() - 10 * TUILE_TAILLE && getDirection() == Gauche)
-                || (getX() > getOrigineX() + getDistance() + 10 * TUILE_TAILLE  && getDirection() == Droit)) && !getRetourZone()) {
+        if (((getX() < getOrigineX() - 10 * Constantes.TAILLE_TUILE && getDirection() == Gauche)
+                || (getX() > getOrigineX() + getDistance() + 10 * Constantes.TAILLE_TUILE  && getDirection() == Droit)) && !getRetourZone()) {
             setDirection(getDirectionOpposee());
             retourZone = true;
         } else if (getX() >= getOrigineX() && getX() <= getOrigineX() + getDistance() && getY() == getOrigineY() && getRetourZone())
@@ -74,7 +74,7 @@ public abstract class Ennemi extends PNJ {
     }
 
     protected void poursuiteJoueur() {
-        if (!retourZone && !joueurEnFace() && Math.abs(getEnv().getJoueur().getX() - getX()) < 5 * TUILE_TAILLE && Math.abs(getEnv().getJoueur().getY() - getY()) < 2 * TUILE_TAILLE) {
+        if (!retourZone && !joueurEnFace() && Math.abs(getEnv().getJoueur().getX() - getX()) < 5 * Constantes.TAILLE_TUILE && Math.abs(getEnv().getJoueur().getY() - getY()) < 2 * Constantes.TAILLE_TUILE) {
                 if (getEnv().getJoueur().getX() - getX() > 0)
                     setDirection(Droit);
                 else
@@ -85,8 +85,8 @@ public abstract class Ennemi extends PNJ {
     }
 
     protected boolean fuitJoueur() {
-        if (Math.abs(getEnv().getJoueur().getX() - getX()) < 4 * TUILE_TAILLE
-                && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE) {
+        if (Math.abs(getEnv().getJoueur().getX() - getX()) < 4 * Constantes.TAILLE_TUILE
+                && Math.abs(getEnv().getJoueur().getY() - getY()) < Constantes.TAILLE_TUILE) {
             Direction direction;
             if (getEnv().getJoueur().getX() - getX() <= 0)
                 direction = Droit;
@@ -130,7 +130,7 @@ public abstract class Ennemi extends PNJ {
 
     @Override
     protected int getHauteurMax() {
-        return 2 * TUILE_TAILLE;
+        return 2 * Constantes.TAILLE_TUILE;
     }
 
     @Override

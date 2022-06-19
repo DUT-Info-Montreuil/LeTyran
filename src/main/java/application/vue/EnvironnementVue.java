@@ -1,4 +1,6 @@
 package application.vue;
+import application.controleur.Constantes;
+import application.controleur.ControleurJeu;
 import application.controleur.listeners.PersonnageListeners;
 import application.modele.ChargementTileMap;
 import application.modele.Entite;
@@ -28,7 +30,7 @@ public class EnvironnementVue {
 
     private AudioClip bruitCoffre = new AudioClip(getClass().getResource("/application/sons/coffreBruit.mp3").toExternalForm());
 
-    public EnvironnementVue(Environnement env, Pane root, TilePane tileSol, TilePane tileDecors, TilePane tileFond, TilePane tileFondDecor) {
+    public EnvironnementVue(Environnement env, Pane root, TilePane tileSol, TilePane tileDecors, TilePane tileFond, TilePane tileFondDecor, ControleurJeu controleur) {
         this.env = env;
         this.root = root;
         this.tileSol = tileSol;
@@ -41,7 +43,7 @@ public class EnvironnementVue {
         construireFond();
 
         for (Ennemi ennemi : env.getListeEnnemis())
-            new PersonnageListeners(ennemi, new PersonnageVue(((Pane) root.lookup("#panePNJ")), ennemi), new ArmeVue(((Pane) root.lookup("#panePNJ")), ennemi));
+            new PersonnageListeners(ennemi, new PersonnageVue(((Pane) root.lookup("#panePNJ")), ennemi), new ArmeVue(((Pane) root.lookup("#panePNJ")), ennemi, controleur));
         for (Animal animal : env.getListeAnimaux())
             new PersonnageListeners(animal, new PersonnageVue((Pane) root.lookup("#panePNJ"), animal));
         for (Allie allie : env.getListeAllies())
@@ -54,7 +56,7 @@ public class EnvironnementVue {
         int width = env.getMapJeu().getTabMap()[0].length;
         int heigth = env.getMapJeu().getTabMap().length;
 
-        this.tileSol.setPrefSize(env.getMapJeu().getTabMap()[0].length * TUILE_TAILLE, env.getMapJeu().getTabMap().length * TUILE_TAILLE);
+        this.tileSol.setPrefSize(env.getMapJeu().getTabMap()[0].length * Constantes.TAILLE_TUILE, env.getMapJeu().getTabMap().length * Constantes.TAILLE_TUILE);
         ChargeurRessources.charger();
         ImageView img;
         for (int i = 0; i < heigth; i++) {
@@ -71,7 +73,7 @@ public class EnvironnementVue {
 
     private void construireDecor() {
 
-        this.tileFondDecor.setPrefSize(env.getMapJeu().getTabMap()[0].length * TUILE_TAILLE, env.getMapJeu().getTabMap().length * TUILE_TAILLE);
+        this.tileFondDecor.setPrefSize(env.getMapJeu().getTabMap()[0].length * Constantes.TAILLE_TUILE, env.getMapJeu().getTabMap().length * Constantes.TAILLE_TUILE);
 
         int [][]tile = ChargementTileMap.recupererTileMap(1);
 
@@ -84,7 +86,7 @@ public class EnvironnementVue {
     }
 
     private void construireFond() {
-        this.tileFond.setPrefSize(env.getMapJeu().getTabMap()[0].length * TUILE_TAILLE, env.getMapJeu().getTabMap().length * TUILE_TAILLE);
+        this.tileFond.setPrefSize(env.getMapJeu().getTabMap()[0].length * Constantes.TAILLE_TUILE, env.getMapJeu().getTabMap().length * Constantes.TAILLE_TUILE);
         tileFond.setBackground(Background.fill(Color.LIGHTBLUE));
     }
 

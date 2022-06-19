@@ -1,5 +1,6 @@
 package application.modele;
 
+import application.controleur.Constantes;
 import application.modele.objets.*;
 import application.modele.objets.materiaux.Pierre;
 import application.modele.objets.materiaux.Materiau;
@@ -16,8 +17,6 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Environnement {
 
@@ -95,7 +94,6 @@ public class Environnement {
         listeEnnemis.add(new Archer(this, 3, 84, 21, 0));
         listeEnnemis.add(new Archer(this, 3, 102, 21, 0));
         listeEnnemis.add(new Lancier(this, 3, 99, 21, 0));
-        //listeEnnemis.add(new Tyran(this, 10, 30, 20));
     }
 
     private void initListeCoffres() {
@@ -126,7 +124,7 @@ public class Environnement {
 
     public Materiau getMinerai(int x, int y) {
         for (Materiau minerai : getListeMateriaux()) {
-            if (minerai.getX() == x * TUILE_TAILLE && minerai.getY() == y * TUILE_TAILLE)
+            if (minerai.getX() == x * Constantes.TAILLE_TUILE && minerai.getY() == y * Constantes.TAILLE_TUILE)
                 return minerai;
         }
         return null;
@@ -145,7 +143,7 @@ public class Environnement {
 
     public Ennemi getEnnemi(int x, int y) {
         for (Ennemi ennemi : listeEnnemis) {
-            if (Math.abs(ennemi.getX() / TUILE_TAILLE - x) < 1 && Math.abs(ennemi.getY() / TUILE_TAILLE - y) < 1)
+            if (Math.abs(ennemi.getX() / Constantes.TAILLE_TUILE - x) < 1 && Math.abs(ennemi.getY() / Constantes.TAILLE_TUILE - y) < 1)
                 return ennemi;
         }
         return null;
@@ -153,7 +151,7 @@ public class Environnement {
 
     public Animal getAnimal(int x, int y) {
         for (Animal animal : listeAnimaux) {
-            if (Math.abs(animal.getX() / TUILE_TAILLE - x) < 1 && Math.abs(animal.getY() / TUILE_TAILLE - y) < 1)
+            if (Math.abs(animal.getX() / Constantes.TAILLE_TUILE - x) < 1 && Math.abs(animal.getY() / Constantes.TAILLE_TUILE - y) < 1)
                 return animal;
         }
         return null;

@@ -1,5 +1,6 @@
 package application.vue;
 
+import application.controleur.Constantes;
 import application.modele.MapJeu;
 import application.modele.ModeleDialogue;
 import javafx.scene.layout.Pane;
@@ -25,8 +26,8 @@ public class VueDialogue {
 
         this.dialogTxt.setTranslateX(10);
         this.dialogFlow = dialogFlow;
-        this.dialogFlow .setPrefSize(MapJeu.WIDTH * MapJeu.TUILE_TAILLE, MapJeu.TUILE_TAILLE * 4);
-        this.dialogFlow .setLayoutY(MapJeu.HEIGHT * MapJeu.TUILE_TAILLE - this.dialogFlow .getPrefHeight());
+        this.dialogFlow .setPrefSize(MapJeu.WIDTH * Constantes.TAILLE_TUILE, Constantes.TAILLE_TUILE * 4);
+        this.dialogFlow .setLayoutY(MapJeu.HEIGHT * Constantes.TAILLE_TUILE - this.dialogFlow .getPrefHeight());
         afficherFin = false;
 
     }

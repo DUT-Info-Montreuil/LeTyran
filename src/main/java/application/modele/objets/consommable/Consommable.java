@@ -4,7 +4,6 @@ import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.personnages.Joueur;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public abstract class Consommable extends Entite {
 

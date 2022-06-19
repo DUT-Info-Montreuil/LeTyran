@@ -34,8 +34,10 @@ public class AmbianceEnvironnement {
      *Permet de jouer des sons indépendamment de celui de l'environnement, est utile pour par exemple les armes
      */
     public void jouerSonObjet(String nom) {
-        ChargeurRessources.ensembleSonJeu.get(nom).setVolume(0.05);
-        ChargeurRessources.ensembleSonJeu.get(nom).play();
+        if(ChargeurRessources.ensembleSonJeu.get(nom) != null) {
+            ChargeurRessources.ensembleSonJeu.get(nom).setVolume(0.05);
+            ChargeurRessources.ensembleSonJeu.get(nom).play();
+        }
     }
 
     public void stopperSon() {

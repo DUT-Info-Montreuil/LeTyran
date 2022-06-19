@@ -2,7 +2,6 @@ package application.controleur;
 
 import application.controleur.listeners.*;
 import application.modele.Environnement;
-import application.modele.personnages.Joueur;
 import application.vue.ArmeVue;
 import application.vue.EtabliVue;
 import application.vue.PersonnageVue;
@@ -27,7 +26,7 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controleur implements Initializable {
+public class ControleurJeu implements Initializable {
 
     private Environnement env;
     private PersonnageVue personnageVue;
@@ -72,6 +71,7 @@ public class Controleur implements Initializable {
 
 
     private AmbianceEnvironnement ambianceEnvironnement;
+    private Pane paneAccueil;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -84,9 +84,9 @@ public class Controleur implements Initializable {
 
 
         personnageVue = new PersonnageVue(env.getJoueur(), spriteJoueur);
-        envVue = new EnvironnementVue(env, root, tileSol, tileDecors, tileFond, tileFondDecor);
+        envVue = new EnvironnementVue(env, root, tileSol, tileDecors, tileFond, tileFondDecor, this);
         objetVue = new ObjetVue(this.env, paneDecors);
-        armeVue = new ArmeVue(env.getJoueur(), spriteArme);
+        armeVue = new ArmeVue(env.getJoueur(), spriteArme, this);
         vievue = new VieVue(root);
         etabliVue = new EtabliVue(env.getEtabli(), spriteEtabli, bPaneEtabli);
         feuDeCampVue = new FeuDeCampVue(env.getFeuDeCamp(), spriteFeuDeCamp, labelMort);
@@ -162,5 +162,15 @@ public class Controleur implements Initializable {
     }
     public DialogueControleur getDialogueControleur() {
         return this.dialogueControleur;
+    }
+
+    public void setPaneAccueil(Pane paneAccueil) {
+        this.paneAccueil =paneAccueil;
+    }
+
+    public void retournerMenuPrincipal() {
+        this.ambianceEnvironnement.changerSon("introjeu");
+        this.root.getScene().setRoot(paneAccueil);
+        paneAccueil.requestFocus();
     }
 }

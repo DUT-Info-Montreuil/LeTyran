@@ -1,11 +1,11 @@
 package application.vue;
 
+import application.controleur.Constantes;
 import application.modele.Direction;
 import application.modele.projectiles.Fleche;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class FlecheVue {
     public FlecheVue(Pane panePNJ, Fleche fleche) {
@@ -16,8 +16,8 @@ public class FlecheVue {
             case Bas -> spriteFleche.setRotate(90);
             case Haut -> spriteFleche.setRotate(-90);
         }
-        spriteFleche.setFitWidth(TUILE_TAILLE);
-        spriteFleche.setFitHeight(TUILE_TAILLE);
+        spriteFleche.setFitWidth(Constantes.TAILLE_TUILE);
+        spriteFleche.setFitHeight(Constantes.TAILLE_TUILE);
         spriteFleche.translateXProperty().bind(fleche.getXProperty());
         spriteFleche.translateYProperty().bind(fleche.getYProperty());
         panePNJ.getChildren().add(spriteFleche);

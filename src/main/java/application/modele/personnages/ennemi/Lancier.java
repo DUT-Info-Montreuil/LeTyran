@@ -3,7 +3,6 @@ package application.modele.personnages.ennemi;
 import application.modele.Environnement;
 import application.modele.armes.Lance;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Lancier extends Ennemi {
 

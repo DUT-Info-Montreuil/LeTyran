@@ -5,7 +5,6 @@ import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.personnages.Personnage;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public abstract class Projectile extends Entite {
 

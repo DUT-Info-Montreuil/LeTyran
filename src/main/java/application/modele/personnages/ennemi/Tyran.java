@@ -1,5 +1,6 @@
 package application.modele.personnages.ennemi;
 
+import application.controleur.Constantes;
 import application.modele.Direction;
 import application.modele.Entite;
 import application.modele.Environnement;
@@ -13,11 +14,10 @@ import javafx.beans.property.SimpleBooleanProperty;
 
 import static application.modele.Direction.Droit;
 import static application.modele.Direction.Gauche;
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Tyran extends Ennemi {
 
-    private static int DISTANCE_FUITE = 5 * TUILE_TAILLE;
+    private static int DISTANCE_FUITE = 5 * Constantes.TAILLE_TUILE;
 
     private BooleanProperty chargeProperty;
     private int delaiCharge;
@@ -38,8 +38,8 @@ public class Tyran extends Ennemi {
     protected void deplacement() {
         if (chargeProperty.getValue())
             charger();
-        else if (!fuitJoueur() && (Math.abs(getEnv().getJoueur().getX() - (getX())) - 4 >= 6 * TUILE_TAILLE
-                || Math.abs(getEnv().getJoueur().getY() - getY()) > TUILE_TAILLE)
+        else if (!fuitJoueur() && (Math.abs(getEnv().getJoueur().getX() - (getX())) - 4 >= 6 * Constantes.TAILLE_TUILE
+                || Math.abs(getEnv().getJoueur().getY() - getY()) > Constantes.TAILLE_TUILE)
                 && (Math.abs(getX() - getOrigineX()) > 1)) {
             if ((getX() - getOrigineX() < -1 && getDirection() == Gauche) || (getX() - getOrigineX() > 1 && getDirection() == Droit))
                 setDirection(getDirectionOpposee());
@@ -66,7 +66,7 @@ public class Tyran extends Ennemi {
                 distanceCharge += 0.45f;
             }
 
-            if (!touche && Math.abs(getEnv().getJoueur().getX() - getX()) < 5 && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE) {
+            if (!touche && Math.abs(getEnv().getJoueur().getX() - getX()) < 5 && Math.abs(getEnv().getJoueur().getY() - getY()) < Constantes.TAILLE_TUILE) {
                 getArme().frapper(this, getEnv().getJoueur());
                 touche = true;
             }
@@ -82,8 +82,8 @@ public class Tyran extends Ennemi {
 
     //fuit le joueur à partir d'une certaine distance et charge si le joueur est trop près
     protected boolean fuitJoueur() {
-        if (!chargeProperty.getValue() && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE) {
-            if (Math.abs(getEnv().getJoueur().getX() - getX()) < 2 * TUILE_TAILLE)  {
+        if (!chargeProperty.getValue() && Math.abs(getEnv().getJoueur().getY() - getY()) < Constantes.TAILLE_TUILE) {
+            if (Math.abs(getEnv().getJoueur().getX() - getX()) < 2 * Constantes.TAILLE_TUILE)  {
                 chargeProperty.setValue(true);
             } else if (Math.abs(getEnv().getJoueur().getX() - getX()) < DISTANCE_FUITE
                     && getX() >= getOrigineX() - getDistance() && getX() <= getOrigineX() + getDistance()) {
@@ -114,7 +114,7 @@ public class Tyran extends Ennemi {
     private void lancer() {
         if (delaiLancer++ >= 90) {
             if (!joueurEnFace() && getEnv().getJoueur().getX() > getOrigineX() - getDistance() &&  getEnv().getJoueur().getX() < getOrigineX() + getDistance()) {
-                if (Math.abs(getEnv().getJoueur().getX() - getX()) >= 10 * TUILE_TAILLE)
+                if (Math.abs(getEnv().getJoueur().getX() - getX()) >= 10 * Constantes.TAILLE_TUILE)
                     getEnv().getListeProjectiles().add(new BouleDeFeu(getEnv(), this, 1));
                 else if (Math.abs(getEnv().getJoueur().getX() - getX()) >= DISTANCE_FUITE)
                     getEnv().getListeProjectiles().add(new BouleDeFeu(getEnv(), this, 2));

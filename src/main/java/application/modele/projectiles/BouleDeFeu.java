@@ -1,5 +1,6 @@
 package application.modele.projectiles;
 
+import application.controleur.Constantes;
 import application.modele.Direction;
 import application.modele.Entite;
 import application.modele.Environnement;
@@ -9,7 +10,6 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 import static application.modele.Direction.*;
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class BouleDeFeu extends Projectile {
 
@@ -53,7 +53,6 @@ public class BouleDeFeu extends Projectile {
             deplacementType1SousPartie(Bas);
             force += 0.01f;
             if (force > 0.62f) {
-                System.out.println((getX() - getPerso().getX())/TUILE_TAILLE);
                 getEnv().getListeProjectiles().remove(this);
             }
         }
@@ -85,7 +84,7 @@ public class BouleDeFeu extends Projectile {
     //la boule de feu se deplace en ligne droite
     private void deplacementType2() {
         int i = 0;
-        while (i < getVitesse() && getDistanceParcourue() < 8 * TUILE_TAILLE) {
+        while (i < getVitesse() && getDistanceParcourue() < 8 * Constantes.TAILLE_TUILE) {
             i++;
             Entite touchee = this.getCollider().verifierCollisionDirection(getDirection(), 0.3f);
             if(touchee != null)

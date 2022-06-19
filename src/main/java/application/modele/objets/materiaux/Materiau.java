@@ -1,10 +1,10 @@
 package application.modele.objets.materiaux;
 
+import application.controleur.Constantes;
 import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.armes.Pioche;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public abstract class Materiau extends Entite {
 
@@ -16,7 +16,7 @@ public abstract class Materiau extends Entite {
 
     public Materiau(Environnement env,  int x, int y, int pv) {
 
-        super(env, x *TUILE_TAILLE, y * TUILE_TAILLE, pv);
+        super(env, x * Constantes.TAILLE_TUILE, y * Constantes.TAILLE_TUILE, pv);
 
         //System.out.println(x + (y/env.getMapJeu().getWidth()) * env.getMapJeu().getWidth());
         this.idMateriau = x + y * env.getMapJeu().getWidth();
@@ -37,8 +37,8 @@ public abstract class Materiau extends Entite {
 
     public void detruire() {
         Materiau materiau;
-        int positionX = (int)this.getX() / TUILE_TAILLE;
-        int positionY = (int)this.getY() / TUILE_TAILLE;
+        int positionX = (int)this.getX() / Constantes.TAILLE_TUILE;
+        int positionY = (int)this.getY() / Constantes.TAILLE_TUILE;
         switch (this.getClass().getSimpleName()) {
             case "Pierre": materiau = new Pierre(this.getEnv(), positionX, positionY); break;
             case "Fer": materiau = new Fer(this.getEnv(), positionX, positionY); break;
@@ -49,7 +49,7 @@ public abstract class Materiau extends Entite {
         }
         this.getEnv().getListeEntites().add(materiau);
 
-        getEnv().getMapJeu().getTabMap()[(int) (getY() / TUILE_TAILLE)][(int) (getX() / TUILE_TAILLE)] = 0;
+        getEnv().getMapJeu().getTabMap()[(int) (getY() / Constantes.TAILLE_TUILE)][(int) (getX() / Constantes.TAILLE_TUILE)] = 0;
         getEnv().getListeMateriaux().remove(this);
     }
 }

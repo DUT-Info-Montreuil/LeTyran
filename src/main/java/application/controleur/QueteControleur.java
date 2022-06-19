@@ -36,6 +36,8 @@ public class QueteControleur {
             if(this.modeleQuetes.getQueteActuel().getCompletee()) {
                 rendreQuete();
                 this.vueQuetes.rendreQuete();
+                this.env.getListeEnnemis().add(new Tyran(this.env, 140, 35, 20));
+
             }
             return this.modeleQuetes.getQueteActuel().getCompletee();
         }

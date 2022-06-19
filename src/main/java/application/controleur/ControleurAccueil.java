@@ -1,27 +1,19 @@
 package application.controleur;
 
-import application.modele.MapJeu;
 import application.vue.ChargeurRessources;
 import application.vue.accueil.AmbianceEnvironnement;
 import application.vue.accueil.InteractionUI;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -132,12 +124,14 @@ public class ControleurAccueil implements Initializable {
     public void lancerJeu() throws IOException {
         URL location = getClass().getResource("/application/vue.fxml");
         FXMLLoader loader = new FXMLLoader(location);
-        Pane root = loader.load(location.openStream());
+        Pane nouveauRoot = loader.load(location.openStream());
 
-        Controleur controleurJeu = (Controleur) loader.getController();
+        ControleurJeu controleurJeu = (ControleurJeu) loader.getController();
         controleurJeu.setAmbianceEnvironnement(this.ambianceEnvironnement);
-        this.root.getScene().setRoot(root);
-        root.requestFocus();
+        controleurJeu.setPaneAccueil(root);
+
+        this.root.getScene().setRoot(nouveauRoot);
+        nouveauRoot.requestFocus();
 
         //Controleur controleurJeu = (Controleur) nouveauRoot
 

@@ -1,5 +1,6 @@
 package application.vue;
 
+import application.controleur.Constantes;
 import application.modele.Direction;
 import application.modele.projectiles.BouleDeFeu;
 import javafx.animation.RotateTransition;
@@ -7,7 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class BouleDeFeuVue {
 
@@ -28,8 +28,8 @@ public class BouleDeFeuVue {
             spriteBouleDeFeu.setScaleX(-1);
 
 
-        spriteBouleDeFeu.setFitWidth(TUILE_TAILLE);
-        spriteBouleDeFeu.setFitHeight(TUILE_TAILLE);
+        spriteBouleDeFeu.setFitWidth(Constantes.TAILLE_TUILE);
+        spriteBouleDeFeu.setFitHeight(Constantes.TAILLE_TUILE);
         spriteBouleDeFeu.translateXProperty().bind(bouleDeFeu.getXProperty());
         spriteBouleDeFeu.translateYProperty().bind(bouleDeFeu.getYProperty());
 

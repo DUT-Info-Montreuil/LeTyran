@@ -1,5 +1,6 @@
 package application.vue;
 
+import application.controleur.Constantes;
 import application.modele.Direction;
 import application.modele.personnages.Joueur;
 import application.modele.personnages.Personnage;
@@ -11,7 +12,6 @@ import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class PersonnageVue {
 
@@ -51,10 +51,10 @@ public class PersonnageVue {
             add(new Image("file:src/main/resources/application/perso/sanglier/sanglier_3.png"));
         }});
         put("Tyran", new ArrayList<>() {{
-            add(new Image("file:src/main/resources/application/perso/ennemi/tyran2/tyran_immobile.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/tyran2/tyran_mouvement1.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/tyran2/tyran_immobile.png"));
-            add(new Image("file:src/main/resources/application/perso/ennemi/tyran2/tyran_mouvement2.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_mouvement1.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_immobile.png"));
+            add(new Image("file:src/main/resources/application/perso/ennemi/tyran/tyran_mouvement2.png"));
         }});
         put("ChefVillage", new ArrayList<>() {{
             add(new Image("file:src/main/resources/application/personnages/chef_village.png"));
@@ -66,8 +66,8 @@ public class PersonnageVue {
     private int indexSprite;
     private long lastUpdate;
 
-    public final static int POSITION_VUE_JOUEUR_X = (MapJeu.WIDTH * MapJeu.TUILE_TAILLE) / 2;
-    public final static int POSITION_VUE_JOUEUR_Y = (MapJeu.HEIGHT * MapJeu.TUILE_TAILLE) / 2;
+    public final static int POSITION_VUE_JOUEUR_X = (MapJeu.WIDTH * Constantes.TAILLE_TUILE) / 2;
+    public final static int POSITION_VUE_JOUEUR_Y = (MapJeu.HEIGHT * Constantes.TAILLE_TUILE) / 2;
 
     public PersonnageVue(Personnage perso, ImageView spritesJoueur) {
         this.perso = perso;
@@ -87,8 +87,8 @@ public class PersonnageVue {
     private void creationSprite() {
         spritePerso = new ImageView();
         spritePerso.setId(perso.getId());
-        spritePerso.setFitWidth(TUILE_TAILLE);
-        spritePerso.setFitHeight(TUILE_TAILLE);
+        spritePerso.setFitWidth(Constantes.TAILLE_TUILE);
+        spritePerso.setFitHeight(Constantes.TAILLE_TUILE);
         spritePerso.setImage(LISTE_SPRITES.get(perso.getClass().getSimpleName()).get(0));
         spritePerso.translateXProperty().bind(perso.getXProperty());
         spritePerso.translateYProperty().bind(perso.getYProperty());

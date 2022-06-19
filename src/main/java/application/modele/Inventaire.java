@@ -1,5 +1,6 @@
 package application.modele;
 
+import application.controleur.Constantes;
 import application.modele.armes.Arme;
 import application.modele.armes.Armure;
 import application.modele.objets.consommable.Consommable;
@@ -12,7 +13,6 @@ import javafx.collections.ObservableList;
 
 import java.util.HashMap;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Inventaire {
     private ObservableList<ObjetInventaire> objets = FXCollections.observableArrayList();
@@ -265,7 +265,7 @@ public class Inventaire {
 
 
         //On veut afficher l'objet sur la carte
-        ent.setX(this.env.getJoueur().getX() + TUILE_TAILLE);
+        ent.setX(this.env.getJoueur().getX() + Constantes.TAILLE_TUILE);
         ent.setY(this.env.getJoueur().getY());
 
         this.env.getListeEntites().add(ent);

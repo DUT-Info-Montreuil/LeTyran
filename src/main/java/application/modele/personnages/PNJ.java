@@ -1,5 +1,6 @@
 package application.modele.personnages;
 
+import application.controleur.Constantes;
 import application.modele.Direction;
 import application.modele.Entite;
 import application.modele.Environnement;
@@ -7,7 +8,6 @@ import application.modele.objets.materiaux.Materiau;
 
 import static application.modele.Direction.Droit;
 import static application.modele.Direction.Gauche;
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public abstract class PNJ extends Personnage {
 
@@ -16,17 +16,17 @@ public abstract class PNJ extends Personnage {
     private int distance;
 
     public PNJ(Environnement env, String id, int x, int y, int distance) {
-        super(env, id, x * TUILE_TAILLE, y * TUILE_TAILLE);
-        origineX = x * TUILE_TAILLE;
-        origineY = y * TUILE_TAILLE;
-        this.distance = distance * TUILE_TAILLE;
+        super(env, id, x * Constantes.TAILLE_TUILE, y * Constantes.TAILLE_TUILE);
+        origineX = x * Constantes.TAILLE_TUILE;
+        origineY = y * Constantes.TAILLE_TUILE;
+        this.distance = distance * Constantes.TAILLE_TUILE;
     }
 
     public PNJ(Environnement env, String id, int x, int y, int distance, int pv) {
-        super(env, id, x * TUILE_TAILLE, y * TUILE_TAILLE, pv);
-        origineX = x * TUILE_TAILLE;
-        origineY = y * TUILE_TAILLE;
-        this.distance = distance * TUILE_TAILLE;
+        super(env, id, x * Constantes.TAILLE_TUILE, y * Constantes.TAILLE_TUILE, pv);
+        origineX = x * Constantes.TAILLE_TUILE;
+        origineY = y * Constantes.TAILLE_TUILE;
+        this.distance = distance * Constantes.TAILLE_TUILE;
     }
 
     protected void deplacement() {

@@ -17,7 +17,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button fx:id="quitterJeu" mnemonicParsing="false" prefHeight="25.0" prefWidth="315.0" styleClass="boutonAccueil" text="Quitter">
+            <Button fx:id="quitterJeu" mnemonicParsing="false" onAction="#quitterLeJeu" prefHeight="25.0" prefWidth="315.0" styleClass="boutonAccueil" text="Quitter">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

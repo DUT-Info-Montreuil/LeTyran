@@ -1,8 +1,8 @@
 package application.modele.personnages.animaux;
 
+import application.controleur.Constantes;
 import application.modele.Environnement;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Lapin extends Animal {
 
@@ -40,7 +40,7 @@ public class Lapin extends Animal {
 
     @Override
     protected int getHauteurMax() {
-        return TUILE_TAILLE;
+        return Constantes.TAILLE_TUILE;
     }
 
     @Override

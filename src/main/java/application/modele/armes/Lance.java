@@ -1,11 +1,11 @@
 package application.modele.armes;
 
+import application.controleur.Constantes;
 import application.modele.Direction;
 import application.modele.Environnement;
 import application.modele.personnages.Joueur;
 import application.modele.personnages.Personnage;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Lance extends Arme {
 
@@ -19,9 +19,9 @@ public class Lance extends Arme {
         if (perso instanceof Joueur)
             decrementerPv();
         if (perso.getDirection() == Direction.Droit)
-            ennemi.setDistancePoussee((getQualite()+1) * TUILE_TAILLE);
+            ennemi.setDistancePoussee((getQualite()+1) * Constantes.TAILLE_TUILE);
         else
-            ennemi.setDistancePoussee(-(getQualite()+1) * TUILE_TAILLE);
+            ennemi.setDistancePoussee(-(getQualite()+1) * Constantes.TAILLE_TUILE);
     }
 
     public int getDistance() {

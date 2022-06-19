@@ -1,5 +1,6 @@
 package application.modele.projectiles;
 
+import application.controleur.Constantes;
 import application.modele.Entite;
 import application.modele.Environnement;
 import application.modele.objets.Arbre;
@@ -10,7 +11,6 @@ import application.modele.personnages.Personnage;
 
 import static application.modele.Direction.Bas;
 import static application.modele.Direction.Haut;
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Fleche extends Projectile {
     
@@ -24,8 +24,8 @@ public class Fleche extends Projectile {
     public Fleche(Environnement env, Joueur joueur, int x, int y, int distanceMax, int degat) {
         super(env, (int) joueur.getX(), (int) joueur.getY(), "Fleche" + idMax++, joueur);
 
-        if (x == (int) (joueur.getX() / TUILE_TAILLE))
-            if (y > joueur.getY()/TUILE_TAILLE)
+        if (x == (int) (joueur.getX() / Constantes.TAILLE_TUILE))
+            if (y > joueur.getY()/ Constantes.TAILLE_TUILE)
                 setDirection(Bas);
             else
                 setDirection(Haut);

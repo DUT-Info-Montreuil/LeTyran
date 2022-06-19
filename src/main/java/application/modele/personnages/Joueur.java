@@ -1,5 +1,6 @@
 package application.modele.personnages;
 
+import application.controleur.Constantes;
 import application.modele.*;
 import application.modele.armes.*;
 import application.modele.objets.Arbre;
@@ -11,7 +12,6 @@ import application.modele.personnages.allies.Allie;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Joueur extends Personnage {
 
@@ -87,9 +87,9 @@ public class Joueur extends Personnage {
     public boolean poserBloc(int x, int y) {
         ObjetInventaire objetEquipe = this.getInventaire().getObjetMain();
         if(objetEquipe != null && !(objetEquipe.getEntite() instanceof Arme)
-                && (x != (int) getX()/TUILE_TAILLE || y != (int) getY()/TUILE_TAILLE)) {
+                && (x != (int) getX()/Constantes.TAILLE_TUILE || y != (int) getY()/ Constantes.TAILLE_TUILE)) {
             try {
-                if (x > (int) getX()/TUILE_TAILLE && Math.abs(x - getX()/TUILE_TAILLE) < 0.8)
+                if (x > (int) getX()/Constantes.TAILLE_TUILE && Math.abs(x - getX()/Constantes.TAILLE_TUILE) < 0.8)
                     x++;
                 if (getEnv().getMinerai(x,y) == null) {
                     Materiau materiau;
@@ -206,7 +206,7 @@ public class Joueur extends Personnage {
     private void seReposer() {
         if (System.currentTimeMillis() - delai >= 5_000) {
             seReposeProperty.setValue(false);
-        } else if (System.currentTimeMillis() - delai >= 2_000 && getX() + TUILE_TAILLE != getEnv().getFeuDeCamp().getX() * TUILE_TAILLE) {
+        } else if (System.currentTimeMillis() - delai >= 2_000 && getX() + Constantes.TAILLE_TUILE != getEnv().getFeuDeCamp().getX() * Constantes.TAILLE_TUILE) {
             setSaute(false); setAvance(false); setDistancePoussee(0);
             getEnv().getFeuDeCamp().seReposer();
         }
@@ -215,7 +215,7 @@ public class Joueur extends Personnage {
     private void mourir() {
         if (System.currentTimeMillis() - delai >= 5_000) {
             mortProperty.setValue(false);
-        } else if (System.currentTimeMillis() - delai >= 2_000 && getX() + TUILE_TAILLE != getEnv().getFeuDeCamp().getX() * TUILE_TAILLE) {
+        } else if (System.currentTimeMillis() - delai >= 2_000 && getX() + Constantes.TAILLE_TUILE != getEnv().getFeuDeCamp().getX() * Constantes.TAILLE_TUILE) {
             setSaute(false); setAvance(false); setDistancePoussee(0);
 //            if (getArme() != null) getArme().detruire();
 //            if (inventaire.getArmure() != null) inventaire.getArmure().detruire();
@@ -247,7 +247,7 @@ public class Joueur extends Personnage {
 
     @Override
     protected int getHauteurMax() {
-        return (int) (2.5 * TUILE_TAILLE);
+        return (int) (2.5 * Constantes.TAILLE_TUILE);
     }
 
     @Override

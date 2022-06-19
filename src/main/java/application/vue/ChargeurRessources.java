@@ -47,6 +47,13 @@ public class ChargeurRessources {
         ensembleSonJeu.put("mort", new AudioClip(ChargeurRessources.class.getResource("/application/sons/ambiances/mort.mp3").toExternalForm()));
         ensembleSonJeu.put("village", new AudioClip(ChargeurRessources.class.getResource("/application/sons/ambiances/village.wav").toExternalForm()));
 
+        ensembleSonJeu.put("BruitEpee", new AudioClip(ChargeurRessources.class.getResource("/application/sons/armes/Epee.mp3").toExternalForm()));
+        ensembleSonJeu.put("BruitArc", new AudioClip(ChargeurRessources.class.getResource("/application/sons/armes/Arc.mp3").toExternalForm()));
+        ensembleSonJeu.put("BruitHache", new AudioClip(ChargeurRessources.class.getResource("/application/sons/armes/Hache.mp3").toExternalForm()));
+        ensembleSonJeu.put("BruitLance", new AudioClip(ChargeurRessources.class.getResource("/application/sons/armes/Lance.mp3").toExternalForm()));
+        ensembleSonJeu.put("BouleFeu", new AudioClip(ChargeurRessources.class.getResource("/application/sons/armes/BouleFeu.wav").toExternalForm()));
+
+
         //Icon objets
         iconObjets.put("Sol", new Image("file:src/main/resources/application/pack1/Sol.png"));
         iconObjets.put("Terre", new Image("file:src/main/resources/application/pack1/Terre.png"));

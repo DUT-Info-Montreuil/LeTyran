@@ -1,5 +1,6 @@
 package application.modele.personnages.animaux;
 
+import application.controleur.Constantes;
 import application.modele.Direction;
 import application.modele.Entite;
 import application.modele.Environnement;
@@ -7,7 +8,6 @@ import application.modele.personnages.Personnage;
 
 import static application.modele.Direction.Droit;
 import static application.modele.Direction.Gauche;
-import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Sanglier extends Animal {
 
@@ -54,9 +54,9 @@ public class Sanglier extends Animal {
     public void quandCollisionDetectee(Entite ent) {
         if (ent instanceof Personnage)
             if (getDirection() == Direction.Droit)
-                ((Personnage) ent).setDistancePoussee(TUILE_TAILLE);
+                ((Personnage) ent).setDistancePoussee(Constantes.TAILLE_TUILE);
             else
-                ((Personnage) ent).setDistancePoussee(-TUILE_TAILLE);
+                ((Personnage) ent).setDistancePoussee(-Constantes.TAILLE_TUILE);
     }
 
     @Override

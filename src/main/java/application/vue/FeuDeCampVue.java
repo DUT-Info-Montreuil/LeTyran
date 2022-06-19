@@ -1,5 +1,6 @@
 package application.vue;
 
+import application.controleur.Constantes;
 import application.modele.FeuDeCamp;
 import javafx.animation.FadeTransition;
 import javafx.scene.control.Label;
@@ -20,8 +21,8 @@ public class FeuDeCampVue {
     public FeuDeCampVue(FeuDeCamp feuDeCamp, ImageView spriteFeuDeCamp, Label labelMort) {
         this.labelMort = labelMort;
 
-        spriteFeuDeCamp.setX(feuDeCamp.getX() * TUILE_TAILLE);
-        spriteFeuDeCamp.setY(feuDeCamp.getY() * TUILE_TAILLE);
+        spriteFeuDeCamp.setX(feuDeCamp.getX() * Constantes.TAILLE_TUILE);
+        spriteFeuDeCamp.setY(feuDeCamp.getY() * Constantes.TAILLE_TUILE);
 
         labelMort.toBack();
         labelMort.setPrefSize(WIDTH_FENETRE, HEIGHT_FENETRE);

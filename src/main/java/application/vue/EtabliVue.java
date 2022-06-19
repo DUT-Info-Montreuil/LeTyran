@@ -1,5 +1,6 @@
 package application.vue;
 
+import application.controleur.Constantes;
 import application.modele.Etabli;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -12,7 +13,6 @@ import java.util.Iterator;
 
 import static application.Main.HEIGHT_FENETRE;
 import static application.Main.WIDTH_FENETRE;
-import static application.modele.MapJeu.TUILE_TAILLE;
 import static application.vue.ChargeurRessources.iconObjets;
 
 public class EtabliVue {
@@ -28,8 +28,8 @@ public class EtabliVue {
         bPaneEtabli.setLayoutY(HEIGHT_FENETRE/2 - bPaneEtabli.getPrefHeight()/2 - 50);
         bPaneEtabli.setVisible(false);
 
-        spriteEtabli.setX(etabli.getX() * TUILE_TAILLE);
-        spriteEtabli.setY(etabli.getY() * TUILE_TAILLE);
+        spriteEtabli.setX(etabli.getX() * Constantes.TAILLE_TUILE);
+        spriteEtabli.setY(etabli.getY() * Constantes.TAILLE_TUILE);
 
         //l'opacité à 0.5 aux armes non dispo
         Iterator iterator = etabli.getObjetsID().iterator();
