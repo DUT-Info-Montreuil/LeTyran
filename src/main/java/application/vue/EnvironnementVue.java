@@ -6,6 +6,7 @@ import application.modele.Environnement;
 import application.modele.personnages.allies.Allie;
 import application.modele.personnages.animaux.Animal;
 import application.modele.personnages.ennemi.Ennemi;
+import application.modele.personnages.ennemi.Tyran;
 import application.vue.environnement.ImageViewEnv;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,7 +42,10 @@ public class EnvironnementVue {
         construireFond();
 
         for (Ennemi ennemi : env.getListeEnnemis())
-            new PersonnageListeners(ennemi, new PersonnageVue(((Pane) root.lookup("#panePNJ")), ennemi), new ArmeVue(((Pane) root.lookup("#panePNJ")), ennemi));
+            if (ennemi instanceof Tyran)
+                new PersonnageListeners(ennemi, new PersonnageVue(((Pane) root.lookup("#panePNJ")), ennemi), new ArmeVue(((Pane) root.lookup("#panePNJ")), ennemi), root);
+            else
+                new PersonnageListeners(ennemi, new PersonnageVue(((Pane) root.lookup("#panePNJ")), ennemi), new ArmeVue(((Pane) root.lookup("#panePNJ")), ennemi));
         for (Animal animal : env.getListeAnimaux())
             new PersonnageListeners(animal, new PersonnageVue((Pane) root.lookup("#panePNJ"), animal));
         for (Allie allie : env.getListeAllies())

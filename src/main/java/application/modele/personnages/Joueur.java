@@ -30,7 +30,7 @@ public class Joueur extends Personnage {
         this.inventaire.ajouterObjet(new Pioche(getEnv(), 1));
         this.inventaire.ajouterObjet(new Hache(getEnv(), 1));
         this.inventaire.ajouterObjet(new Epee(getEnv(), 2));
-        this.inventaire.ajouterObjet(new Lance(getEnv(), 2));
+        this.inventaire.ajouterObjet(new Arc(getEnv(), 3));
         mortProperty = new SimpleBooleanProperty(false);
         seReposeProperty = new SimpleBooleanProperty(false);
         avanceProperty = new SimpleBooleanProperty(false);
