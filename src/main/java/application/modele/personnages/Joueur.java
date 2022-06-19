@@ -53,7 +53,6 @@ public class Joueur extends Personnage {
 
     //Pour l'instant on se contente d'une fonction simple étant donné qu'il n'y a qu'un seul villageois
     private boolean interactionVillageois() {
-
         Allie chefvillage = getEnv().getListeAllies().get(0);
         double distance = Math.abs(chefvillage.getX() - this.getX()) + Math.abs(chefvillage.getY() - this.getY());
         if(distance <= 32) {

@@ -11,7 +11,7 @@ public class Archer extends Ennemi {
 
     public Archer(Environnement env, int niveau, int x, int y, int distance) {
         super(env, x, y, distance, new Arc(env, niveau));
-        setPv(niveau * 3);
+        setPv(niveau * 6);
     }
 
     protected void deplacement() {

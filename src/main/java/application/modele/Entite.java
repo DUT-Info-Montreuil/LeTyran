@@ -95,12 +95,14 @@ public class Entite {
 
     public void decrementerPv() {
         pv.setValue(pv.getValue() - 1);
+        System.out.println(getPv() + " " + this);
         if (getPv() <= 0)
             detruire();
     }
 
     public void decrementerPv(int degat) {
         pv.setValue(pv.getValue() - degat);
+        System.out.println(getPv() + " " + this);
         if (getPv() <= 0)
             detruire();
     }

@@ -11,7 +11,7 @@ import static application.modele.MapJeu.TUILE_TAILLE;
 
 public class Sanglier extends Animal {
 
-    public final static int PV_MAX = 12;
+    public final static int PV_MAX = 6;
 
     private static int id = 0;
     private int delaiCharge;

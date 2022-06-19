@@ -9,7 +9,7 @@ public class Lancier extends Ennemi {
 
     public Lancier(Environnement env, int niveau, int x, int y, int distance) {
         super(env, x, y, distance, new Lance(env, niveau));
-        setPv(niveau * 3);
+        setPv(niveau * 6);
     }
 
     protected void deplacement() {
