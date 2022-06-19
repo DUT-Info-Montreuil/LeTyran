@@ -57,10 +57,10 @@ public class Entite {
         if(this.getCollider() != null) {
             collide();
         }
-        //tomber();
+        tomber();
     }
 
-    private void tomber() {
+    protected void tomber() {
         int i = 0;
         while (i < getVitesse() && getCollider().verifierCollisionDirection(Direction.Bas, 0.60f) == null) {
             i++;
@@ -68,9 +68,8 @@ public class Entite {
             setY(getY() + 0.60f);
         }
 
-        if (i < getVitesse()) {
+        if (i < getVitesse())
             tombe = false;
-        }
     }
 
     public void detruire() {

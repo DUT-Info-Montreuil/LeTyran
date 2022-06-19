@@ -29,14 +29,8 @@ public class Joueur extends Personnage {
         this.inventaire = new Inventaire(super.getEnv());
         this.inventaire.ajouterObjet(new Pioche(getEnv(), 1));
         this.inventaire.ajouterObjet(new Hache(getEnv(), 1));
-        this.inventaire.ajouterObjet(new Pierre());
-        this.inventaire.ajouterObjet(new Pierre());
-        this.inventaire.ajouterObjet(new Pierre());
-        this.inventaire.ajouterObjet(new Pierre());
-        this.inventaire.ajouterObjet(new Pioche(getEnv(), 3));
-        this.inventaire.ajouterObjet(new Hache(getEnv(), 3));
-        this.inventaire.ajouterObjet(new Epee(getEnv(), 3));
-        this.inventaire.ajouterObjet(new Arc(getEnv(), 3));
+        this.inventaire.ajouterObjet(new Epee(getEnv(), 2));
+        this.inventaire.ajouterObjet(new Lance(getEnv(), 2));
         mortProperty = new SimpleBooleanProperty(false);
         seReposeProperty = new SimpleBooleanProperty(false);
         avanceProperty = new SimpleBooleanProperty(false);
@@ -48,7 +42,7 @@ public class Joueur extends Personnage {
     }
 
     public boolean interagit(int x, int y) {
-        return (interactionVillageois() || interactionFeuDeCamp(x,y) || interactionEtabli(x, y) || (this.inventaire.getArme() != null && (frapper(x, y) || miner(x, y) || couper(x, y))) || ouvrirCoffre(x, y));
+        return (interactionVillageois() || interactionFeuDeCamp(x,y) || interactionEtabli(x, y) || poserBloc(x, y) || (this.inventaire.getArme() != null && (frapper(x, y) || miner(x, y) || couper(x, y))) || ouvrirCoffre(x, y));
     }
 
     //Pour l'instant on se contente d'une fonction simple étant donné qu'il n'y a qu'un seul villageois
@@ -100,7 +94,7 @@ public class Joueur extends Personnage {
                         case "Platine": materiau = new Platine(this.getEnv(), x, y); break;
                         case "Terre": materiau = new Terre(this.getEnv(), x, y); break;
                         case "Bois": materiau = new Bois(this.getEnv(), x, y); break;
-                        default: materiau = null;break;
+                        default: materiau = null; break;
                     }
 
                     objetEquipe.retirerDansStack();
