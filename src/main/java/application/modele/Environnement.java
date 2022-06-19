@@ -1,7 +1,6 @@
 package application.modele;
 
 import application.modele.objets.*;
-import application.modele.objets.Materiau;
 import application.modele.objets.materiaux.Pierre;
 import application.modele.objets.materiaux.Materiau;
 import application.modele.objets.materiaux.Terre;
