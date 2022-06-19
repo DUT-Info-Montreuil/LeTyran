@@ -77,9 +77,9 @@ public class EnvironnementControleur {
                 for (int i = 0; i < change.getAddedSize(); i++) {
                     Personnage perso = change.getAddedSubList().get(i);
                     if (perso instanceof Tyran)
-                        new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#panePNJ"), perso), new ArmeVue((Pane) root.lookup("#panePNJ"), perso), root);
+                        new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#panePNJ"), perso), new ArmeVue((Pane) root.lookup("#panePNJ"), perso, controleur), root);
                     else
-                        new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#panePNJ"), perso), new ArmeVue((Pane) root.lookup("#panePNJ"), perso));
+                        new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#panePNJ"), perso), new ArmeVue((Pane) root.lookup("#panePNJ"), perso, controleur));
                     //System.out.println(perso);
                     new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#panePNJ"), perso), new ArmeVue((Pane) root.lookup("#panePNJ"), perso, controleur ));
                 }

@@ -31,7 +31,7 @@ public class EnvironnementVue {
 
     private AudioClip bruitCoffre = new AudioClip(getClass().getResource("/application/sons/coffreBruit.mp3").toExternalForm());
 
-    public EnvironnementVue(Environnement env, Pane root, TilePane tileSol, TilePane tileDecors, TilePane tileFond, TilePane tileFondDecor) {
+    public EnvironnementVue(Environnement env, Pane root, TilePane tileSol, TilePane tileDecors, TilePane tileFond, TilePane tileFondDecor, ControleurJeu controleurJeu) {
         this.env = env;
         this.root = root;
         this.tileSol = tileSol;
@@ -45,9 +45,9 @@ public class EnvironnementVue {
 
         for (Ennemi ennemi : env.getListeEnnemis())
             if (ennemi instanceof Tyran)
-                new PersonnageListeners(ennemi, new PersonnageVue(((Pane) root.lookup("#panePNJ")), ennemi), new ArmeVue(((Pane) root.lookup("#panePNJ")), ennemi), root);
+                new PersonnageListeners(ennemi, new PersonnageVue(((Pane) root.lookup("#panePNJ")), ennemi), new ArmeVue(((Pane) root.lookup("#panePNJ")), ennemi, controleurJeu), root);
             else
-                new PersonnageListeners(ennemi, new PersonnageVue(((Pane) root.lookup("#panePNJ")), ennemi), new ArmeVue(((Pane) root.lookup("#panePNJ")), ennemi));
+                new PersonnageListeners(ennemi, new PersonnageVue(((Pane) root.lookup("#panePNJ")), ennemi), new ArmeVue(((Pane) root.lookup("#panePNJ")), ennemi, controleurJeu));
         for (Animal animal : env.getListeAnimaux())
             new PersonnageListeners(animal, new PersonnageVue((Pane) root.lookup("#panePNJ"), animal));
         for (Allie allie : env.getListeAllies())
@@ -60,7 +60,7 @@ public class EnvironnementVue {
         int width = env.getMapJeu().getTabMap()[0].length;
         int heigth = env.getMapJeu().getTabMap().length;
 
-        this.tileSol.setPrefSize(env.getMapJeu().getTabMap()[0].length * TUILE_TAILLE, env.getMapJeu().getTabMap().length * TUILE_TAILLE);
+        this.tileSol.setPrefSize(env.getMapJeu().getTabMap()[0].length * Constantes.TAILLE_TUILE, env.getMapJeu().getTabMap().length * Constantes.TAILLE_TUILE);
         ChargeurRessources.charger();
         ImageView img;
         for (int i = 0; i < heigth; i++) {
