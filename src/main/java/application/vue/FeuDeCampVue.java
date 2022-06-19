@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+import static application.Main.HEIGHT_FENETRE;
+import static application.Main.WIDTH_FENETRE;
 import static application.modele.MapJeu.*;
 
 
@@ -22,7 +24,7 @@ public class FeuDeCampVue {
         spriteFeuDeCamp.setY(feuDeCamp.getY() * TUILE_TAILLE);
 
         labelMort.toBack();
-        labelMort.setPrefSize(WIDTH * TUILE_TAILLE, HEIGHT * TUILE_TAILLE);
+        labelMort.setPrefSize(WIDTH_FENETRE, HEIGHT_FENETRE);
 
         fade = new FadeTransition();
         fade.setNode(labelMort);

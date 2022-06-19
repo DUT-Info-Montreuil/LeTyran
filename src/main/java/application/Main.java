@@ -20,13 +20,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             Pane root = FXMLLoader.load(getClass().getResource("vue.fxml"));
-            Scene scene = new Scene(root, WIDTH*TUILE_TAILLE,HEIGHT*TUILE_TAILLE);
+            Scene scene = new Scene(root, WIDTH_FENETRE,HEIGHT_FENETRE);
             root.requestFocus();
 
             //controleurScene.montrerEcranJeu();
 
             primaryStage.setTitle("Le Tyran");
-            primaryStage.setResizable(true);
+            //primaryStage.setResizable(true);
             //primaryStage.setMaximized(true);
             primaryStage.setScene(scene);
 
