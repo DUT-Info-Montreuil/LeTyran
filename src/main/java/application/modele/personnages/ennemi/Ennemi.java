@@ -1,5 +1,6 @@
 package application.modele.personnages.ennemi;
 
+import application.modele.Direction;
 import application.modele.Environnement;
 import application.modele.armes.Arme;
 import application.modele.objets.consommable.Potion;
@@ -80,6 +81,27 @@ public abstract class Ennemi extends PNJ {
                 poursuitJoueur = true;
         } else
             poursuitJoueur = false;
+    }
+
+    protected boolean fuitJoueur() {
+        if (Math.abs(getEnv().getJoueur().getX() - getX()) < 4 * TUILE_TAILLE
+                && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE) {
+            Direction direction;
+            if (getEnv().getJoueur().getX() - getX() <= 0)
+                direction = Droit;
+            else
+                direction = Gauche;
+            int i = 0;
+            while (i < 3 && getCollider().verifierCollisionDirection(direction, 0.45f) == null) {
+                i++;
+                if (direction == Droit)
+                    super.setX(super.getX() + 0.45f);
+                else
+                    super.setX(super.getX() - 0.45f);
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
