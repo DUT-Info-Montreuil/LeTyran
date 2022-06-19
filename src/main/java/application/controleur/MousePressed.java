@@ -1,9 +1,6 @@
 package application.controleur;
 
 import application.modele.Environnement;
-import application.modele.Inventaire;
-import application.modele.MapJeu;
-import application.modele.armes.Arme;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -69,7 +66,7 @@ public class MousePressed implements EventHandler<MouseEvent> {
             if (env.getJoueur().interagit(mouseX, mouseY)) {
                 controleur.getArmeVue().animationFrappe();
             } else {
-                env.getJoueur().poserBlock(mouseX, mouseY);
+                env.getJoueur().poserBloc(mouseX, mouseY);
             }
         }
     }

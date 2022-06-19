@@ -92,12 +92,14 @@ public class PersonnageVue {
         spritePerso.setImage(LISTE_SPRITES.get(perso.getClass().getSimpleName()).get(0));
         spritePerso.translateXProperty().bind(perso.getXProperty());
         spritePerso.translateYProperty().bind(perso.getYProperty());
+        inverserSprite();
     }
 
     private void construirePerso() {
         spritePerso.setImage(LISTE_SPRITES.get(perso.getClass().getSimpleName()).get(0));
         spritePerso.setTranslateX(POSITION_VUE_JOUEUR_X);
         spritePerso.setTranslateY(POSITION_VUE_JOUEUR_Y);
+        inverserSprite();
     }
 
     public void animerDeplacement() {

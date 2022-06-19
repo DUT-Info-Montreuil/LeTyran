@@ -18,7 +18,7 @@ public class Sanglier extends Animal {
 
     public Sanglier(Environnement env, int x, int y, int distance) {
         super(env, "Sanglier" + id++, x, y, distance, PV_MAX);
-        delaiCharge = 0;
+        delaiCharge = (int) (Math.random() * 10);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Sanglier extends Animal {
     protected void deplacementAllerRetour() {
         if ((getX() >= getOrigineX() && getX() <= getOrigineX() + getDistance() && getY() == getOrigineY() && estBloque() || (getX() < getOrigineX() && getDirection() == Gauche) || (getX() > getOrigineX() + getDistance() && getDirection() == Droit))) {
             setDirection(getDirectionOpposee());
-            delaiCharge = 0;
+            delaiCharge = (int) (Math.random() * 10);
         } else if (estBloque()) {
             if (getDirection() == Gauche)
                 setOrigineX(getX());

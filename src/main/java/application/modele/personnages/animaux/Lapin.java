@@ -13,7 +13,7 @@ public class Lapin extends Animal {
 
     public Lapin(Environnement env, int x, int y, int distance) {
         super(env, "Lapin" + id++, x, y, distance, PV_MAX);
-        delaiSaut = 0;
+        delaiSaut = (int) (Math.random() * 10);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class Lapin extends Animal {
         if (!getSaute() && !getTombe())
             if (delaiSaut++ > 30) {
                 setSaute(true);
-                delaiSaut = 0;
+                delaiSaut = (int) (Math.random() * 10);
             }
     }
 

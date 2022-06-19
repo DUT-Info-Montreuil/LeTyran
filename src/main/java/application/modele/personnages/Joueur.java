@@ -6,8 +6,7 @@ import application.modele.objets.Arbre;
 import application.modele.objets.Cle;
 import application.modele.objets.Coffre;
 import application.modele.objets.consommable.Consommable;
-import application.modele.objets.materiaux.Materiau;
-import application.modele.objets.materiaux.Pierre;
+import application.modele.objets.materiaux.*;
 import application.modele.personnages.allies.Allie;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -49,9 +48,7 @@ public class Joueur extends Personnage {
     }
 
     public boolean interagit(int x, int y) {
-        if(interactionVillageois() || interactionFeuDeCamp(x,y) || interactionEtabli(x, y) || (this.inventaire.getArme() != null && (frapper(x, y) || miner(x, y) || couper(x, y))) || ouvrirCoffre(x, y))
-                return true;
-        return false;
+        return (interactionVillageois() || interactionFeuDeCamp(x,y) || interactionEtabli(x, y) || (this.inventaire.getArme() != null && (frapper(x, y) || miner(x, y) || couper(x, y))) || ouvrirCoffre(x, y));
     }
 
     //Pour l'instant on se contente d'une fonction simple étant donné qu'il n'y a qu'un seul villageois
@@ -87,21 +84,34 @@ public class Joueur extends Personnage {
         return false;
     }
 
-    public boolean poserBlock(int x, int y) {
-        ObjetInventaire objetEquipe = this.getInventaire().getObjetInventaireSelectionnee();
-        if(objetEquipe != null && !(objetEquipe.getEntite() instanceof Arme)) {
+    public boolean poserBloc(int x, int y) {
+        ObjetInventaire objetEquipe = this.getInventaire().getObjetMain();
+        if(objetEquipe != null && !(objetEquipe.getEntite() instanceof Arme)
+                && (x != (int) getX()/TUILE_TAILLE || y != (int) getY()/TUILE_TAILLE)) {
             try {
 
-                Materiau nouvBloc = (Materiau) objetEquipe.getEntite().getClass().getDeclaredConstructor().newInstance();
-                nouvBloc.setX(x * TUILE_TAILLE);
-                nouvBloc.setY(y * TUILE_TAILLE);
-                nouvBloc.setEnv(this.getEnv());
-                nouvBloc.setPv(100);
+//                Materiau nouvBloc = (Materiau) objetEquipe.getEntite().getClass().getDeclaredConstructor().newInstance();
+//                nouvBloc.setX(x * TUILE_TAILLE);
+//                nouvBloc.setY(y * TUILE_TAILLE);
+//                nouvBloc.setEnv(this.getEnv());
+//                nouvBloc.setPv(100);
+                if (x > (int) getX()/TUILE_TAILLE && Math.abs(x - getX()/TUILE_TAILLE) < 0.8)
+                    x++;
+                if (getEnv().getMinerai(x,y) == null) {
+                    Materiau materiau;
+                    switch (objetEquipe.getEntite().getClass().getSimpleName()) {
+                        case "Pierre": materiau = new Pierre(this.getEnv(), x, y); break;
+                        case "Fer": materiau = new Fer(this.getEnv(), x, y); break;
+                        case "Platine": materiau = new Platine(this.getEnv(), x, y); break;
+                        case "Terre": materiau = new Terre(this.getEnv(), x, y); break;
+                        case "Bois": materiau = new Bois(this.getEnv(), x, y); break;
+                        default: materiau = null;break;
+                    }
 
-                objetEquipe.retirerDansStack();
-
-                this.getEnv().getListeMateriaux().add(nouvBloc);
-                System.out.println("Bloc ajouté");
+                    objetEquipe.retirerDansStack();
+                    this.getEnv().getListeMateriaux().add(materiau);
+                    System.out.println("Bloc ajouté");
+                }
             } catch(Exception exception) {
                 System.out.println("Impossible d'ajouter un bloc");
                 exception.printStackTrace();

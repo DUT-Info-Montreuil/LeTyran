@@ -40,9 +40,11 @@ public class ObjetInventaire {
 
     public void retirerDansStack() {
         this.stackActuel.setValue(this.stackActuel.getValue() - 1);
-        if (stackActuel.getValue() == 0)
+        if (stackActuel.getValue() == 0) {
+            if (this == inventaire.getObjetMain())
+                inventaire.setObjetMain(null);
             inventaire.retirerObjet(this);
-
+        }
     }
 
     public Entite getEntite() {
