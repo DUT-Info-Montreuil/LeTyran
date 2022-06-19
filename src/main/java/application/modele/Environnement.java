@@ -8,6 +8,8 @@ import application.modele.personnages.*;
 import application.modele.personnages.allies.Allie;
 import application.modele.personnages.allies.ChefVillage;
 import application.modele.personnages.animaux.Animal;
+import application.modele.personnages.animaux.Lapin;
+import application.modele.personnages.animaux.Sanglier;
 import application.modele.personnages.ennemi.*;
 import application.modele.projectiles.Projectile;
 import javafx.beans.property.BooleanProperty;
@@ -92,11 +94,15 @@ public class Environnement {
 
     public void initListeEnnemis() {
         listeEnnemis.clear();
-//        listeEnnemis.add(new Archer(this, 1, 20, 11, 0));
-//        listeEnnemis.add(new Lancier(this, 1, 15, 11, 0));
-//        listeEnnemis.add(new Epeiste(this,1, 20, 0, 5));
-//        listeEnnemis.add(new Epeiste(this,1, 18, 18, 10));
-        listeEnnemis.add(new Tyran(this, 10, 30, 20));
+        listeEnnemis.add(new Archer(this, 1, 27, 38, 0));
+        listeEnnemis.add(new Epeiste(this,1, 28, 38, 8));
+        listeEnnemis.add(new Lancier(this, 2, 58, 35, 0));
+        listeEnnemis.add(new Epeiste(this,2, 63, 44, 9));
+        listeEnnemis.add(new Epeiste(this,2, 64, 44, 9));
+        listeEnnemis.add(new Archer(this, 3, 84, 41, 0));
+        listeEnnemis.add(new Archer(this, 3, 102, 37, 0));
+        listeEnnemis.add(new Lancier(this, 3, 99, 37, 0));
+        //listeEnnemis.add(new Tyran(this, 10, 30, 20));
     }
 
     private void initListeCoffres() {
@@ -111,9 +117,14 @@ public class Environnement {
     }
 
     public void initListeAnimaux() {
-//        listeAnimaux.clear();
-//        listeAnimaux.add(new Lapin(this, 15,11, 10));
-//        listeAnimaux.add(new Sanglier(this, 15,11, 8));
+        listeAnimaux.clear();
+        listeAnimaux.add(new Lapin(this, 32,43, 4));
+        listeAnimaux.add(new Lapin(this, 26,42, 5));
+        listeAnimaux.add(new Sanglier(this, 39,35, 8));
+        listeAnimaux.add(new Sanglier(this, 48,35, 8));
+        listeAnimaux.add(new Lapin(this, 74,43, 4));
+        listeAnimaux.add(new Sanglier(this, 106,40, 9));
+        listeAnimaux.add(new Sanglier(this, 107,40, 9));
     }
 
     public void initListeAllies() {

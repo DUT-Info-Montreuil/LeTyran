@@ -30,6 +30,7 @@ public abstract class Ennemi extends PNJ {
         delaiFrappe = 0;
         retourZone = false;
         poursuitJoueur = false;
+        setDirection(Gauche);
     }
 
     protected void detectionJoueur() {
