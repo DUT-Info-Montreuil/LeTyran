@@ -54,7 +54,10 @@ public class PersonnageListeners {
         });
         if (perso instanceof Tyran)
             ((Tyran) perso).getChargeProperty().addListener((observableValue, aBoolean, t1) -> {
-                armeVue.rendreVisible();
+                if (t1)
+                    armeVue.rendreVisible();
+                else
+                    armeVue.rendreInvisible();
             });
     }
 

@@ -52,27 +52,30 @@ public class Tyran extends Ennemi {
                     super.setX(super.getX() - 0.45f);
             }
 
-            if (getDirection() == Droit && getX() > getOrigineX() + getDistance() - TUILE_TAILLE)
+            if (getDirection() == Droit && getX() > getOrigineX())
                 chargeProperty.setValue(false);
-            else if (getDirection() == Gauche && getX() < getOrigineX() - getDistance() + TUILE_TAILLE)
+            else if (getDirection() == Gauche && getX() < getOrigineX())
                 chargeProperty.setValue(false);
 
             if (Math.abs(getEnv().getJoueur().getX() - getX()) < 5 && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE)
-                getEnv().getJoueur().decrementerPv(5);
+                getArme().frapper(this, getEnv().getJoueur());
         } else
             delaiCharge++;
     }
 
     protected boolean fuitJoueur() {
         if (!chargeProperty.getValue()) {
-            if (Math.abs(getEnv().getJoueur().getX() - getX()) < 6 * TUILE_TAILLE
+            if (Math.abs(getEnv().getJoueur().getX() - getX()) < 5 * TUILE_TAILLE
                     && Math.abs(getEnv().getJoueur().getY() - getY()) < TUILE_TAILLE
                     && getX() >= getOrigineX() - getDistance() && getX() <= getOrigineX() + getDistance()) {
                 Direction direction;
-                if (getEnv().getJoueur().getX() - getX() <= 0)
+                if (getEnv().getJoueur().getX() - getX() <= 0) {
                     direction = Droit;
-                else
+                    setDirection(Gauche);
+                } else {
                     direction = Gauche;
+                    setDirection(Droit);
+                }
                 int i = 0;
                 while (i < 3 && getCollider().verifierCollisionDirection(direction, 0.45f) == null) {
                     i++;
@@ -82,12 +85,7 @@ public class Tyran extends Ennemi {
                         super.setX(super.getX() - 0.45f);
                 }
                 return true;
-            } else if (getX() < getOrigineX() - getDistance()) {
-                setDirection(Droit);
-                chargeProperty.setValue(true);
-                delaiCharge = 0;
-            } else if (getX() > getOrigineX() + getDistance()) {
-                setDirection(Gauche);
+            } else if (getX() < getOrigineX() - getDistance() || (getX() > getOrigineX() + getDistance()))  {
                 chargeProperty.setValue(true);
                 delaiCharge = 0;
             }
@@ -101,10 +99,10 @@ public class Tyran extends Ennemi {
         if (chargeProperty.getValue()) {
             charger();
         } else {
-//            if (getAttaque())
-//                attaquer();
-//            if (!getAttaque())
-//                detectionJoueur();
+            if (getAttaque())
+                attaquer();
+            if (!getAttaque())
+                detectionJoueur();
             deplacement();
         }
     }
