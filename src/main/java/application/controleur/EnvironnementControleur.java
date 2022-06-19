@@ -2,19 +2,17 @@ package application.controleur;
 
 import application.controleur.listeners.PersonnageListeners;
 import application.modele.Environnement;
-import application.modele.armes.arc.Fleche;
+import application.modele.projectiles.Fleche;
 import application.modele.objets.Arbre;
 import application.modele.objets.Coffre;
 import application.modele.objets.Materiau;
 import application.modele.personnages.Personnage;
-import application.modele.personnages.allies.Allie;
 import application.modele.personnages.animaux.Animal;
-import application.modele.personnages.ennemi.Ennemi;
+import application.modele.projectiles.Projectile;
 import application.vue.ArmeVue;
 import application.vue.EnvironnementVue;
 import application.vue.FlecheVue;
 import application.vue.PersonnageVue;
-import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 
@@ -133,14 +131,16 @@ public class EnvironnementControleur {
             }
         });
 
-        env.getListeFleches().addListener(new ListChangeListener<Fleche>() {
+        env.getListeProjectiles().addListener(new ListChangeListener<Projectile>() {
             @Override
-            public void onChanged(Change<? extends Fleche> change) {
+            public void onChanged(Change<? extends Projectile> change) {
                 change.next();
                 for (int i = 0; i < change.getAddedSize(); i++)
-                    new FlecheVue(((Pane) root.lookup("#paneEnnemis")), change.getAddedSubList().get(i));
+                    if (change.getAddedSubList().get(i) instanceof Fleche)
+                        new FlecheVue(((Pane) root.lookup("#paneEnnemis")), (Fleche) change.getAddedSubList().get(i));
+
                 for (int i = 0; i < change.getRemovedSize(); i++)
-                    envVue.supprimerFleche(change.getRemoved().get(i).getId());
+                    envVue.supprimerProjectile(change.getRemoved().get(i).getId());
             }
         });
     }

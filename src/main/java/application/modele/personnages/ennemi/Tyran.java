@@ -30,7 +30,8 @@ public class Tyran extends Ennemi {
         else if (!fuitJoueur() && (Math.abs(getEnv().getJoueur().getX() - (getX())) - 4 >= 6 * TUILE_TAILLE
                 || Math.abs(getEnv().getJoueur().getY() - getY()) > TUILE_TAILLE)
                 && (Math.abs(getX() - getOrigineX()) > 1)) {
-            retourOrigine();
+            if ((getX() - getOrigineX() < -1 && getDirection() == Gauche) || (getX() - getOrigineX() > 1 && getDirection() == Droit))
+                setDirection(getDirectionOpposee());
             seDeplacer();
         }
     }

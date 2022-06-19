@@ -4,14 +4,13 @@ import application.modele.*;
 import application.modele.armes.Arme;
 import application.modele.armes.Hache;
 import application.modele.armes.Pioche;
-import application.modele.armes.arc.Arc;
+import application.modele.armes.Arc;
 import application.modele.objets.Arbre;
 import application.modele.objets.Coffre;
 import application.modele.objets.consommable.Consommable;
 import application.modele.objets.Materiau;
 import application.modele.objets.materiaux.Pierre;
 import application.modele.personnages.allies.Allie;
-import application.modele.personnages.allies.ChefVillage;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 

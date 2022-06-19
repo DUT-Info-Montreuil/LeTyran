@@ -1,8 +1,7 @@
-package application.modele.armes.arc;
+package application.modele.armes;
 
 import application.modele.Environnement;
-import application.modele.armes.Arme;
-import application.modele.personnages.Joueur;
+import application.modele.projectiles.Fleche;
 import application.modele.personnages.Personnage;
 
 import static application.modele.MapJeu.TUILE_TAILLE;
@@ -14,13 +13,13 @@ public class Arc extends Arme {
     }
 
     public void frapper(Personnage perso, Personnage ennemi) {
-        getEnv().getListeFleches().add(new Fleche(getEnv(), perso, getDistance()*TUILE_TAILLE, nbDegat()));
+        getEnv().getListeProjectiles().add(new Fleche(getEnv(), perso, getDistance()*TUILE_TAILLE, nbDegat()));
     }
 
     public void frapper(int x, int y) {
         if (getEnv().getJoueur().getInventaire().recupererNombreRessources("Fleche") > 0) {
             getEnv().getJoueur().getInventaire().retirerNbRessources("Fleche", 1);
-                getEnv().getListeFleches().add(new Fleche(getEnv(), getEnv().getJoueur(), x, y, getDistance() * TUILE_TAILLE, nbDegat()));
+                getEnv().getListeProjectiles().add(new Fleche(getEnv(), getEnv().getJoueur(), x, y, getDistance() * TUILE_TAILLE, nbDegat()));
                 decrementerPv();
         }
     }

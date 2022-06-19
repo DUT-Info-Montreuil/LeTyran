@@ -1,8 +1,8 @@
 package application.modele;
 
 import application.modele.armes.*;
-import application.modele.armes.arc.Arc;
-import application.modele.armes.arc.Fleche;
+import application.modele.armes.Arc;
+import application.modele.projectiles.Fleche;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;

@@ -33,4 +33,6 @@ module application.letyran {
     opens application.modele.objets.materiaux to javafx.fxml;
     exports application.modele.objets.consommable;
     opens application.modele.objets.consommable to javafx.fxml;
+    exports application.modele.projectiles;
+    opens application.modele.projectiles to javafx.fxml;
 }

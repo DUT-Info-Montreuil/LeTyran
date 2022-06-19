@@ -1,6 +1,5 @@
 package application.modele;
 
-import application.modele.armes.arc.Fleche;
 import application.modele.objets.*;
 import application.modele.objets.Materiau;
 import application.modele.objets.materiaux.Terre;
@@ -8,17 +7,14 @@ import application.modele.personnages.*;
 import application.modele.personnages.allies.Allie;
 import application.modele.personnages.allies.ChefVillage;
 import application.modele.personnages.animaux.Animal;
-import application.modele.personnages.animaux.Lapin;
 import application.modele.personnages.ennemi.*;
+import application.modele.projectiles.Projectile;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.HashMap;
-
 import static application.modele.MapJeu.TUILE_TAILLE;
-import static application.modele.MapJeu.WIDTH;
 
 public class Environnement {
 
@@ -34,7 +30,7 @@ public class Environnement {
     private ObservableList<Ennemi> listeEnnemis;
     private ObservableList<Animal> listeAnimaux;
     private ObservableList<Allie> listeAllies;
-    private ObservableList<Fleche> listeFleches;
+    private ObservableList<Projectile> listeProjectiles;
 
     public Environnement() {
         pauseProperty = new SimpleBooleanProperty(false);
@@ -56,7 +52,7 @@ public class Environnement {
         initListeAnimaux();
         listeAllies = FXCollections.observableArrayList();
         initListeAllies();
-        listeFleches = FXCollections.observableArrayList();
+        listeProjectiles = FXCollections.observableArrayList();
     }
 
     //region init
@@ -183,8 +179,8 @@ public class Environnement {
         for (int i = 0; i < listeAllies.size(); i++)
             listeAllies.get(i).update();
 
-        for (int i = 0; i < listeFleches.size(); i++)
-            listeFleches.get(i).update();
+        for (int i = 0; i < listeProjectiles.size(); i++)
+            listeProjectiles.get(i).update();
     }
 
     //region Getter & Setter
@@ -218,8 +214,8 @@ public class Environnement {
         return listeAllies;
     }
 
-    public ObservableList<Fleche> getListeFleches() {
-        return listeFleches;
+    public ObservableList<Projectile> getListeProjectiles() {
+        return listeProjectiles;
     }
 
     public Joueur getJoueur() {

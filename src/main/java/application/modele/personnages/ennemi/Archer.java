@@ -1,8 +1,7 @@
 package application.modele.personnages.ennemi;
 
-import application.modele.Direction;
 import application.modele.Environnement;
-import application.modele.armes.arc.Arc;
+import application.modele.armes.Arc;
 
 import static application.modele.Direction.Droit;
 import static application.modele.Direction.Gauche;

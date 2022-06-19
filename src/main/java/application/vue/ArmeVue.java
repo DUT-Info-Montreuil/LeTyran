@@ -1,10 +1,9 @@
 package application.vue;
 
-import application.controleur.listeners.ArmeListener;
 import application.controleur.listeners.AttaqueListener;
 import application.modele.Direction;
 import application.modele.armes.Lance;
-import application.modele.armes.arc.Arc;
+import application.modele.armes.Arc;
 import application.modele.personnages.ennemi.Ennemi;
 import application.modele.personnages.Joueur;
 import application.modele.personnages.Personnage;

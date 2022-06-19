@@ -20,7 +20,7 @@ public class FeuDeCamp {
     public void seReposer() {
         env.initListeEnnemis();
         env.initListeAnimaux();
-        env.getListeFleches().clear();
+        env.getListeProjectiles().clear();
         env.getJoueur().setX(x * TUILE_TAILLE - TUILE_TAILLE);
         env.getJoueur().setY(y * TUILE_TAILLE);
         env.getJoueur().setPv(Joueur.PV_MAX);

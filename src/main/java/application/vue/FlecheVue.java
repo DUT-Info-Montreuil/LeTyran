@@ -1,7 +1,7 @@
 package application.vue;
 
 import application.modele.Direction;
-import application.modele.armes.arc.Fleche;
+import application.modele.projectiles.Fleche;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
