@@ -51,9 +51,16 @@ public class DialogueControleur implements EventHandler<Event> {
 
     }
 
+    public void debutDialogue()  {
+        this.vueDialogue.afficher();
+        if(this.vueDialogue.estAffiche()) {
+            lancerDialogue();
+        }
+    }
 
     public void lancerDialogue() {
         this.modDialog.reinitialiserDialogue();
         nombreClick = 0;
+
     }
 }

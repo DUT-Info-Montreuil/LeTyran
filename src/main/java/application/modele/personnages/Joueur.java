@@ -10,6 +10,8 @@ import application.modele.objets.Coffre;
 import application.modele.objets.consommable.Consommable;
 import application.modele.objets.Materiau;
 import application.modele.objets.materiaux.Pierre;
+import application.modele.personnages.allies.Allie;
+import application.modele.personnages.allies.ChefVillage;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -49,8 +51,22 @@ public class Joueur extends Personnage {
     }
 
     public boolean interagit(int x, int y) {
-        if(interactionFeuDeCamp(x,y) || interactionEtabli(x, y) || (this.inventaire.getArme() != null && (frapper(x, y) || miner(x, y) || couper(x, y))) || ouvrirCoffre(x, y))
+        if(interactionVillageois() || interactionFeuDeCamp(x,y) || interactionEtabli(x, y) || (this.inventaire.getArme() != null && (frapper(x, y) || miner(x, y) || couper(x, y))) || ouvrirCoffre(x, y))
                 return true;
+        return false;
+    }
+
+    //Pour l'instant on se contente d'une fonction simple étant donné qu'il n'y a qu'un seul villageois
+    private boolean interactionVillageois() {
+
+        Allie chefvillage = getEnv().getListeAllies().get(0);
+        double distance = Math.abs(chefvillage.getX() - this.getX()) + Math.abs(chefvillage.getY() - this.getY());
+        if(distance < 100) {
+            chefvillage.ajouterStatutInteragir();
+            //System.out.println(chefvillage.getInteractionAvancement());
+            return true;
+        }
+
         return false;
     }
 

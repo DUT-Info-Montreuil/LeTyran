@@ -118,7 +118,7 @@ public class Environnement {
 
     public void initListeAllies() {
         listeAllies.clear();
-        listeAllies.add(new ChefVillage(this, 5,30, 11));
+        listeAllies.add(new ChefVillage(this, 2,39, 11));
     }
             //endregion
 

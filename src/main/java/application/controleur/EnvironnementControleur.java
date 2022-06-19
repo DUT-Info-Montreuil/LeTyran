@@ -6,12 +6,15 @@ import application.modele.armes.arc.Fleche;
 import application.modele.objets.Arbre;
 import application.modele.objets.Coffre;
 import application.modele.objets.Materiau;
+import application.modele.personnages.Personnage;
+import application.modele.personnages.allies.Allie;
 import application.modele.personnages.animaux.Animal;
 import application.modele.personnages.ennemi.Ennemi;
 import application.vue.ArmeVue;
 import application.vue.EnvironnementVue;
 import application.vue.FlecheVue;
 import application.vue.PersonnageVue;
+import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 
@@ -19,8 +22,9 @@ import static application.modele.MapJeu.*;
 
 public class EnvironnementControleur {
 
-    public EnvironnementControleur(Pane root, EnvironnementVue envVue, Environnement env) {
-
+    private Controleur controleur;
+    public EnvironnementControleur(Pane root, EnvironnementVue envVue, Environnement env, Controleur controleur) {
+        this.controleur = controleur;
         ((Pane) root.lookup("#paneEnnemis")).setPrefSize(WIDTH * TUILE_TAILLE, HEIGHT * TUILE_TAILLE);
 
         root.lookup("#tileSol").translateXProperty().bind(env.getJoueur().getXProperty().multiply(-1).add(((TUILE_TAILLE * WIDTH)) / 2));
@@ -67,17 +71,46 @@ public class EnvironnementControleur {
             }
         });
 
-        env.getListeEnnemis().addListener(new ListChangeListener<Ennemi>() {
+        env.getListeEnnemis().addListener(new ListChangeListener<Personnage>() {
             @Override
-            public void onChanged(Change<? extends Ennemi> change) {
-               change.next();
-               for (int i = 0; i < change.getRemovedSize(); i++)
+            public void onChanged(Change<? extends Personnage> change) {
+                change.next();
+                for (int i = 0; i < change.getRemovedSize(); i++)
                     envVue.supprimerPNJ(change.getRemoved().get(i).getId());
 
-                for (int i = 0; i < change.getAddedSize(); i++)
-                    new PersonnageListeners(change.getAddedSubList().get(i), new PersonnageVue((Pane) root.lookup("#paneEnnemis"), change.getAddedSubList().get(i)), new ArmeVue((Pane) root.lookup("#paneEnnemis"),  change.getAddedSubList().get(i)));
+                for (int i = 0; i < change.getAddedSize(); i++) {
+                    Personnage perso = change.getAddedSubList().get(i);
+                    new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#paneEnnemis"), perso), new ArmeVue((Pane) root.lookup("#paneEnnemis"), perso));
+                    //System.out.println(perso);
+                }
             }
+
         });
+
+            //On a qu'un seul villageois
+            env.getListeAllies().get(0).getInteractionProperty().addListener(e -> {
+
+                System.out.println(env.getListeAllies().get(0).getInteractionAvancement());
+                if (env.getListeAllies().get(0).getInteractionAvancement() == 1) {
+                    controleur.getDialogueControleur().debutDialogue();
+                }
+             });
+        /*env.getListeAllies().addListener(new ListChangeListener<Personnage>() {
+            @Override
+            public void onChanged(Change<? extends Personnage> change) {
+                System.out.println(change);
+                for (int i = 0; i < change.getAddedSize(); i++) {
+                    Allie allie = (Allie) change.getAddedSubList().get(i);
+                    System.out.println(allie);
+                    allie.getInteractionProperty().addListener(e -> {
+                        System.out.println("ok");
+                        if (allie.getInteractionAvancement() == 1) {
+                            controleur.getDialogueControleur().lancerDialogue();
+                        }
+                    });
+                }
+            }
+        });*/
 
         env.getListeAnimaux().addListener(new ListChangeListener<Animal>() {
             @Override

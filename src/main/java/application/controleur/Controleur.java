@@ -42,6 +42,7 @@ public class Controleur implements Initializable {
     private InventaireControleur inventaireControleur;
     private VueDialogue vueDialog;
     private ModeleDialogue modeleDialogue;
+    private DialogueControleur dialogueControleur;
 
     private Timeline gameLoop;
 
@@ -91,12 +92,13 @@ public class Controleur implements Initializable {
 //        this.ennemieVue= new EnnemieVue(root,tileSol,ennemie);
 //        this.ennemiControleur= new EnnemiControleur(root,env, tileSol,ennemie,this.ennemieVue);
         this.inventaireControleur = new InventaireControleur(root, controleurQuete, env, inventaireMain, inventaireSac, inventaireEquipement);
+        this.dialogueControleur = new DialogueControleur(vueDialog, modeleDialogue);
 
         root.addEventHandler(KeyEvent.KEY_PRESSED, new KeyPressed(env));
         root.addEventHandler(KeyEvent.KEY_RELEASED, new KeyReleased(this, env));
         root.addEventHandler(Event.ANY, inventaireControleur);
         root.addEventHandler(MouseEvent.MOUSE_PRESSED, new MousePressed(this, env));
-        root.addEventHandler(Event.ANY, new DialogueControleur(vueDialog, modeleDialogue));
+        root.addEventHandler(Event.ANY, dialogueControleur);
         root.addEventHandler(KeyEvent.KEY_PRESSED, new PauseControleur(env, root, vBoxPause, vBoxSuicide));
 
         env.getJoueur().getInventaire().getArmeProperty().addListener(new ArmeListener(armeVue, inventaireControleur.getInvVue()));
@@ -105,7 +107,7 @@ public class Controleur implements Initializable {
 
         new EtabliControleur(root,env, etabliVue);
         new PersonnageListeners(env.getJoueur(), personnageVue, armeVue, feuDeCampVue);
-        new EnvironnementControleur(root, envVue, env);
+        new EnvironnementControleur(root, envVue, env, this);
 
 
 
@@ -140,5 +142,8 @@ public class Controleur implements Initializable {
 
     public InventaireControleur getInventaireControleur() {
         return this.inventaireControleur;
+    }
+    public DialogueControleur getDialogueControleur() {
+        return this.dialogueControleur;
     }
 }
