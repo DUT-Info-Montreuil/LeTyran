@@ -80,8 +80,6 @@ public class EnvironnementControleur {
                         new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#panePNJ"), perso), new ArmeVue((Pane) root.lookup("#panePNJ"), perso, controleur), root);
                     else
                         new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#panePNJ"), perso), new ArmeVue((Pane) root.lookup("#panePNJ"), perso, controleur));
-                    //System.out.println(perso);
-                    new PersonnageListeners(perso, new PersonnageVue((Pane) root.lookup("#panePNJ"), perso), new ArmeVue((Pane) root.lookup("#panePNJ"), perso, controleur ));
                 }
             }
 
