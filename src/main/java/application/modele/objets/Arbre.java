@@ -11,6 +11,7 @@ public class Arbre extends Entite {
 
     public Arbre(Environnement env, int x, int y) {
         super(env, x, y, PV_MAX);
+
     }
     //retourne le nombre de bois drop
     public void estFrappe() {

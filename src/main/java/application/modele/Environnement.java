@@ -2,9 +2,7 @@ package application.modele;
 
 import application.controleur.Constantes;
 import application.modele.objets.*;
-import application.modele.objets.materiaux.Pierre;
-import application.modele.objets.materiaux.Materiau;
-import application.modele.objets.materiaux.Terre;
+import application.modele.objets.materiaux.*;
 import application.modele.personnages.*;
 import application.modele.personnages.allies.Allie;
 import application.modele.personnages.allies.ChefVillage;
@@ -63,8 +61,9 @@ public class Environnement {
         listeArbres = FXCollections.observableArrayList();
         for (int i = 0; i < mapJeu.getHeight(); i++) {
             for (int j = 0; j < mapJeu.getWidth(); j++) {
-                if (mapJeu.getTabMap()[i][j] == 55) {
+                if (mapJeu.getTabMap()[i][j] == 160) {
                     listeArbres.add(new Arbre(this, j, i));
+                    listeArbres.get(listeArbres.size()-1).getX();
                 }
             }
         }
@@ -76,8 +75,12 @@ public class Environnement {
             for (int j = 0; j < mapJeu.getWidth(); j++) {
                 int id = mapJeu.getTabMap()[i][j];
                     if(id == 20) {
-                        getListeMateriaux().add(new Pierre(this, j, i));
-                    } else if(id != 0) {
+                        listeMateriaux.add(new Pierre(this, j, i));
+                    } else if(id == 178) {
+                        listeMateriaux.add(new Fer(this, j, i));
+                    } else if(id == 179) {
+                        listeMateriaux.add(new Platine(this, j, i));
+                    }else if(id == 74 || id == 92) {
                         listeMateriaux.add(new Terre(this, j, i));
                     }
             }
@@ -131,8 +134,10 @@ public class Environnement {
     }
 
     public Arbre getArbre(int x, int y) {
-        if (mapJeu.getTabMap()[y][x] == 56) y++;
-        else if (mapJeu.getTabMap()[y][x] == 57) y+=2;
+
+        System.out.println(mapJeu.getTabMap()[y][x]);
+        if (mapJeu.getTabMap()[y][x] == 161) y++;
+        else if (mapJeu.getTabMap()[y][x] == 162) y+=2;
 
         for (Arbre arbre : listeArbres)
             if (arbre.getX() == x && arbre.getY() == y)
