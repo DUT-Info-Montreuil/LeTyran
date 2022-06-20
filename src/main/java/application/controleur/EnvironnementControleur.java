@@ -63,7 +63,7 @@ public class EnvironnementControleur {
             public void onChanged(Change<? extends Arbre> change) {
                 change.next();
                 for (int i = 0; i < change.getRemovedSize(); i++)
-                    envVue.supprimerArbre((int)change.getRemoved().get(i).getY() * WIDTH + (int)change.getRemoved().get(0).getX());
+                    envVue.supprimerArbre((int)change.getRemoved().get(i).getY() * env.getMapJeu().getWidth() + (int)change.getRemoved().get(0).getX());
             }
         });
 
