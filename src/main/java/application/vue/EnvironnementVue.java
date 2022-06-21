@@ -130,7 +130,7 @@ public class EnvironnementVue {
     public void supprimerArbre(int id) {
         ImageView img;
         for (int i = 0; i < 3; i++) {
-            img = (ImageView) tileSol.getChildren().get(id - i * WIDTH);
+            img = (ImageView) tileSol.getChildren().get(id - i * env.getMapJeu().getWidth());
             img.setImage(new Image("file:src/main/resources/application/pack1/tile_transparent.png"));
         }
     }
