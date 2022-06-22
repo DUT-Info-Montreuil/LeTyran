@@ -36,7 +36,6 @@ public class QueteControleur {
             if(this.modeleQuetes.getQueteActuel().getCompletee()) {
                 rendreQuete();
                 this.vueQuetes.rendreQuete();
-                this.env.getListeEnnemis().add(new Tyran(this.env, 140, 35, 20));
 
             }
             return this.modeleQuetes.getQueteActuel().getCompletee();
@@ -130,7 +129,7 @@ public class QueteControleur {
 
     public void rendreQuete() {
         //On fait apparaître le tyran une fois que la quête a été rendu
-        this.env.getListeEnnemis().add(new Tyran(this.env, 100, 39, 20));
+        this.env.getListeEnnemis().add(new Tyran(this.env, 135, 21, 20));
     }
 
 
